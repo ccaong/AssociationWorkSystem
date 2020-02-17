@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="company_name">
+        <item>山东省轻工业安全生产管理协会</item>
+        <item>山东省冠隆安全工程师事务所</item>
+        <item>国轻安全（北京）信息技术有限公司</item>
+        <item>青啤济南公司</item>
+        <item>雪花集团</item>
+    </string-array>
+</resources>

@@ -1,0 +1,72 @@
+<resources>
+    <string name="app_name">GQSystem</string>
+    <string name="default_user_name">管理员</string>
+    <string name="company_association_name">山东省轻工业安全生产管理协会</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_tools">Tools</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_send">Send</string>
+
+    <string name="time">时间：</string>
+    <string name="status">状态：</string>
+
+    <string name="todo">未开始</string>
+    <string name="doing">进行中</string>
+    <string name="done">已结束</string>
+
+    
+    <string name="home">主页</string>
+    <string name="alarm">提醒</string>
+    <string name="schedule">日程</string>
+    <string name="cost">费用</string>
+    <string name="company">企业</string>
+    <string name="about">关于</string>
+    <string name="setting">设置</string>
+    <string name="change_status">状态变更</string>
+
+    
+    <string name="project_todo">待开发</string>
+    <string name="project_doing">进行中</string>
+
+    <string name="bianzhun">安全生产标准化</string>
+    <string name="shuangchong">双重预防机制建设</string>
+    <string name="pingjia">评价评估</string>
+    <string name="tixitisheng">安全管理体系提升</string>
+    <string name="xinxihua">安全生产信息化</string>
+    <string name="zhuanxiang">专项整治</string>
+    <string name="gov">政府采购</string>
+    <string name="other">其他</string>
+
+
+    <string name="company_name_title">企业名称：</string>
+    <string name="default_company_name">默认企业名称</string>
+
+    <string name="project_name_title">项目名称：</string>
+    <string name="default_project_name">默认项目名称</string>
+
+    <string name="project_type_title">项目类型：</string>
+    <string name="default_project_type">默认项目类型</string>
+
+    <string name="project_leader">项目负责人：</string>
+    <string name="market_leader">市场负责人：</string>
+
+    <string name="report_type_title">报告类别：</string>
+    <string name="report_default_type">默认报告类别</string>
+
+    <string name="work_number">工作次数：</string>
+    <string name="last_work_time">最后一次工作时间：</string>
+
+    <string name="current_progress">当前进度：</string>
+
+
+</resources>
