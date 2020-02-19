@@ -17,6 +17,7 @@
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
 
+
     <string name="time">时间：</string>
     <string name="status">状态：</string>
 
@@ -24,17 +25,23 @@
     <string name="doing">进行中</string>
     <string name="done">已结束</string>
 
-    
+    <!--    侧边栏数据-->
     <string name="home">主页</string>
-    <string name="alarm">提醒</string>
-    <string name="schedule">日程</string>
-    <string name="cost">费用</string>
-    <string name="company">企业</string>
-    <string name="about">关于</string>
+    <string name="company">企业信息</string>
+    <string name="cost">费用添加</string>
+    <string name="leader_stroke">领导动态</string>
+    <string name="person_information">人员信息</string>
+    <string name="update">更新</string>
     <string name="setting">设置</string>
-    <string name="change_status">状态变更</string>
+    <string name="menu_exit">退出</string>
+    <string name="inquiry">查询</string>
+    <string name="meeting">会议</string>
 
-    
+    <string name="login">登录</string>
+    <string name="user_name">用户名</string>
+    <string name="user_pwd">密码</string>
+
+
     <string name="project_todo">待开发</string>
     <string name="project_doing">进行中</string>
 

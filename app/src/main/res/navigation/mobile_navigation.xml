@@ -5,39 +5,66 @@
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/nav_home">
 
+    <!--    主页-->
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.example.gqsystem.ui.fragment.HomeFragment"
+        android:name="com.example.gqsystem.ui.main.home.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
+
+    <!--    公司信息-->
+    <fragment
+        android:id="@+id/nav_company"
+        android:name="com.example.gqsystem.ui.main.company.CompanyInformationFragment"
+        android:label="@string/company"
+        tools:layout="@layout/company_information_fragment" />
+
+    <!--    领导动态-->
+    <fragment
+        android:id="@+id/nav_leader_stroke"
+        android:name="com.example.gqsystem.ui.main.leaderstroke.LeaderStrokeFragment"
+        android:label="@string/leader_stroke"
+        tools:layout="@layout/fragment_list" />
+
+    <!--费用添加-->
+    <fragment
+        android:id="@+id/nav_cost_add"
+        android:name="com.example.gqsystem.ui.main.cost.CostAddFragment"
+        android:label="@string/cost"
+        tools:layout="@layout/cost_add_fragment" />
+
+    <!--    人员信息-->
+    <fragment
+        android:id="@+id/nav_person_information"
+        android:name="com.example.gqsystem.ui.main.person.PersonFragment"
+        android:label="@string/person_information"
+        tools:layout="@layout/fragment_person" />
+
+    <!--    设置-->
+    <fragment
+        android:id="@+id/nav_setting"
+        android:name="com.example.gqsystem.ui.main.setting.SettingFragment"
+        android:label="@string/setting"
+        tools:layout="@layout/fragment_setting" />
+
+    <!--    查询-->
+    <fragment
+        android:id="@+id/nav_inquiry"
+        android:name="com.example.gqsystem.ui.main.bottominquiry.InquiryFragment"
+        android:label="@string/inquiry"
+        tools:layout="@layout/fragment_inquiry" />
+
+    <!--    会议-->
+    <fragment
+        android:id="@+id/nav_meeting"
+        android:name="com.example.gqsystem.ui.main.bottommeeting.MeetingFragment"
+        android:label="@string/meeting"
+        tools:layout="@layout/fragment_meeting" />
 
     <fragment
         android:id="@+id/nav_gallery"
         android:name="com.example.gqsystem.ui.fragment.ChangeProjectStatusFragment"
-        android:label="@string/change_status"
+        android:label="@string/menu_gallery"
         tools:layout="@layout/fragment_change_status" />
 
-    <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.gqsystem.ui.slideshow.SlideshowFragment"
-        android:label="@string/cost"
-        tools:layout="@layout/fragment_slideshow" />
-
-    <fragment
-        android:id="@+id/nav_tools"
-        android:name="com.example.gqsystem.ui.tools.ToolsFragment"
-        android:label="@string/company"
-        tools:layout="@layout/fragment_tools" />
-
-    <fragment
-        android:id="@+id/nav_share"
-        android:name="com.example.gqsystem.ui.share.ShareFragment"
-        android:label="@string/menu_share"
-        tools:layout="@layout/fragment_share" />
-
-    <fragment
-        android:id="@+id/nav_send"
-        android:name="com.example.gqsystem.ui.send.SendFragment"
-        android:label="@string/menu_send"
-        tools:layout="@layout/fragment_send" />
 </navigation>

@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.gqsystem">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -21,13 +22,13 @@
         </activity>
         <activity android:name=".ui.activity.ProjectDoingActivity" />
         <activity android:name=".ui.activity.ProjectToDoActivity" />
-        <activity android:name=".ui.standardization.StandardizationActivity" />
-        <activity android:name=".ui.doubleprevention.DoublePreventionActivity" />
-        <activity android:name=".ui.evaluate.EvaluateActivity" />
-        <activity android:name=".ui.securitymanagement.SecurityManagementActivity" />
-        <activity android:name=".ui.informationize.InformationizeActivity" />
-        <activity android:name=".ui.govproject.GovProjectActivity" />
-        <activity android:name=".ui.specialrectification.SpecialRectificationActivity" />
+        <activity android:name=".ui.projectlist.standardization.StandardizationActivity" />
+        <activity android:name=".ui.projectlist.doubleprevention.DoublePreventionActivity" />
+        <activity android:name=".ui.projectlist.evaluate.EvaluateActivity" />
+        <activity android:name=".ui.projectlist.securitymanagement.SecurityManagementActivity" />
+        <activity android:name=".ui.projectlist.informationize.InformationizeActivity" />
+        <activity android:name=".ui.projectlist.govproject.GovProjectActivity" />
+        <activity android:name=".ui.projectlist.specialrectification.SpecialRectificationActivity" />
     </application>
 
 </manifest>

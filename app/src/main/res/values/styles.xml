@@ -17,4 +17,36 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="Light">
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+
+
+    <!-- QMUI button-->
+    <style name="qmui_btn">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+    </style>
+
+    <!-- EditText -->
+    <style name="TextEdit" parent="Light">
+        <item name="android:textSize">@dimen/text_body</item>
+        <item name="android:textColor">@color/black_dft</item>
+        <item name="android:textColorHint">@color/text_black_26</item>
+    </style>
+
+
+    <!-- 登录EditText下划线颜色 android:theme -->
+    <style name="ThemeLoginEditText" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@color/text_black_12</item>
+        <item name="colorControlActivated">@color/colorPrimary</item>
+    </style>
+
+
 </resources>

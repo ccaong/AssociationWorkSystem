@@ -7,4 +7,17 @@
         <attr name="m_default_text" format="string"/>
 
     </declare-styleable>
+
+
+    <declare-styleable name="EditTextWithTitle">
+        <attr name="title_text" format="string"/>
+        <attr name="title_color" format="color"/>
+        <attr name="et_content" format="string"/>
+        <attr name="et_hint" format="string"/>
+        <attr name="view_type" format="enum">
+            <enum name="text" value="0"/>
+            <enum name="edit" value="1"/>
+        </attr>
+    </declare-styleable>
+
 </resources>

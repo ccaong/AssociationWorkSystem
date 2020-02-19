@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
+/**
+ * @author devel
+ */
 public class ActivitySkipUtil {
 
     /**
