@@ -72,31 +72,31 @@ public class HomeFragment extends Fragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_1:
-                ActivitySkipUtil.skipAnotherActivity(getActivity(), ProjectToDoActivity.class);
+                ActivitySkipUtil.skipActivity(getActivity(), ProjectToDoActivity.class);
                 break;
             case R.id.tv_2:
-                ActivitySkipUtil.skipAnotherActivity(getActivity(), ProjectDoingActivity.class);
+                ActivitySkipUtil.skipActivity(getActivity(), ProjectDoingActivity.class);
                 break;
             case R.id.tv_3:
-                ActivitySkipUtil.skipAnotherActivity(getActivity(), StandardizationActivity.class);
+                ActivitySkipUtil.skipActivity(getActivity(), StandardizationActivity.class);
                 break;
             case R.id.tv_4:
-                ActivitySkipUtil.skipAnotherActivity(getActivity(), DoublePreventionActivity.class);
+                ActivitySkipUtil.skipActivity(getActivity(), DoublePreventionActivity.class);
                 break;
             case R.id.tv_5:
-                ActivitySkipUtil.skipAnotherActivity(getActivity(), EvaluateActivity.class);
+                ActivitySkipUtil.skipActivity(getActivity(), EvaluateActivity.class);
                 break;
             case R.id.tv_6:
-                ActivitySkipUtil.skipAnotherActivity(getActivity(), SecurityManagementActivity.class);
+                ActivitySkipUtil.skipActivity(getActivity(), SecurityManagementActivity.class);
                 break;
             case R.id.tv_7:
-                ActivitySkipUtil.skipAnotherActivity(getActivity(), InformationizeActivity.class);
+                ActivitySkipUtil.skipActivity(getActivity(), InformationizeActivity.class);
                 break;
             case R.id.tv_8:
-                ActivitySkipUtil.skipAnotherActivity(getActivity(), SpecialRectificationActivity.class);
+                ActivitySkipUtil.skipActivity(getActivity(), SpecialRectificationActivity.class);
                 break;
             case R.id.tv_9:
-                ActivitySkipUtil.skipAnotherActivity(getActivity(), GovProjectActivity.class);
+                ActivitySkipUtil.skipActivity(getActivity(), GovProjectActivity.class);
                 break;
             case R.id.tv_10:
                 break;

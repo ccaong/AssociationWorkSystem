@@ -2,7 +2,7 @@ package com.example.gqsystem.room;
 
 import android.content.Context;
 
-import com.example.gqsystem.entity.response.LoginData;
+import com.example.gqsystem.bean.response.LoginData;
 import com.example.gqsystem.room.dao.UserDao;
 
 import androidx.room.Database;
@@ -15,7 +15,7 @@ import androidx.room.RoomDatabase;
  * @desc :
  */
 
-@Database(entities = {LoginData.class}, version = 1)
+@Database(entities = {LoginData.class}, version = 1 ,exportSchema = false)
 public abstract class AppDataBase extends RoomDatabase {
 
     /**

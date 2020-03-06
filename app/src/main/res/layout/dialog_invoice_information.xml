@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="invoiceDialog"
+            type="com.example.gqsystem.ui.company.list.CompanyInvoiceDialog" />
+
+        <variable
+            name="data"
+            type="com.example.gqsystem.bean.response.InvoiceInfoBean" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background"
+        android:orientation="vertical"
+        android:padding="@dimen/dp_8">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:contentPadding="@dimen/dp_16">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@{data.companyName}"
+                android:onClick="@{()->invoiceDialog.copyInvoiceInfo(data.companyName)}"
+                android:textSize="@dimen/text_16"
+                tools:text="@string/company_association_name" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin"
+            app:contentPadding="@dimen/dp_16">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="类型"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/tv_invoice_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin"
+                    android:text="@{data.type}"
+                    android:onClick="@{()->invoiceDialog.copyInvoiceInfo(data.type)}"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_1"
+                    app:layout_constraintLeft_toRightOf="@+id/tv_3"
+                    app:layout_constraintTop_toTopOf="@+id/tv_1"
+                    tools:text="@string/debug_string_sort" />
+
+                <TextView
+                    android:id="@+id/tv_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_16"
+                    android:text="账户"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_invoice_type" />
+
+                <TextView
+                    android:id="@+id/tv_invoice_account"
+                    style="@style/Item_TextView_Content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin"
+                    android:text="@{data.account}"
+                    android:onClick="@{()->invoiceDialog.copyInvoiceInfo(data.account)}"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_2"
+                    app:layout_constraintLeft_toRightOf="@+id/tv_3"
+                    app:layout_constraintTop_toTopOf="@+id/tv_2"
+                    tools:text="@string/debug_string_sort" />
+
+                <TextView
+                    android:id="@+id/tv_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_16"
+                    android:text="开户行"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_2" />
+
+
+                <TextView
+                    android:id="@+id/tv_invoice_bank"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin"
+                    android:text="@{data.bank}"
+                    android:onClick="@{()->invoiceDialog.copyInvoiceInfo(data.bank)}"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_3"
+                    app:layout_constraintLeft_toRightOf="@+id/tv_3"
+                    app:layout_constraintTop_toTopOf="@+id/tv_3"
+                    tools:text="@string/debug_string_sort" />
+
+                <TextView
+                    android:id="@+id/tv_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_16"
+                    android:text="税号"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_3" />
+
+
+                <TextView
+                    android:id="@+id/tv_invoice_tax"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin"
+                    android:onClick="@{()->invoiceDialog.copyInvoiceInfo(data.tax)}"
+                    android:text="@{data.tax}"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_4"
+                    app:layout_constraintLeft_toRightOf="@+id/tv_3"
+                    app:layout_constraintTop_toTopOf="@+id/tv_4"
+                    tools:text="@string/debug_string_sort" />
+
+
+                <TextView
+                    android:id="@+id/tv_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_16"
+                    android:text="电话"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_4" />
+
+                <TextView
+                    android:id="@+id/tv_invoice_tel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin"
+                    android:text="@{data.tel}"
+                    android:onClick="@{()->invoiceDialog.copyInvoiceInfo(data.tel)}"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_5"
+                    app:layout_constraintLeft_toRightOf="@+id/tv_3"
+                    app:layout_constraintTop_toTopOf="@+id/tv_5"
+                    tools:text="@string/debug_string_sort" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+</layout>

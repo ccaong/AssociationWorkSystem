@@ -18,6 +18,28 @@
     <string name="menu_send">Send</string>
 
 
+    <!--加载-->
+    <string name="loading">加载中&#8230;</string>
+    <string name="load_error">加载出错</string>
+    <string name="no_network">没有网络，点击重试</string>
+    <string name="no_data">没有数据</string>
+
+    <!--错误-->
+    <string name="error_unknown">未知错误</string>
+    <string name="error_http">HTTP错误</string>
+    <string name="error_network">当前网络不可用，请检查您的网络连接</string>
+    <string name="error_parse">解析错误</string>
+    <string name="error_ssl">SSL错误</string>
+
+
+    <string name="copyright">Copyright \u00a9 2020-present 山东省轻工业安全生产管理协会</string>
+    <string name="policy">协会方针</string>
+    <string name="honesty">诚信</string>
+    <string name="quality">优质</string>
+    <string name="efficient">高效</string>
+    <string name="boutique">精品</string>
+    <string name="innovation">创新</string>
+
     <string name="time">时间：</string>
     <string name="status">状态：</string>
 
@@ -45,14 +67,14 @@
     <string name="project_todo">待开发</string>
     <string name="project_doing">进行中</string>
 
-    <string name="bianzhun">安全生产标准化</string>
-    <string name="shuangchong">双重预防机制建设</string>
-    <string name="pingjia">评价评估</string>
-    <string name="tixitisheng">安全管理体系提升</string>
-    <string name="xinxihua">安全生产信息化</string>
-    <string name="zhuanxiang">专项整治</string>
-    <string name="gov">政府采购</string>
-    <string name="other">其他</string>
+    <string name="project_name_1">安全生产标准化</string>
+    <string name="project_name_2">双重预防机制建设</string>
+    <string name="project_name_3">评价评估</string>
+    <string name="project_name_4">安全管理体系提升</string>
+    <string name="project_name_5">安全生产信息化</string>
+    <string name="project_name_6">专项整治</string>
+    <string name="project_name_7">政府采购</string>
+    <string name="project_name_8">其他</string>
 
 
     <string name="company_name_title">企业名称：</string>
@@ -64,8 +86,8 @@
     <string name="project_type_title">项目类型：</string>
     <string name="default_project_type">默认项目类型</string>
 
-    <string name="project_leader">项目负责人：</string>
-    <string name="market_leader">市场负责人：</string>
+    <string name="project_leader">项目负责人</string>
+    <string name="market_leader">市场负责人</string>
 
     <string name="report_type_title">报告类别：</string>
     <string name="report_default_type">默认报告类别</string>
@@ -74,6 +96,43 @@
     <string name="last_work_time">最后一次工作时间：</string>
 
     <string name="current_progress">当前进度：</string>
+
+
+    <string name="invoice_information">查看企业开票信息</string>
+
+
+    <string name="finger_title">App已锁定，请验证指纹</string>
+    <string name="lock_title">App长时间未操作已锁定，请重新验证</string>
+
+    <string name="finger_success">验证成功</string>
+    <string name="finger_fail">指纹验证失败，请重试!</string>
+
+    <string name="finger_verification">指纹验证</string>
+    <string name="pwd_verification">密码验证</string>
+
+    <string name="cancel">取消</string>
+    <string name="input_pwd">请输入密码解锁</string>
+    <string name="input_pwd_error">密码错误，请重试！</string>
+
+
+    <string name="biometric_dialog_cancel">Cancel</string>
+    <string name="biometric_dialog_title">Verification</string>
+    <string name="biometric_dialog_subtitle">Verify fingerprint to continue</string>
+    <string name="biometric_dialog_state_normal">Fingerprint sensor</string>
+    <string name="biometric_dialog_state_failed">Failed to identify, please try again</string>
+    <string name="biometric_dialog_state_error">Verification error, please enter payment password</string>
+    <string name="biometric_dialog_state_error_enable_process">Verification error, setup failed</string>
+    <string name="biometric_dialog_state_succeeded">Verification successful</string>
+    <string name="biometric_dialog_use_password">Use Password</string>
+
+
+    <string name="debug_string_time">2020-03-05——2020-03-05</string>
+    <string name="debug_string_click">可点击字符串</string>
+    <string name="debug_string_sort">测试用短字符串</string>
+    <string name="debug_string_long">测试用字符串，查看过长的字符串在界面中的显示效果，createBy：山东省轻工业安全生产管理协会|山东冠隆安全工程师事务所有限公司;createTime:2020-03-06 13:53:00</string>
+
+
+    <string name="add">添加</string>
 
 
 </resources>

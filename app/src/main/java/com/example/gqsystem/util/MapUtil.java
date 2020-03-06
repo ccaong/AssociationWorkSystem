@@ -3,8 +3,10 @@ package com.example.gqsystem.util;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.widget.Toast;
 
 import com.baidu.mapapi.model.LatLng;
+import com.example.gqsystem.App;
 
 import java.io.File;
 
@@ -18,6 +20,30 @@ public class MapUtil {
     public static final String PN_GAODE_MAP = "com.autonavi.minimap";// 高德地图包名
     public static final String PN_BAIDU_MAP = "com.baidu.BaiduMap"; // 百度地图包名
     public static final String PN_TENCENT_MAP = "com.tencent.map"; // 腾讯地图包名
+
+    /**
+     * 开始导航
+     *
+     * @param dlat  终点纬度
+     * @param dlon  终点经度
+     * @param dname 终点名称 必填
+     */
+    public static void startNavigation(double dlat, double dlon, String dname) {
+        if (isGdMapInstalled()) {
+            openGaoDeNavi(App.getContext(), 0, 0, null, dlat, dlon, dname);
+        } else {
+            if (isBaiduMapInstalled()) {
+                openBaiDuNavi(App.getContext(), 0, 0, null, dlat, dlon, dname);
+            } else {
+                if (isTencentMapInstalled()) {
+                    openTencentMap(App.getContext(), 0, 0, null, dlat, dlon, dname);
+                } else {
+                    //手机上没有导航软件
+                    Toast.makeText(App.getContext(), "没有导航软件！", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+    }
 
     /**
      * 检查地图应用是否安装
@@ -194,27 +220,19 @@ public class MapUtil {
         String uriString = null;
         //终点坐标转换
 //        此方法需要百度地图的BaiduLBS_Android.jar包
-        LatLng destination = new LatLng(dlat,dlon);
+        LatLng destination = new LatLng(dlat, dlon);
         LatLng destinationLatLng = GCJ02ToBD09(destination);
         dlat = destinationLatLng.latitude;
         dlon = destinationLatLng.longitude;
-
-//        double destination[] = gaoDeToBaidu(dlat, dlon);
-//        dlat = destination[0];
-//        dlon = destination[1];
 
         StringBuilder builder = new StringBuilder("baidumap://map/direction?mode=driving&");
         if (slat != 0) {
             //起点坐标转换
 
-            LatLng origin = new LatLng(slat,slon);
+            LatLng origin = new LatLng(slat, slon);
             LatLng originLatLng = GCJ02ToBD09(origin);
             slat = originLatLng.latitude;
             slon = originLatLng.longitude;
-
-//            double[] origin = gaoDeToBaidu(slat, slon);
-//            slat = origin[0];
-//            slon = origin[1];
 
             builder.append("origin=latlng:")
                     .append(slat)

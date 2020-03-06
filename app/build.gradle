@@ -40,11 +40,14 @@ dependencies {
     //navigation
     implementation 'androidx.navigation:navigation-fragment:2.0.0'
     implementation 'androidx.navigation:navigation-ui:2.0.0'
-    //lifecycle
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
     //Room
-    implementation 'android.arch.persistence.room:runtime:1.1.1'
-    annotationProcessor 'android.arch.persistence.room:compiler:1.1.1'
+    implementation 'android.arch.persistence.room:runtime:2.0.0'
+    annotationProcessor 'android.arch.persistence.room:compiler:2.0.0'
+    //lifecycle
+    implementation "android.arch.lifecycle:common-java8:1.1.1"
+    implementation 'androidx.lifecycle:lifecycle-extensions:+'
+
     implementation 'androidx.vectordrawable:vectordrawable:1.0.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.12'
@@ -66,5 +69,15 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.6.1'
     // QM UI
     implementation 'com.qmuiteam:qmui:2.0.0-alpha02'
+
+    //hawk数据存储
+    implementation "com.orhanobut:hawk:2.0.1"
+
+    //下拉刷新
+    implementation 'com.scwang.smart:refresh-layout-kernel:2.0.0-alpha-1'      //核心必须依赖
+    implementation 'com.scwang.smart:refresh-header-classics:2.0.0-alpha-1'
+
+    //banner
+    implementation 'com.youth.banner:banner:1.4.10'
 
 }

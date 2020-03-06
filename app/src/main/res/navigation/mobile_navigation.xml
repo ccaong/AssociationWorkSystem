@@ -8,16 +8,31 @@
     <!--    主页-->
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.example.gqsystem.ui.main.home.HomeFragment"
+        android:name="com.example.gqsystem.ui.home.homepage.HomePageFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
+
+    <!--    查询-->
+    <fragment
+        android:id="@+id/nav_inquiry"
+        android:name="com.example.gqsystem.ui.search.SearchFragment"
+        android:label="@string/inquiry"
+        tools:layout="@layout/search_fragment_list" />
+
+    <!--    会议-->
+    <fragment
+        android:id="@+id/nav_meeting"
+        android:name="com.example.gqsystem.ui.metting.list.MeetingFragment"
+        android:label="@string/meeting"
+        tools:layout="@layout/fragment_list" />
+
 
     <!--    公司信息-->
     <fragment
         android:id="@+id/nav_company"
-        android:name="com.example.gqsystem.ui.main.company.CompanyInformationFragment"
+        android:name="com.example.gqsystem.ui.company.list.CompanyInformationFragment"
         android:label="@string/company"
-        tools:layout="@layout/company_information_fragment" />
+        tools:layout="@layout/company_fragment_information" />
 
     <!--    领导动态-->
     <fragment
@@ -29,9 +44,16 @@
     <!--费用添加-->
     <fragment
         android:id="@+id/nav_cost_add"
-        android:name="com.example.gqsystem.ui.main.cost.CostAddFragment"
+        android:name="com.example.gqsystem.ui.main.cost.CostCompanyListFragment"
         android:label="@string/cost"
-        tools:layout="@layout/cost_add_fragment" />
+        tools:layout="@layout/fragment_list" />
+
+    <!--费用添加-->
+    <fragment
+        android:id="@+id/cost_add"
+        android:name="com.example.gqsystem.ui.main.cost.add.CostAddFragment"
+        android:label="@string/cost"
+        tools:layout="@layout/cost_fragment_add" />
 
     <!--    人员信息-->
     <fragment
@@ -47,19 +69,7 @@
         android:label="@string/setting"
         tools:layout="@layout/fragment_setting" />
 
-    <!--    查询-->
-    <fragment
-        android:id="@+id/nav_inquiry"
-        android:name="com.example.gqsystem.ui.main.bottominquiry.InquiryFragment"
-        android:label="@string/inquiry"
-        tools:layout="@layout/fragment_inquiry" />
 
-    <!--    会议-->
-    <fragment
-        android:id="@+id/nav_meeting"
-        android:name="com.example.gqsystem.ui.main.bottommeeting.MeetingFragment"
-        android:label="@string/meeting"
-        tools:layout="@layout/fragment_meeting" />
 
     <fragment
         android:id="@+id/nav_gallery"

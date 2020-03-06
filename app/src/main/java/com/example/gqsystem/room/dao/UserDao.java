@@ -1,6 +1,6 @@
 package com.example.gqsystem.room.dao;
 
-import com.example.gqsystem.entity.response.LoginData;
+import com.example.gqsystem.bean.response.LoginData;
 
 import java.util.List;
 

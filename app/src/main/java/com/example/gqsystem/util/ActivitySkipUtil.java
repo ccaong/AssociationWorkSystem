@@ -15,8 +15,8 @@ public class ActivitySkipUtil {
      * @param activity 发起跳转的Activity实例
      * @param cls      目标Activity实例
      */
-    public static void skipAnotherActivity(Activity activity,
-                                           Class<? extends Activity> cls) {
+    public static void skipActivity(Activity activity,
+                                    Class<? extends Activity> cls) {
         Intent intent = new Intent(activity, cls);
         activity.startActivity(intent);
     }
@@ -28,9 +28,9 @@ public class ActivitySkipUtil {
      * @param cls
      * @param bundle
      */
-    public static void skipAnotherActivity(Activity activity,
-                                           Class<? extends Activity> cls,
-                                           Bundle bundle) {
+    public static void skipActivity(Activity activity,
+                                    Class<? extends Activity> cls,
+                                    Bundle bundle) {
         Intent intent = new Intent(activity, cls);
         intent.putExtras(bundle);
         activity.startActivity(intent);

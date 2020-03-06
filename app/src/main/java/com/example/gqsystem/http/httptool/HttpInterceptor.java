@@ -3,7 +3,7 @@ package com.example.gqsystem.http.httptool;
 import android.util.Log;
 
 import com.example.gqsystem.App;
-import com.example.gqsystem.entity.response.LoginData;
+import com.example.gqsystem.bean.response.LoginData;
 import com.example.gqsystem.util.NetworkUtils;
 
 import java.io.IOException;
