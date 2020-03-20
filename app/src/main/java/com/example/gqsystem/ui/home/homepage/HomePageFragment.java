@@ -12,15 +12,13 @@ import com.example.gqsystem.databinding.HomePageFragmentBinding;
 import com.example.gqsystem.ui.adapter.CommonAdapter;
 import com.example.gqsystem.util.GlideUtil;
 import com.scwang.smart.refresh.header.ClassicsHeader;
-import com.scwang.smart.refresh.layout.api.RefreshLayout;
-import com.scwang.smart.refresh.layout.listener.OnRefreshListener;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.loader.ImageLoader;
 
 import java.util.List;
 
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -53,21 +51,13 @@ public class HomePageFragment extends BaseFragment<HomePageFragmentBinding, Home
     @Override
     protected void initDataChange() {
 
-        mViewModel.getHomeList().observe(this, new Observer<List<HomePageBean>>() {
-            @Override
-            public void onChanged(List<HomePageBean> homePageBeans) {
-                if (commonAdapter != null) {
-                    commonAdapter.onItemDatasChanged(homePageBeans);
-                }
+        mViewModel.getHomeList().observe(this, homePageBeans -> {
+            if (commonAdapter != null) {
+                commonAdapter.onItemDatasChanged(homePageBeans);
             }
         });
 
-        mViewModel.getBannerList().observe(this, new Observer<List<Integer>>() {
-            @Override
-            public void onChanged(List<Integer> list) {
-                initBanner(list);
-            }
-        });
+        mViewModel.getBannerList().observe(this, list -> initBanner(list));
     }
 
     @Override
@@ -88,13 +78,7 @@ public class HomePageFragment extends BaseFragment<HomePageFragmentBinding, Home
         mDataBinding.refreshLayout.setPrimaryColorsId(android.R.color.white, R.color.colorPrimary);
         mDataBinding.refreshLayout.setRefreshHeader(new ClassicsHeader(getContext()));
 
-        mDataBinding.refreshLayout.setOnRefreshListener(new OnRefreshListener() {
-            @Override
-            public void onRefresh(RefreshLayout refreshlayout) {
-
-                refreshlayout.finishRefresh(1000);
-            }
-        });
+        mDataBinding.refreshLayout.setOnRefreshListener(refreshlayout -> refreshlayout.finishRefresh(1000));
     }
 
     private void initBanner(List<Integer> mList) {
@@ -119,20 +103,61 @@ public class HomePageFragment extends BaseFragment<HomePageFragmentBinding, Home
             @Override
             public void addListener(View root, HomePageBean itemData, int position) {
                 super.addListener(root, itemData, position);
-                root.findViewById(R.id.card_view).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                    }
-                });
+                root.findViewById(R.id.card_view).setOnClickListener(v -> click(itemData));
             }
         };
         mDataBinding.recyclerViewHome.setAdapter(commonAdapter);
         mDataBinding.recyclerViewHome.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 
-    public void changeLayoutManager() {
+    /**
+     * 点击不同的项目类型
+     *
+     * @param homePageBean
+     */
+    private void click(HomePageBean homePageBean) {
 
+        switch (homePageBean.getName()) {
+            case "待开发":
+                NavHostFragment.findNavController(HomePageFragment.this).navigate(R.id.project_todo);
+                break;
+            case "进行中":
+//                NavHostFragment.findNavController(HomePageFragment.this).navigate(R.id.project_todo);
+                break;
+            case "安全生产标准化":
+                NavHostFragment.findNavController(HomePageFragment.this).navigate(R.id.project_standard);
+                break;
+            case "双重预防机制建设":
+//                NavHostFragment.findNavController(HomePageFragment.this).navigate(R.id.project_standard);
+                break;
+            case "评价评估":
+//                NavHostFragment.findNavController(HomePageFragment.this).navigate(R.id.project_standard);
+                break;
+            case "安全管理体系提升":
+//                NavHostFragment.findNavController(HomePageFragment.this).navigate(R.id.project_standard);
+                break;
+            case "安全生产信息化":
+//                NavHostFragment.findNavController(HomePageFragment.this).navigate(R.id.project_standard);
+                break;
+            case "专项整治":
+//                NavHostFragment.findNavController(HomePageFragment.this).navigate(R.id.project_standard);
+                break;
+            case "政府采购":
+//                NavHostFragment.findNavController(HomePageFragment.this).navigate(R.id.project_standard);
+                break;
+            case "资料共享":
+//                NavHostFragment.findNavController(HomePageFragment.this).navigate(R.id.project_standard);
+                break;
+            default:
+                break;
+        }
+    }
+
+
+    /**
+     * 改变外观
+     */
+    public void changeLayoutManager() {
         if (linearLayoutManager) {
             RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
             mDataBinding.recyclerViewHome.setLayoutManager(layoutManager);

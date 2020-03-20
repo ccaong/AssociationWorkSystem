@@ -15,9 +15,15 @@ public class HttpBaseResponse<T> implements Serializable {
     public int code;
 
     @Expose
-    public String msg;
+    public String message;
 
     @Expose
-    public T extend;
+    public Boolean success;
+
+    @Expose
+    public Long timestamp;
+
+    @Expose
+    public T result;
 
 }

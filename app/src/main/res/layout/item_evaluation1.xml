@@ -21,17 +21,17 @@
                 android:id="@+id/tv_1_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
                 android:text="@string/company_name_title"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_company_name_1"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_company_name"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/tv_company_name_1" />
+                app:layout_constraintTop_toTopOf="@+id/tv_company_name" />
 
             <TextView
-                android:id="@+id/tv_company_name_1"
+                android:id="@+id/tv_company_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
                 android:text="@string/default_company_name"
                 app:layout_constraintLeft_toRightOf="@+id/tv_1_1"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -41,7 +41,7 @@
                 android:id="@+id/tv_2_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
                 android:text="项目名称："
                 app:layout_constraintBottom_toBottomOf="@+id/tv_project_name_1"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -51,18 +51,18 @@
                 android:id="@+id/tv_project_name_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:text="@string/default_project_name"
                 app:layout_constraintLeft_toRightOf="@+id/tv_2_1"
-                app:layout_constraintTop_toBottomOf="@+id/tv_company_name_1" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_company_name" />
 
 
             <TextView
                 android:id="@+id/tv_3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:text="@string/report_type_title"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -78,13 +78,11 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_project_name_1" />
 
 
-
-
             <TextView
                 android:id="@+id/tv_6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:text="@string/market_leader"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -104,7 +102,7 @@
                 android:id="@+id/tv_7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:text="@string/project_leader"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -125,7 +123,7 @@
                 android:id="@+id/tv_4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:text="当前步骤："
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -145,7 +143,7 @@
                 android:id="@+id/tv_5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:text="当前步骤开始时间"
                 app:layout_constraintLeft_toLeftOf="parent"

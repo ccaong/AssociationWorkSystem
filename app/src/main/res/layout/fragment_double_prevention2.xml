@@ -14,9 +14,9 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <include layout="@layout/item_double_prevention_2" />
+            <include layout="@layout/dual_prevention_item_doing" />
 
-            <include layout="@layout/item_double_prevention_2" />
+            <include layout="@layout/dual_prevention_item_doing" />
         </LinearLayout>
 
     </ScrollView>

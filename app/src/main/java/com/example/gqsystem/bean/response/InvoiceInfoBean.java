@@ -9,73 +9,147 @@ import java.io.Serializable;
  */
 public class InvoiceInfoBean implements Serializable {
 
-    private String companyName;
+    /**
+     * id : 1234743061137969154
+     * createBy : developer002
+     * createTime : 2020-03-03 15:31:01
+     * updateBy : null
+     * updateTime : null
+     * sysOrgCode : A01A05
+     * comInvoiceType : 2
+     * comAccountName : 山东得益乳业股份有限公司
+     * comInvoiceBill : 91370300267105370H
+     * comInvoiceAddress : 淄博开发区裕民路135号
+     * comInvoicePhone : 0533-3915879
+     * comBank : 齐商银行柳泉路支行
+     * comBankAccount : 034110001301018
+     * comanyId : 1
+     */
 
-    private String type;
+    private String id;
+    private String createBy;
+    private String createTime;
+    private Object updateBy;
+    private Object updateTime;
+    private String sysOrgCode;
+    private String comInvoiceType;
+    private String comAccountName;
+    private String comInvoiceBill;
+    private String comInvoiceAddress;
+    private String comInvoicePhone;
+    private String comBank;
+    private String comBankAccount;
+    private int comanyId;
 
-    private String account;
-
-    private String bank;
-
-    private String tax;
-
-    private String tel;
-
-
-    public InvoiceInfoBean(String companyName, String type, String account, String bank, String tax, String tel) {
-        this.companyName = companyName;
-        this.type = type;
-        this.account = account;
-        this.bank = bank;
-        this.tax = tax;
-        this.tel = tel;
+    public String getId() {
+        return id;
     }
 
-    public String getCompanyName() {
-        return companyName;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
+    public String getCreateBy() {
+        return createBy;
     }
 
-    public String getType() {
-        return type;
+    public void setCreateBy(String createBy) {
+        this.createBy = createBy;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public String getCreateTime() {
+        return createTime;
     }
 
-    public String getAccount() {
-        return account;
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
     }
 
-    public void setAccount(String account) {
-        this.account = account;
+    public Object getUpdateBy() {
+        return updateBy;
     }
 
-    public String getBank() {
-        return bank;
+    public void setUpdateBy(Object updateBy) {
+        this.updateBy = updateBy;
     }
 
-    public void setBank(String bank) {
-        this.bank = bank;
+    public Object getUpdateTime() {
+        return updateTime;
     }
 
-    public String getTax() {
-        return tax;
+    public void setUpdateTime(Object updateTime) {
+        this.updateTime = updateTime;
     }
 
-    public void setTax(String tax) {
-        this.tax = tax;
+    public String getSysOrgCode() {
+        return sysOrgCode;
     }
 
-    public String getTel() {
-        return tel;
+    public void setSysOrgCode(String sysOrgCode) {
+        this.sysOrgCode = sysOrgCode;
     }
 
-    public void setTel(String tel) {
-        this.tel = tel;
+    public String getComInvoiceType() {
+        return comInvoiceType;
+    }
+
+    public void setComInvoiceType(String comInvoiceType) {
+        this.comInvoiceType = comInvoiceType;
+    }
+
+    public String getComAccountName() {
+        return comAccountName;
+    }
+
+    public void setComAccountName(String comAccountName) {
+        this.comAccountName = comAccountName;
+    }
+
+    public String getComInvoiceBill() {
+        return comInvoiceBill;
+    }
+
+    public void setComInvoiceBill(String comInvoiceBill) {
+        this.comInvoiceBill = comInvoiceBill;
+    }
+
+    public String getComInvoiceAddress() {
+        return comInvoiceAddress;
+    }
+
+    public void setComInvoiceAddress(String comInvoiceAddress) {
+        this.comInvoiceAddress = comInvoiceAddress;
+    }
+
+    public String getComInvoicePhone() {
+        return comInvoicePhone;
+    }
+
+    public void setComInvoicePhone(String comInvoicePhone) {
+        this.comInvoicePhone = comInvoicePhone;
+    }
+
+    public String getComBank() {
+        return comBank;
+    }
+
+    public void setComBank(String comBank) {
+        this.comBank = comBank;
+    }
+
+    public String getComBankAccount() {
+        return comBankAccount;
+    }
+
+    public void setComBankAccount(String comBankAccount) {
+        this.comBankAccount = comBankAccount;
+    }
+
+    public int getComanyId() {
+        return comanyId;
+    }
+
+    public void setComanyId(int comanyId) {
+        this.comanyId = comanyId;
     }
 }

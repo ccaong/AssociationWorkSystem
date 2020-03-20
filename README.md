@@ -23,3 +23,6 @@
 费用添加
     企业列表 CostCompanyListFragment,CostCompanyListViewModel,cost_item_add.xml,
     添加费用 CostAddFragment,CostAddViewModel，cost_fragment_add
+
+项目列表
+    标准化 StandardViewPagerFragment，StandardListFragment，StandardListViewModel

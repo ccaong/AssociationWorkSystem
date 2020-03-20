@@ -38,23 +38,19 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding, LoginViewM
     }
 
     private void initData() {
-        mViewModel.getLoginStatus().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(String s) {
-                switch (s) {
-                    case "0":
-                        //登录成功
-                        ActivitySkipUtil.skipActivity(LoginActivity.this, MainActivity.class);
-                        break;
-                    case "1":
-                        //登录失败
-                        ActivitySkipUtil.skipActivity(LoginActivity.this, LockActivity.class);
-
-//                        Toast.makeText(LoginActivity.this, "登录失败，请检查用户名或密码是否正确", Toast.LENGTH_SHORT).show();
-                        break;
-                    default:
-                        break;
-                }
+        mViewModel.getLoginStatus().observe(this, s -> {
+            switch (s) {
+                case "0":
+                    //登录成功
+                    ActivitySkipUtil.skipActivity(LoginActivity.this, MainActivity.class);
+                    finish();
+                    break;
+                case "1":
+                    //登录失败
+                    ActivitySkipUtil.skipActivity(LoginActivity.this, LockActivity.class);
+                    break;
+                default:
+                    break;
             }
         });
     }

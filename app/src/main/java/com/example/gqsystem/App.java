@@ -1,12 +1,15 @@
 package com.example.gqsystem;
 
+import android.app.Activity;
 import android.content.Context;
+import android.os.Bundle;
 
 import com.example.gqsystem.http.data.HttpBaseResponse;
 import com.example.gqsystem.http.data.HttpResponseInterface;
 import com.example.gqsystem.http.httptool.HttpException;
 import com.example.gqsystem.http.request.ServerAddress;
 import com.example.gqsystem.http.request.HttpFactory;
+import com.example.gqsystem.manager.MyActivityManager;
 import com.google.gson.Gson;
 import com.orhanobut.hawk.Hawk;
 import com.scwang.smart.refresh.footer.ClassicsFooter;
@@ -29,7 +32,6 @@ import androidx.multidex.MultiDexApplication;
  */
 public class App extends MultiDexApplication {
     private static Context context;
-    public static String Mac = "";
 
     @Override
     public void onCreate() {
@@ -46,6 +48,44 @@ public class App extends MultiDexApplication {
     public void init() {
         setHttpConfig();
         Hawk.init(context).build();
+
+        initActivityManager();
+    }
+
+    /**
+     * 管理Activity
+     */
+    private void initActivityManager() {
+        registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
+            @Override
+            public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
+            }
+
+            @Override
+            public void onActivityStarted(Activity activity) {
+            }
+
+            @Override
+            public void onActivityResumed(Activity activity) {
+                MyActivityManager.getInstance().setCurrentActivity(activity);
+            }
+
+            @Override
+            public void onActivityPaused(Activity activity) {
+            }
+
+            @Override
+            public void onActivityStopped(Activity activity) {
+            }
+
+            @Override
+            public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
+            }
+
+            @Override
+            public void onActivityDestroyed(Activity activity) {
+            }
+        });
     }
 
     /**
@@ -53,15 +93,12 @@ public class App extends MultiDexApplication {
      */
     public static void setHttpConfig() {
         HttpFactory.HTTP_HOST_URL = ServerAddress.getApiDefaultHost();
-        HttpFactory.httpResponseInterface = new HttpResponseInterface() {
-            @Override
-            public String getResponseData(Gson gson, String response) {
-                HttpBaseResponse httpResponse = gson.fromJson(response, HttpBaseResponse.class);
-                if (httpResponse.code != 0 && httpResponse.code != 104) {
-                    throw new HttpException(httpResponse.msg);
-                }
-                return gson.toJson(httpResponse.extend);
+        HttpFactory.httpResponseInterface = (gson, response) -> {
+            HttpBaseResponse httpResponse = gson.fromJson(response, HttpBaseResponse.class);
+            if (httpResponse.code != 200 && httpResponse.code != 0) {
+                throw new HttpException(httpResponse.message);
             }
+            return gson.toJson(httpResponse.result);
         };
     }
 
@@ -70,29 +107,20 @@ public class App extends MultiDexApplication {
      */
     static {
         //设置全局的Header构建器
-        SmartRefreshLayout.setDefaultRefreshHeaderCreator(new DefaultRefreshHeaderCreator() {
-            @Override
-            public RefreshHeader createRefreshHeader(Context context, RefreshLayout layout) {
-                //全局设置主题颜色
-                layout.setPrimaryColorsId(R.color.colorPrimary, android.R.color.white);
-                return new ClassicsHeader(context);
-            }
+        SmartRefreshLayout.setDefaultRefreshHeaderCreator((context, layout) -> {
+            //全局设置主题颜色
+            layout.setPrimaryColorsId(R.color.colorPrimary, android.R.color.white);
+            return new ClassicsHeader(context);
         });
         //设置全局的Footer构建器
-        SmartRefreshLayout.setDefaultRefreshFooterCreator(new DefaultRefreshFooterCreator() {
-            @Override
-            public RefreshFooter createRefreshFooter(Context context, RefreshLayout layout) {
-                //指定为经典Footer，默认是 BallPulseFooter
-                return new ClassicsFooter(context).setDrawableSize(20);
-            }
+        SmartRefreshLayout.setDefaultRefreshFooterCreator((context, layout) -> {
+            //指定为经典Footer，默认是 BallPulseFooter
+            return new ClassicsFooter(context).setDrawableSize(20);
         });
 
-        SmartRefreshLayout.setDefaultRefreshInitializer(new DefaultRefreshInitializer() {
-            @Override
-            public void initialize(@NonNull Context context, @NonNull RefreshLayout layout) {
-                layout.setEnableFooterFollowWhenLoadFinished(true);
-                layout.setEnableAutoLoadMore(false);
-            }
+        SmartRefreshLayout.setDefaultRefreshInitializer((context, layout) -> {
+            layout.setEnableFooterFollowWhenLoadFinished(true);
+            layout.setEnableAutoLoadMore(false);
         });
     }
 

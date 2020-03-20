@@ -5,11 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.Toast;
 
 import com.example.gqsystem.R;
 import com.example.gqsystem.bean.response.InvoiceInfoBean;
-import com.example.gqsystem.databinding.DialogInvoiceInformationBinding;
+import com.example.gqsystem.databinding.CompanyDialogInvoiceInfoBinding;
 import com.example.gqsystem.util.CommonUtils;
 import com.example.gqsystem.util.ToastUtils;
 
@@ -26,7 +25,7 @@ import androidx.fragment.app.DialogFragment;
 public class CompanyInvoiceDialog extends DialogFragment {
     private static final String PARAM_INFO_KEY = "invoice_info";
 
-    private DialogInvoiceInformationBinding mDataBinding;
+    private CompanyDialogInvoiceInfoBinding mDataBinding;
 
     public static CompanyInvoiceDialog newInstance(InvoiceInfoBean data) {
         CompanyInvoiceDialog fragment = new CompanyInvoiceDialog();
@@ -39,7 +38,7 @@ public class CompanyInvoiceDialog extends DialogFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mDataBinding = DataBindingUtil.inflate(inflater, R.layout.dialog_invoice_information, container, false);
+        mDataBinding = DataBindingUtil.inflate(inflater, R.layout.company_dialog_invoice_info, container, false);
         mDataBinding.setLifecycleOwner(this);
         return mDataBinding.getRoot();
     }
@@ -75,4 +74,17 @@ public class CompanyInvoiceDialog extends DialogFragment {
         ToastUtils.showToast("信息已经复制到系统粘贴板");
     }
 
+    /**
+     * 复制信息到系统粘贴板
+     *
+     * @param type
+     */
+    public void copyInvoiceType(String type) {
+        if ("1".equals(type)) {
+            CommonUtils.setClipoard("增值税专用发票");
+        } else {
+            CommonUtils.setClipoard("增值税普通发票");
+        }
+        ToastUtils.showToast("信息已经复制到系统粘贴板");
+    }
 }

@@ -7,7 +7,6 @@ import com.example.gqsystem.databinding.ActivitySplashBinding;
 import com.example.gqsystem.ui.activity.login.LoginActivity;
 import com.example.gqsystem.util.ActivitySkipUtil;
 
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 /**
@@ -38,13 +37,14 @@ public class SplashActivity extends BaseActivity<ActivitySplashBinding, SplashVi
 
     @Override
     protected void init() {
-        mViewModel.getTime().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(String s) {
-                if (s.equals("0")) {
-                    ActivitySkipUtil.skipActivity(SplashActivity.this, MainActivity.class);
-                    finish();
-                }
+        mViewModel.getTime().observe(this, s -> {
+            if (s.equals("Login")) {
+                ActivitySkipUtil.skipActivity(SplashActivity.this, LoginActivity.class);
+                finish();
+            }
+            if (s.equals("Main")) {
+                ActivitySkipUtil.skipActivity(SplashActivity.this, MainActivity.class);
+                finish();
             }
         });
     }

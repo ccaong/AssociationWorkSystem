@@ -4,7 +4,10 @@ import android.util.Log;
 
 import com.example.gqsystem.App;
 import com.example.gqsystem.bean.response.LoginData;
+import com.example.gqsystem.bean.response.UserDataBean;
+import com.example.gqsystem.config.Constants;
 import com.example.gqsystem.util.NetworkUtils;
+import com.orhanobut.hawk.Hawk;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -45,24 +48,18 @@ public class HttpInterceptor implements Interceptor {
     /**
      * 添加header
      */
-    public Request getHeaderRequest(Request request) {
-        LoginData loginData = new LoginData();
+    private Request getHeaderRequest(Request request) {
+        UserDataBean userDataBean = Hawk.get(Constants.HawkCode.LOGIN_DATA);
+
         Request headRequest;
-        if (loginData != null) {
+        if (userDataBean != null) {
             headRequest = request
                     .newBuilder()
-                    .addHeader("platform", "android")
-                    .addHeader("version", "1.0")
-                    .addHeader("token", loginData.getToken())
-                    .addHeader("userId", loginData.getUserId())
-                    .addHeader("MAC", App.Mac)
+                    .addHeader("X-Access-Token", userDataBean.getToken())
                     .build();
         } else {
             headRequest = request
                     .newBuilder()
-                    .addHeader("platform", "android")
-                    .addHeader("version", "1.0")
-                    .addHeader("MAC", App.Mac)
                     .build();
         }
         return headRequest;

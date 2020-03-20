@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.gqsystem">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!--添加联系人-->
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
     <uses-permission android:name="android.permission.USE_FINGERPRINT" />
@@ -11,6 +15,7 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
@@ -32,10 +37,7 @@
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
 
-        <activity android:name=".ui.activity.ProjectDoingActivity" />
-        <activity android:name=".ui.activity.ProjectToDoActivity" />
-        <activity android:name=".ui.projectlist.standardization.StandardizationActivity" />
-        <activity android:name=".ui.projectlist.doubleprevention.DoublePreventionActivity" />
+        <activity android:name=".ui.projectlist.dualprevention.DoublePreventionActivity" />
         <activity android:name=".ui.projectlist.evaluate.EvaluateActivity" />
         <activity android:name=".ui.projectlist.securitymanagement.SecurityManagementActivity" />
         <activity android:name=".ui.projectlist.informationize.InformationizeActivity" />

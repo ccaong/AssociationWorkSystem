@@ -43,7 +43,7 @@
     <string name="time">时间：</string>
     <string name="status">状态：</string>
 
-    <string name="todo">未开始</string>
+    <string name="todo">待开发</string>
     <string name="doing">进行中</string>
     <string name="done">已结束</string>
 
@@ -53,9 +53,10 @@
     <string name="cost">费用添加</string>
     <string name="leader_stroke">领导动态</string>
     <string name="person_information">人员信息</string>
+    <string name="reviewer_information">评审人员</string>
     <string name="update">更新</string>
     <string name="setting">设置</string>
-    <string name="menu_exit">退出</string>
+    <string name="exit">退出</string>
     <string name="inquiry">查询</string>
     <string name="meeting">会议</string>
 
@@ -74,7 +75,7 @@
     <string name="project_name_5">安全生产信息化</string>
     <string name="project_name_6">专项整治</string>
     <string name="project_name_7">政府采购</string>
-    <string name="project_name_8">其他</string>
+    <string name="project_name_8">资料共享</string>
 
 
     <string name="company_name_title">企业名称：</string>
@@ -128,11 +129,12 @@
 
     <string name="debug_string_time">2020-03-05——2020-03-05</string>
     <string name="debug_string_click">可点击字符串</string>
-    <string name="debug_string_sort">测试用短字符串</string>
+    <string name="debug_string_normal">测试用字符串，正常长度的字符串</string>
+    <string name="debug_string_sort">短字符串</string>
     <string name="debug_string_long">测试用字符串，查看过长的字符串在界面中的显示效果，createBy：山东省轻工业安全生产管理协会|山东冠隆安全工程师事务所有限公司;createTime:2020-03-06 13:53:00</string>
 
 
     <string name="add">添加</string>
-
+    <string name="company_constant">企业联系人</string>
 
 </resources>

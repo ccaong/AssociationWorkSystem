@@ -22,8 +22,13 @@
             android:title="@string/cost" />
 
         <item
+            android:id="@+id/nav_reviewer_information"
+            android:icon="@mipmap/ic_reviewer"
+            android:title="@string/reviewer_information" />
+
+        <item
             android:id="@+id/nav_person_information"
-            android:icon="@mipmap/ic_cost"
+            android:icon="@mipmap/ic_person"
             android:title="@string/person_information" />
 
     </group>
@@ -44,6 +49,6 @@
     <item
         android:id="@+id/nav_exit"
         android:icon="@mipmap/ic_about"
-        android:title="@string/menu_exit"/>
+        android:title="@string/exit"/>
 
 </menu>

@@ -14,17 +14,17 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <include layout="@layout/item_double_prevention_1" />
+            <include layout="@layout/dual_prevention_item_todo" />
 
-            <include layout="@layout/item_double_prevention_1" />
+            <include layout="@layout/dual_prevention_item_todo" />
 
-            <include layout="@layout/item_double_prevention_1" />
+            <include layout="@layout/dual_prevention_item_todo" />
 
-            <include layout="@layout/item_double_prevention_1" />
+            <include layout="@layout/dual_prevention_item_todo" />
 
-            <include layout="@layout/item_double_prevention_1" />
+            <include layout="@layout/dual_prevention_item_todo" />
 
-            <include layout="@layout/item_double_prevention_1" />
+            <include layout="@layout/dual_prevention_item_todo" />
         </LinearLayout>
 
 
