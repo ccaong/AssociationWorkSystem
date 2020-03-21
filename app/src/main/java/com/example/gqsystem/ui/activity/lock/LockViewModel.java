@@ -2,6 +2,9 @@ package com.example.gqsystem.ui.activity.lock;
 
 import com.example.gqsystem.R;
 import com.example.gqsystem.base.viewmodel.BaseViewModel;
+import com.example.gqsystem.bean.response.UserDataBean;
+import com.example.gqsystem.config.Constants;
+import com.orhanobut.hawk.Hawk;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -13,6 +16,7 @@ import androidx.lifecycle.MutableLiveData;
  */
 public class LockViewModel extends BaseViewModel {
 
+    public MutableLiveData<UserDataBean> userBean;
     public MutableLiveData<Boolean> usePwd = new MutableLiveData<>();
     public MutableLiveData<String> userName;
     public MutableLiveData<String> userPwd;
@@ -22,6 +26,12 @@ public class LockViewModel extends BaseViewModel {
     public MutableLiveData<Integer> loginStatus;
 
     public LockViewModel() {
+        userBean = new MutableLiveData<>();
+        UserDataBean userDataBean = Hawk.get(Constants.HawkCode.LOGIN_DATA);
+        if (userDataBean != null) {
+            userBean.postValue(userDataBean);
+        }
+
         loginTitle = new MutableLiveData<>();
         loginTitle.postValue(getResources().getString(R.string.input_pwd));
 

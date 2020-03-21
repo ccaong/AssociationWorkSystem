@@ -116,15 +116,15 @@
     <string name="input_pwd_error">密码错误，请重试！</string>
 
 
-    <string name="biometric_dialog_cancel">Cancel</string>
-    <string name="biometric_dialog_title">Verification</string>
-    <string name="biometric_dialog_subtitle">Verify fingerprint to continue</string>
-    <string name="biometric_dialog_state_normal">Fingerprint sensor</string>
-    <string name="biometric_dialog_state_failed">Failed to identify, please try again</string>
-    <string name="biometric_dialog_state_error">Verification error, please enter payment password</string>
+    <string name="biometric_dialog_cancel">取消</string>
+    <string name="biometric_dialog_title">验证</string>
+    <string name="biometric_dialog_subtitle">请使用指纹进行验证</string>
+    <string name="biometric_dialog_state_normal">指纹传感器</string>
+    <string name="biometric_dialog_state_failed">指纹验证失败，请重试</string>
+    <string name="biometric_dialog_state_error">指纹验证错误，请使用密码解锁</string>
     <string name="biometric_dialog_state_error_enable_process">Verification error, setup failed</string>
-    <string name="biometric_dialog_state_succeeded">Verification successful</string>
-    <string name="biometric_dialog_use_password">Use Password</string>
+    <string name="biometric_dialog_state_succeeded">指纹验证成功</string>
+    <string name="biometric_dialog_use_password">使用密码</string>
 
 
     <string name="debug_string_time">2020-03-05——2020-03-05</string>

@@ -1,14 +1,12 @@
 package com.example.gqsystem.ui.activity.login;
 
+import androidx.lifecycle.ViewModelProviders;
+
 import com.example.gqsystem.MainActivity;
 import com.example.gqsystem.R;
 import com.example.gqsystem.base.BaseActivity;
 import com.example.gqsystem.databinding.ActivityLoginBinding;
-import com.example.gqsystem.ui.activity.lock.LockActivity;
 import com.example.gqsystem.util.ActivitySkipUtil;
-
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 
 /**
  * @author : devel
@@ -39,18 +37,9 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding, LoginViewM
 
     private void initData() {
         mViewModel.getLoginStatus().observe(this, s -> {
-            switch (s) {
-                case "0":
-                    //登录成功
-                    ActivitySkipUtil.skipActivity(LoginActivity.this, MainActivity.class);
-                    finish();
-                    break;
-                case "1":
-                    //登录失败
-                    ActivitySkipUtil.skipActivity(LoginActivity.this, LockActivity.class);
-                    break;
-                default:
-                    break;
+            if ("0".equals(s)) {//登录成功
+                ActivitySkipUtil.skipActivity(LoginActivity.this, MainActivity.class);
+                finish();
             }
         });
     }

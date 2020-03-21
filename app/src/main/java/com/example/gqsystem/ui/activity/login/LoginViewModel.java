@@ -7,6 +7,7 @@ import com.example.gqsystem.http.data.HttpDisposable;
 import com.example.gqsystem.http.request.HttpFactory;
 import com.example.gqsystem.http.request.HttpRequest;
 import com.example.gqsystem.util.CommonUtils;
+import com.example.gqsystem.util.ToastUtils;
 import com.orhanobut.hawk.Hawk;
 
 import java.util.HashMap;
@@ -38,23 +39,6 @@ public class LoginViewModel extends BaseViewModel {
         return loginStatus;
     }
 
-    @Override
-    public void onCreate(@NonNull LifecycleOwner owner) {
-        init();
-    }
-
-    /**
-     * 初始化
-     */
-    private void init() {
-        // 从缓存中读取用户信息
-        UserDataBean userDataBean = Hawk.get(Constants.HawkCode.LOGIN_DATA);
-        if (userDataBean != null) {
-            // 缓存中有用户信息， 自动登录验证
-            login(userDataBean.getUserInfo().getUsername(), userDataBean.getUserInfo().getUserpwd(), true);
-        }
-    }
-
 
     /**
      * 用户点击登录
@@ -65,13 +49,13 @@ public class LoginViewModel extends BaseViewModel {
             loginStatus.postValue("1");
             return;
         }
-        login(userName.getValue(), userPwd.getValue(), false);
+        login(userName.getValue(), userPwd.getValue());
     }
 
     /**
      * 请求
      */
-    private void login(String name, String pwd, boolean auto) {
+    private void login(String name, String pwd) {
         Map map = new HashMap(2);
         map.put("captcha", "");
         map.put("checkKey", "");
@@ -87,32 +71,14 @@ public class LoginViewModel extends BaseViewModel {
                         bean.getUserInfo().setUserpwd(pwd);
                         Hawk.put(Constants.HawkCode.LOGIN_DATA, bean);
                         //登录成功
-                        if (auto) {
-                            //自动登录成功，验证指纹
-                            verifyFingerprint();
-                        } else {
-                            //手动登录，直接跳转
-                            loginStatus.postValue("0");
-                        }
+                        loginStatus.postValue("0");
                     }
 
                     @Override
                     public void onError(Throwable e) {
                         //登录失败
+                        ToastUtils.showToast(e.getMessage());
                     }
                 });
-    }
-
-    /**
-     * 验证指纹
-     */
-    private void verifyFingerprint() {
-
-        // TODO: 2020/2/24 验证成功
-        loginStatus.postValue("0");
-
-        // TODO: 2020/2/24 验证失败
-//        loginStatus.postValue("2");
-
     }
 }

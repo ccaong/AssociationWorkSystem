@@ -1,13 +1,17 @@
 package com.example.gqsystem.ui.activity.splash;
 
-import com.example.gqsystem.MainActivity;
+import android.os.Bundle;
+
+import androidx.lifecycle.ViewModelProviders;
+
 import com.example.gqsystem.R;
 import com.example.gqsystem.base.BaseActivity;
 import com.example.gqsystem.databinding.ActivitySplashBinding;
+import com.example.gqsystem.ui.activity.lock.LockActivity;
 import com.example.gqsystem.ui.activity.login.LoginActivity;
 import com.example.gqsystem.util.ActivitySkipUtil;
 
-import androidx.lifecycle.ViewModelProviders;
+import static com.example.gqsystem.ui.activity.lock.LockActivity.LOCK_TYPE;
 
 /**
  * @author : devel
@@ -43,7 +47,9 @@ public class SplashActivity extends BaseActivity<ActivitySplashBinding, SplashVi
                 finish();
             }
             if (s.equals("Main")) {
-                ActivitySkipUtil.skipActivity(SplashActivity.this, MainActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable(LOCK_TYPE, LockActivity.lockType.VERIFICATION);
+                ActivitySkipUtil.skipActivity(SplashActivity.this, LockActivity.class);
                 finish();
             }
         });
