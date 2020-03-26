@@ -25,7 +25,7 @@ public class LockActivity extends BaseActivity<ActivityLockBinding, LockViewMode
 
     public static final String LOCK_TYPE = "lock_type";
 
-   public enum lockType {
+    public enum lockType {
         /**
          * 解锁
          */
@@ -45,9 +45,11 @@ public class LockActivity extends BaseActivity<ActivityLockBinding, LockViewMode
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         Bundle bundle = getIntent().getExtras();
-        type = (lockType) bundle.getSerializable(LOCK_TYPE);
+        if (bundle != null) {
+            type = (lockType) bundle.getSerializable(LOCK_TYPE);
+        }
+        super.onCreate(savedInstanceState);
     }
 
     @Override
@@ -84,6 +86,15 @@ public class LockActivity extends BaseActivity<ActivityLockBinding, LockViewMode
                 verificationSuccess();
             }
         });
+
+        //登录验证时，自动弹出指纹验证或者密码验证
+        if (type == lockType.VERIFICATION) {
+            if (supportFinger) {
+                fingerVerification();
+            } else {
+                mViewModel.usePwdVerification();
+            }
+        }
     }
 
     /**
@@ -143,11 +154,9 @@ public class LockActivity extends BaseActivity<ActivityLockBinding, LockViewMode
     private void verificationSuccess() {
         if (type == lockType.UNLOCK) {
             //解锁
-            Toast.makeText(LockActivity.this, getResources().getString(R.string.finger_success), Toast.LENGTH_SHORT).show();
             finish();
         } else {
             //登陆
-            Toast.makeText(LockActivity.this, getResources().getString(R.string.finger_success), Toast.LENGTH_SHORT).show();
             ActivitySkipUtil.skipActivity(LockActivity.this, MainActivity.class);
             finish();
         }
@@ -157,7 +166,11 @@ public class LockActivity extends BaseActivity<ActivityLockBinding, LockViewMode
     @Override
     public void onBackPressed() {
         // 屏蔽返回键
-        Toast.makeText(this, getResources().getString(R.string.finger_title), Toast.LENGTH_SHORT).show();
+        if (type == lockType.VERIFICATION) {
+            super.onBackPressed();
+        } else {
+            Toast.makeText(this, getResources().getString(R.string.finger_title), Toast.LENGTH_SHORT).show();
+        }
     }
 }
 

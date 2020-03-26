@@ -20,7 +20,7 @@ import androidx.lifecycle.MutableLiveData;
 /**
  * @author : devel
  * @date : 2020/2/24 10:35
- * @desc :
+ * @desc : 登录
  */
 public class LoginViewModel extends BaseViewModel {
 

@@ -2,9 +2,15 @@ package com.example.gqsystem.ui.search;
 
 import android.view.View;
 
+import com.example.gqsystem.BR;
 import com.example.gqsystem.R;
 import com.example.gqsystem.base.BaseFragment;
+import com.example.gqsystem.bean.SearchHistoryBean;
 import com.example.gqsystem.databinding.SearchFragmentListBinding;
+import com.example.gqsystem.ui.adapter.CommonAdapter;
+import com.google.android.flexbox.FlexDirection;
+import com.google.android.flexbox.FlexWrap;
+import com.google.android.flexbox.FlexboxLayoutManager;
 
 import java.lang.reflect.Field;
 
@@ -36,6 +42,9 @@ public class SearchFragment extends BaseFragment<SearchFragmentListBinding, Sear
     @Override
     protected void init() {
         initSearchView(mDataBinding.searchView);
+        initRadioGroup();
+        initHistoryData();
+        initSearchListener();
     }
 
 
@@ -57,5 +66,63 @@ public class SearchFragment extends BaseFragment<SearchFragmentListBinding, Sear
             //直接打开
 //            searchView.setIconifiedByDefault(false);
         }
+    }
+
+    private void initRadioGroup() {
+        mDataBinding.radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
+            switch (checkedId) {
+                case R.id.btn1:
+                    mViewModel.type.postValue(1);
+                    break;
+                case R.id.btn2:
+                    mViewModel.type.postValue(2);
+                    break;
+                case R.id.btn3:
+                    mViewModel.type.postValue(3);
+                    break;
+                default:
+                    break;
+            }
+        });
+    }
+
+    private void initHistoryData() {
+        FlexboxLayoutManager manager = new FlexboxLayoutManager(getContext());
+        manager.setFlexDirection(FlexDirection.ROW);
+        manager.setFlexWrap(FlexWrap.WRAP);
+        mDataBinding.recyclerViewHistory.setLayoutManager(manager);
+
+        CommonAdapter<SearchHistoryBean> historyAdapter = new CommonAdapter<SearchHistoryBean>(R.layout.search_item_history, BR.searchHistory) {
+            @Override
+            public void addListener(View root, SearchHistoryBean itemData, int position) {
+                super.addListener(root, itemData, position);
+                root.findViewById(R.id.tv_name).setOnClickListener(v -> mViewModel.search(itemData.getSearchName()));
+            }
+        };
+        mDataBinding.recyclerViewHistory.setAdapter(historyAdapter);
+
+        mViewModel.getSearchHistoryList().observe(this, historyAdapter::onItemDatasChanged);
+    }
+
+
+    /**
+     * 搜索监听
+     */
+    private void initSearchListener() {
+        mDataBinding.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                //向数据库中插入一条数据
+                SearchHistoryBean searchHistoryBean = new SearchHistoryBean(mViewModel.type.getValue(), query);
+                mViewModel.insertData(searchHistoryBean);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                mViewModel.search(newText);
+                return false;
+            }
+        });
     }
 }

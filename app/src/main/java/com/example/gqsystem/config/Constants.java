@@ -15,4 +15,11 @@ public class Constants {
         public static final String KEY_BIOMETRIC_SWITCH_ENABLE = "key_biometric_switch_enable";
 
     }
+
+    public static class SettingCode {
+
+        public static final String OPEN_FILE_WITH_WPS = "open_file_with_wps";
+        public static final String ALLOW_USE_DATA_DOWNLOAD = "allow_data_download";
+
+    }
 }

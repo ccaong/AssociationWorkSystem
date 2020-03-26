@@ -236,4 +236,77 @@ public class BindingUtil {
     }
 
 
+    /**
+     * 关联企业关系
+     *
+     * @param textView
+     * @param type
+     */
+    @BindingAdapter("companyRelated")
+    public static void setCompanyRelated(TextView textView, String type) {
+        if (type == null) {
+            textView.setText("未知关系");
+            return;
+        }
+        switch (type) {
+            case "1":
+                textView.setText("母公司");
+                break;
+            case "2":
+                textView.setText("子公司");
+                break;
+            case "3":
+                textView.setText("兄弟企业");
+                break;
+            case "4":
+                textView.setText("其他关联");
+                break;
+            case "5":
+                textView.setText("备注");
+                break;
+            default:
+                textView.setText("未知关系");
+                break;
+        }
+    }
+
+
+    /**
+     * 文件名称
+     *
+     * @param textView
+     * @param filePath
+     */
+    @BindingAdapter("fileName")
+    public static void setFileName(TextView textView, String filePath) {
+        if (filePath == null) {
+            textView.setText("没有文件");
+            return;
+        }
+        String fileName = filePath;
+        int i = filePath.lastIndexOf('/');
+        if (i != -1) {
+            fileName = filePath.substring(i + 1);
+        }
+
+        int n = fileName.lastIndexOf("_");
+        if (n != -1) {
+            fileName = fileName.substring(0, n);
+        }
+        textView.setTextColor(App.getContext().getResources().getColor(R.color.app_color_blue));
+        textView.setText(fileName);
+    }
+
+    /**
+     * 文件下载progress
+     *
+     * @param textView
+     * @param progress
+     */
+    @BindingAdapter("downloadProgress")
+    public static void setDownLoadProgress(TextView textView, int progress) {
+        if (progress != 0) {
+            textView.getBackground().setLevel(progress);
+        }
+    }
 }

@@ -85,12 +85,7 @@ public abstract class BaseFragment<DB extends ViewDataBinding, VM extends BaseVi
 
     private void initLoadState() {
         if (mViewModel != null && isSupportLoad()) {
-            mViewModel.loadState.observe(this, new Observer<LoadState>() {
-                @Override
-                public void onChanged(LoadState loadState) {
-                    switchLoadView(loadState);
-                }
-            });
+            mViewModel.loadState.observe(getViewLifecycleOwner(), this::switchLoadView);
         }
     }
 
@@ -133,6 +128,7 @@ public abstract class BaseFragment<DB extends ViewDataBinding, VM extends BaseVi
                 if (mViewLoadErrorBinding == null) {
                     mViewLoadErrorBinding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.view_load_error,
                             mFragmentBaseBinding.flContentContainer, false);
+                    mViewLoadErrorBinding.setViewModel(mViewModel);
                 }
                 mFragmentBaseBinding.flContentContainer.addView(mViewLoadErrorBinding.getRoot());
                 break;

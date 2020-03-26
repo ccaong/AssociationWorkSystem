@@ -45,47 +45,4 @@ public interface UserDao {
     @Insert
     void insertUser(LoginData user);
 
-
-    /**
-     * 插入多条数据
-     *
-     * @param users
-     */
-    @Insert
-    void insertAll(LoginData... users);
-
-
-    /**
-     * 插入多条数据
-     *
-     * @param userBeans
-     */
-    @Insert
-    void insertList(List<LoginData> userBeans);
-
-
-    /**
-     * 删除数据
-     *
-     * @param users
-     */
-    @Delete
-    void delete(LoginData... users);
-
-    /**
-     * 更新数据
-     *
-     * @param users
-     */
-    @Update
-    void update(LoginData... users);
-
-    /**
-     * 修改某条数据的name属性
-     *
-     * @param name1
-     * @param uid
-     */
-    @Query("update user set userName =:name1 where userId=:uid")
-    void updateCustom(String name1, String uid);
 }

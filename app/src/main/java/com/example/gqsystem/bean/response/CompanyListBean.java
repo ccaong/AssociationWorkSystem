@@ -206,8 +206,8 @@ public class CompanyListBean {
             this.platformUser = platformUser;
         }
 
-        public int getId() {
-            return id;
+        public String getId() {
+            return id + "";
         }
 
         public void setId(int id) {

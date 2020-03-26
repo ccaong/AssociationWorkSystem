@@ -8,12 +8,15 @@
             name="viewModel"
             type="com.example.gqsystem.ui.activity.login.LoginViewModel" />
 
+        <variable
+            name="clickListener"
+            type="com.example.gqsystem.ui.activity.login.LoginActivity.EventListener" />
+
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_login"
@@ -33,7 +36,7 @@
                     android:layout_width="@dimen/dp_64"
                     android:layout_height="@dimen/dp_64"
                     android:layout_marginTop="@dimen/dp_16"
-                    android:background="@color/colorPrimary"
+                    android:src="@mipmap/ic_launcher_round"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -90,14 +93,27 @@
                     style="@style/qmui_btn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/dp_16"
+                    android:layout_marginBottom="@dimen/dimen_8"
                     android:onClick="@{()->viewModel.login()}"
                     android:text="@string/login"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/tv_forget_pwd"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:qmui_backgroundColor="@color/qmui_btn_green_bg"
                     app:qmui_radius="@dimen/btn_radius" />
+
+                <TextView
+                    android:id="@+id/tv_forget_pwd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:onClick="@{()->clickListener.btnForgetPwd()}"
+                    android:text="忘记密码"
+                    android:textColor="@color/app_color_blue"
+                    android:textSize="@dimen/text_14"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent" />
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/guideline1"

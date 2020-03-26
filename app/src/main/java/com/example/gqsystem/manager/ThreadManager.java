@@ -9,6 +9,7 @@ import java.util.concurrent.TimeUnit;
  * 本应用的线程管理器，1：首先要做一个池子 2：必须做成单例模式(懒汉)，防止创建多个线程，达不到管理效果
  * 3：考虑线程安全问题
  * Created by 2018/9/10.
+ * @author devel
  */
 
 public class ThreadManager {

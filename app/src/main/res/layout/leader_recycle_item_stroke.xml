@@ -37,8 +37,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dimen_8"
-                    app:layout_constrainedWidth="true"
                     android:text="@{leaderActivity.activityName}"
+                    app:layout_constrainedWidth="true"
                     app:layout_constraintHorizontal_bias="0"
                     app:layout_constraintLeft_toRightOf="@+id/tv_active_name_title"
                     app:layout_constraintRight_toRightOf="parent"
@@ -60,8 +60,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dimen_8"
-                    app:layout_constrainedWidth="true"
                     android:text="@{leaderActivity.invitationUnit}"
+                    app:layout_constrainedWidth="true"
                     app:layout_constraintHorizontal_bias="0"
                     app:layout_constraintLeft_toRightOf="@+id/tv_active_unit_title"
                     app:layout_constraintRight_toRightOf="parent"
@@ -84,8 +84,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dimen_8"
-                    app:layout_constrainedWidth="true"
                     android:text="@{leaderActivity.activityContent}"
+                    app:layout_constrainedWidth="true"
                     app:layout_constraintHorizontal_bias="0"
                     app:layout_constraintLeft_toRightOf="@+id/tv_active_content_title"
                     app:layout_constraintRight_toRightOf="parent"
@@ -104,11 +104,14 @@
 
                 <TextView
                     android:id="@+id/tv_active_file_content"
-                    android:layout_width="wrap_content"
+                    style="@style/Item_TextView_Content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dimen_8"
+                    android:layout_marginStart="@dimen/dimen_8"
+                    android:background="@drawable/text_progress_bg"
+                    app:downloadProgress="@{leaderActivity.downloadProgress}"
+                    app:fileName="@{leaderActivity.activityFile}"
                     app:layout_constrainedWidth="true"
-                    android:text="@{leaderActivity.activityFile}"
                     app:layout_constraintHorizontal_bias="0"
                     app:layout_constraintLeft_toRightOf="@+id/tv_active_file_title"
                     app:layout_constraintRight_toRightOf="parent"
@@ -121,9 +124,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dimen_8"
+                    android:text="活动地点"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_active_file_content"
-                    android:text="活动地点" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_active_file_content" />
 
 
                 <TextView
@@ -131,8 +134,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dimen_8"
-                    app:layout_constrainedWidth="true"
                     android:text="@{leaderActivity.activityAddress}"
+                    app:layout_constrainedWidth="true"
                     app:layout_constraintHorizontal_bias="0"
                     app:layout_constraintLeft_toRightOf="@+id/tv_active_address_title"
                     app:layout_constraintRight_toRightOf="parent"
@@ -144,9 +147,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dimen_8"
+                    android:text="时间"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_active_address_content"
-                    android:text="时间" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_active_address_content" />
 
 
                 <TextView
@@ -154,8 +157,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dimen_8"
-                    app:layout_constrainedWidth="true"
                     android:text="@{leaderActivity.activityTime}"
+                    app:layout_constrainedWidth="true"
                     app:layout_constraintHorizontal_bias="0"
                     app:layout_constraintLeft_toRightOf="@+id/tv_active_address_title"
                     app:layout_constraintRight_toRightOf="parent"

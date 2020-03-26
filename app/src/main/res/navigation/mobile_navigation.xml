@@ -51,6 +51,12 @@
         android:name="com.example.gqsystem.ui.company.constant.CompanyConstantFragment"
         android:label="@string/company_constant" />
 
+    <!--    企业关联关系信息-->
+    <fragment
+        android:id="@+id/company_related"
+        android:name="com.example.gqsystem.ui.company.related.CompanyRelatedFragment"
+        android:label="@string/company_related" />
+
 
     <!--    领导动态-->
     <fragment

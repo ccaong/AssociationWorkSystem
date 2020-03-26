@@ -15,20 +15,20 @@ import com.scwang.smart.refresh.layout.api.RefreshLayout;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import static com.example.gqsystem.ui.company.content.CompanyContentFragment.PARAM1;
+
 /**
  * @author devel
  * 企业联系人
  */
 public class CompanyConstantFragment extends BaseFragment<FragmentListBinding, CompanyConstantViewModel> {
 
-    private static final String PARAM1 = "param_1";
-
-    private Integer id;
+    private String id;
 
     @Override
     protected void handleArguments(Bundle args) {
         super.handleArguments(args);
-        id = args.getInt(PARAM1, -1);
+        id = args.getString(PARAM1, "");
     }
 
     @Override

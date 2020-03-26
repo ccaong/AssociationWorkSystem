@@ -57,7 +57,7 @@ public class HomePageFragment extends BaseFragment<HomePageFragmentBinding, Home
             }
         });
 
-        mViewModel.getBannerList().observe(this, list -> initBanner(list));
+        mViewModel.getBannerList().observe(this, this::initBanner);
     }
 
     @Override
@@ -78,7 +78,7 @@ public class HomePageFragment extends BaseFragment<HomePageFragmentBinding, Home
         mDataBinding.refreshLayout.setPrimaryColorsId(android.R.color.white, R.color.colorPrimary);
         mDataBinding.refreshLayout.setRefreshHeader(new ClassicsHeader(getContext()));
 
-        mDataBinding.refreshLayout.setOnRefreshListener(refreshlayout -> refreshlayout.finishRefresh(1000));
+        mDataBinding.refreshLayout.setOnRefreshListener(refresh-> refresh.finishRefresh(1000));
     }
 
     private void initBanner(List<Integer> mList) {
@@ -99,7 +99,6 @@ public class HomePageFragment extends BaseFragment<HomePageFragmentBinding, Home
 
     private void initRecycleView() {
         commonAdapter = new CommonAdapter<HomePageBean>(R.layout.home_item_project_type, BR.homeData) {
-
             @Override
             public void addListener(View root, HomePageBean itemData, int position) {
                 super.addListener(root, itemData, position);

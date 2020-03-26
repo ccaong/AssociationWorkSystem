@@ -1,7 +1,5 @@
 package com.example.gqsystem.ui.main.person;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.view.View;
 
 import com.example.gqsystem.BR;

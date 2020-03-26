@@ -1,34 +1,54 @@
 package com.example.gqsystem.ui.main.setting;
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-
-import androidx.annotation.Nullable;
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
+import android.widget.AdapterView;
 
 import com.example.gqsystem.R;
+import com.example.gqsystem.base.BaseFragment;
+import com.example.gqsystem.config.Constants;
+import com.example.gqsystem.databinding.FragmentSettingBinding;
+import com.orhanobut.hawk.Hawk;
+
+import androidx.lifecycle.ViewModelProvider;
 
 /**
  * @author devel
  */
-public class SettingFragment extends Fragment {
+public class SettingFragment extends BaseFragment<FragmentSettingBinding, SettingViewModel> {
 
-    private SettingViewModel toolsViewModel;
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        toolsViewModel =
-                ViewModelProviders.of(this).get(SettingViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_setting, container, false);
-        final TextView textView = root.findViewById(R.id.text_tools);
-        toolsViewModel.getText().observe(this, s -> textView.setText(s));
-        return root;
+    protected int getLayoutResId() {
+        return R.layout.fragment_setting;
+    }
+
+    @Override
+    protected void initViewModel() {
+        mViewModel = new ViewModelProvider(this).get(SettingViewModel.class);
+    }
+
+    @Override
+    protected void bindViewModel() {
+        mDataBinding.setViewModel(mViewModel);
+    }
+
+    @Override
+    protected void init() {
+        mDataBinding.switchReader.setOnCheckedChangeListener((buttonView, isChecked) -> Hawk.put(Constants.SettingCode.OPEN_FILE_WITH_WPS, isChecked));
+        mDataBinding.switchDownload.setOnCheckedChangeListener((buttonView, isChecked) -> Hawk.put(Constants.SettingCode.ALLOW_USE_DATA_DOWNLOAD, isChecked));
+
+        mDataBinding.spinnerTimeOut.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Log.e("选择", "" + position + "ID:" + id);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
     }
 }

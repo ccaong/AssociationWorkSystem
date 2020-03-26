@@ -33,6 +33,7 @@ public class CommonAdapter<T> extends RecyclerView.Adapter<CommonViewHolder> {
         this.defaultLayout = defaultLayout;
         this.brId = brId;
     }
+
     public CommonAdapter(List<T> list, int defaultLayout, int brId) {
         this.mList = list;
         this.defaultLayout = defaultLayout;
@@ -62,6 +63,18 @@ public class CommonAdapter<T> extends RecyclerView.Adapter<CommonViewHolder> {
         this.mList = newItemDatas;
         notifyDataSetChanged();
     }
+
+    /**
+     * 改变某个数据
+     *
+     * @param newItemDatas
+     * @param position
+     */
+    public void onItemRangeChanged(List<T> newItemDatas, int position) {
+        this.mList = newItemDatas;
+        notifyItemChanged(position);
+    }
+
 
     /**
      * 改变部分数据

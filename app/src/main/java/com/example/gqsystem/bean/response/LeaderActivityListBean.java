@@ -113,6 +113,7 @@ public class LeaderActivityListBean {
         private String sysOrgCode;
         private String id;
         private String invitationUnit;
+        private int downloadProgress;
 
         public String getActivityContent() {
             return activityContent;
@@ -216,6 +217,14 @@ public class LeaderActivityListBean {
 
         public void setInvitationUnit(String invitationUnit) {
             this.invitationUnit = invitationUnit;
+        }
+
+        public int getDownloadProgress() {
+            return downloadProgress;
+        }
+
+        public void setDownloadProgress(int downloadProgress) {
+            this.downloadProgress = downloadProgress;
         }
     }
 }

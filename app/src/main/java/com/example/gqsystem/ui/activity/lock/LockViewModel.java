@@ -66,14 +66,14 @@ public class LockViewModel extends BaseViewModel {
      * 使用密码登录
      */
     public void loginWithPwd() {
-
-        // TODO: 2020/3/2 失败
-        userPwd.postValue("");
-        loginTitle.postValue(getResources().getString(R.string.input_pwd_error));
-
-        // TODO: 2020/3/2 成功
-        cancelPwd();
-        loginStatus.postValue(0);
+        if ("12".equals(userPwd.getValue())) {
+            // TODO: 2020/3/2 成功
+            cancelPwd();
+            loginStatus.postValue(0);
+        } else {
+            // TODO: 2020/3/2 失败
+            userPwd.postValue("");
+            loginTitle.postValue(getResources().getString(R.string.input_pwd_error));
+        }
     }
-
 }

@@ -15,14 +15,15 @@ import androidx.navigation.fragment.NavHostFragment;
  * 企业详情
  */
 public class CompanyContentFragment extends BaseFragment<CompanyFragmentContentBinding, CompanyContentViewModel> {
+
     public static final String PARAM1 = "param_1";
 
-    private Integer id;
+    private String id;
 
     @Override
     protected void handleArguments(Bundle args) {
         super.handleArguments(args);
-        id = args.getInt(PARAM1, -1);
+        id = args.getString(PARAM1, "");
     }
 
     @Override
@@ -72,8 +73,17 @@ public class CompanyContentFragment extends BaseFragment<CompanyFragmentContentB
          */
         public void btnConstant() {
             Bundle bundle = new Bundle();
-            bundle.putInt(PARAM1, id);
+            bundle.putString(PARAM1, id);
             NavHostFragment.findNavController(CompanyContentFragment.this).navigate(R.id.company_constant, bundle);
+        }
+
+        /**
+         * 关联企业信息
+         */
+        public void btnRelated() {
+            Bundle bundle = new Bundle();
+            bundle.putString(PARAM1, id);
+            NavHostFragment.findNavController(CompanyContentFragment.this).navigate(R.id.company_related, bundle);
         }
     }
 }

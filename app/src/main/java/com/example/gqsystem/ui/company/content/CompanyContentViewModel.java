@@ -21,7 +21,7 @@ import androidx.lifecycle.MutableLiveData;
  */
 public class CompanyContentViewModel extends BaseViewModel {
 
-    private Integer id;
+    private String id;
 
     public MutableLiveData<CompanyBasisInfoBean> basisBean;
     public MutableLiveData<String> industryBean;
@@ -33,7 +33,7 @@ public class CompanyContentViewModel extends BaseViewModel {
         mInvoiceInfoBean = new MediatorLiveData<>();
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -60,6 +60,7 @@ public class CompanyContentViewModel extends BaseViewModel {
                     @Override
                     public void onError(Throwable e) {
                         loadState.setValue(LoadState.ERROR);
+                        errorMsg.postValue(e.getMessage());
                     }
                 });
     }

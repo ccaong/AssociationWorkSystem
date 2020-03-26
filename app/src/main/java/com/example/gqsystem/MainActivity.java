@@ -5,8 +5,10 @@ import android.widget.TextView;
 
 import com.example.gqsystem.base.BaseActivity;
 import com.example.gqsystem.bean.response.UserDataBean;
+import com.example.gqsystem.common.CommonDialog;
 import com.example.gqsystem.config.Constants;
 import com.example.gqsystem.databinding.ActivityMainBinding;
+import com.example.gqsystem.manager.MyActivityManager;
 import com.example.gqsystem.ui.activity.login.LoginActivity;
 import com.example.gqsystem.ui.mine.MineViewModel;
 import com.example.gqsystem.util.ActivitySkipUtil;
@@ -115,6 +117,12 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MineViewMode
         });
     }
 
+
+    private void inirDia(){
+        CommonDialog dialog = CommonDialog.newInstance("下载", "文件还未下载，是否要下载该文档？");
+        dialog.show(getSupportFragmentManager(),"");
+
+    }
 
     @Override
     public boolean onSupportNavigateUp() {

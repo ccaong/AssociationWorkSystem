@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mobile_reset_pwd_navigation"
+    app:startDestination="@id/sendVerificationFragment">
+
+
+    <fragment
+        android:id="@+id/sendVerificationFragment"
+        android:name="com.example.gqsystem.ui.activity.forgetpwd.SendVerificationFragment"
+        android:label="SendVerificationFragment" />
+
+
+    <fragment
+        android:id="@+id/changePwdFragment"
+        android:name="com.example.gqsystem.ui.activity.forgetpwd.ChangePwdFragment"
+        android:label="ChangePwdFragment" />
+
+</navigation>

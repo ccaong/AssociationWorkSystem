@@ -120,7 +120,7 @@ public class CompanyInformationViewModel extends BaseViewModel {
     /**
      * 获取企业开票信息
      */
-    public void loadCompanyList(Integer id) {
+    public void loadCompanyList(String id) {
         HttpRequest.getInstance()
                 .getCompanyInvoice(id)
                 .compose(HttpFactory.schedulers())

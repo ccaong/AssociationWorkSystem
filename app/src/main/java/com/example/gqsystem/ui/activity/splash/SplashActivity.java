@@ -49,7 +49,7 @@ public class SplashActivity extends BaseActivity<ActivitySplashBinding, SplashVi
             if (s.equals("Main")) {
                 Bundle bundle = new Bundle();
                 bundle.putSerializable(LOCK_TYPE, LockActivity.lockType.VERIFICATION);
-                ActivitySkipUtil.skipActivity(SplashActivity.this, LockActivity.class);
+                ActivitySkipUtil.skipActivity(SplashActivity.this, LockActivity.class, bundle);
                 finish();
             }
         });

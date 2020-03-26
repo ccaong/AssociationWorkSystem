@@ -72,7 +72,7 @@ public class CompanyInformationFragment extends BaseFragment<CompanyFragmentList
 
                 root.findViewById(R.id.card_view).setOnClickListener(v -> {
                     Bundle bundle = new Bundle();
-                    bundle.putInt(PARAM1, itemData.getId());
+                    bundle.putString(PARAM1, itemData.getId());
                     NavHostFragment.findNavController(CompanyInformationFragment.this).navigate(R.id.company_content, bundle);
                 });
 

@@ -18,7 +18,7 @@ import androidx.lifecycle.MutableLiveData;
  */
 public class CompanyConstantViewModel extends BaseViewModel {
 
-    private Integer id;
+    private String id;
 
     private MutableLiveData<List<CompanyContactBean>> mPersonList;
 
@@ -30,7 +30,7 @@ public class CompanyConstantViewModel extends BaseViewModel {
         return mPersonList;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -61,8 +61,12 @@ public class CompanyConstantViewModel extends BaseViewModel {
                 .subscribe(new HttpDisposable<List<CompanyContactBean>>() {
                     @Override
                     public void success(List<CompanyContactBean> bean) {
-                        loadState.postValue(LoadState.SUCCESS);
-                        mPersonList.postValue(bean);
+                        if (bean.isEmpty()) {
+                            loadState.postValue(LoadState.NO_DATA);
+                        } else {
+                            loadState.postValue(LoadState.SUCCESS);
+                            mPersonList.postValue(bean);
+                        }
                     }
 
                     @Override

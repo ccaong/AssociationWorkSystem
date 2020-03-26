@@ -42,12 +42,7 @@ public class EvaluateActivity extends AppCompatActivity {
         toolbar.setTitle("评价评估");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        toolbar.setNavigationOnClickListener(v -> finish());
 
         fragments.add(EvaluateFragment.newInstance(1));
         fragments.add(EvaluateFragment.newInstance(2));

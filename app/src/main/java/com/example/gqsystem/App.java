@@ -2,28 +2,25 @@ package com.example.gqsystem;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.StrictMode;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.example.gqsystem.http.data.HttpBaseResponse;
-import com.example.gqsystem.http.data.HttpResponseInterface;
 import com.example.gqsystem.http.httptool.HttpException;
-import com.example.gqsystem.http.request.ServerAddress;
 import com.example.gqsystem.http.request.HttpFactory;
+import com.example.gqsystem.http.request.ServerAddress;
 import com.example.gqsystem.manager.MyActivityManager;
-import com.google.gson.Gson;
 import com.orhanobut.hawk.Hawk;
 import com.scwang.smart.refresh.footer.ClassicsFooter;
 import com.scwang.smart.refresh.header.ClassicsHeader;
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
-import com.scwang.smart.refresh.layout.api.RefreshFooter;
-import com.scwang.smart.refresh.layout.api.RefreshHeader;
-import com.scwang.smart.refresh.layout.api.RefreshLayout;
-import com.scwang.smart.refresh.layout.listener.DefaultRefreshFooterCreator;
-import com.scwang.smart.refresh.layout.listener.DefaultRefreshHeaderCreator;
-import com.scwang.smart.refresh.layout.listener.DefaultRefreshInitializer;
+import com.tencent.smtt.sdk.QbSdk;
 
-import androidx.annotation.NonNull;
 import androidx.multidex.MultiDexApplication;
+import cn.jpush.android.api.JPushInterface;
 
 /**
  * @author : devel
@@ -31,7 +28,10 @@ import androidx.multidex.MultiDexApplication;
  * @desc :
  */
 public class App extends MultiDexApplication {
+
     private static Context context;
+    public static boolean isDownloadFile;
+    public boolean tbsInitSuccess;
 
     @Override
     public void onCreate() {
@@ -46,10 +46,34 @@ public class App extends MultiDexApplication {
 
 
     public void init() {
+        isDownloadFile = false;
         setHttpConfig();
+        //初始化Hawk
         Hawk.init(context).build();
+        // 设置开启日志,发布时请关闭日志
+        JPushInterface.setDebugMode(false);
+        // 初始化 JPush
+        JPushInterface.init(this);
 
         initActivityManager();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+            StrictMode.setVmPolicy(builder.build());
+        }
+
+        QbSdk.initX5Environment(this, new QbSdk.PreInitCallback() {
+            @Override
+            public void onCoreInitFinished() {
+                //x5内核初始化完成回调接口，此接口回调并表示已经加载起来了x5，有可能特殊情况下x5内核加载失败，切换到系统内核。
+            }
+
+            @Override
+            public void onViewInitFinished(boolean b) {
+                //x5內核初始化完成的回调，为true表示x5内核加载成功，否则表示x5内核加载失败，会自动切换到系统内核。
+                Log.e("print","加载内核是否成功:"+b);
+            }
+        });
     }
 
     /**
@@ -94,11 +118,16 @@ public class App extends MultiDexApplication {
     public static void setHttpConfig() {
         HttpFactory.HTTP_HOST_URL = ServerAddress.getApiDefaultHost();
         HttpFactory.httpResponseInterface = (gson, response) -> {
-            HttpBaseResponse httpResponse = gson.fromJson(response, HttpBaseResponse.class);
-            if (httpResponse.code != 200 && httpResponse.code != 0) {
-                throw new HttpException(httpResponse.message);
+            if (isDownloadFile) {
+                isDownloadFile = false;
+                return response;
+            } else {
+                HttpBaseResponse httpResponse = gson.fromJson(response, HttpBaseResponse.class);
+                if (httpResponse.code != 200) {
+                    throw new HttpException(httpResponse.message);
+                }
+                return gson.toJson(httpResponse.result);
             }
-            return gson.toJson(httpResponse.result);
         };
     }
 

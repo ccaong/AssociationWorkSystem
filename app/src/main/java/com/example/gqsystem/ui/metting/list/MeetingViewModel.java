@@ -2,6 +2,9 @@ package com.example.gqsystem.ui.metting.list;
 
 import com.example.gqsystem.base.viewmodel.BaseViewModel;
 import com.example.gqsystem.enums.LoadState;
+import com.example.gqsystem.http.data.HttpDisposable;
+import com.example.gqsystem.http.request.HttpFactory;
+import com.example.gqsystem.http.request.HttpRequest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,18 +19,18 @@ import androidx.lifecycle.MutableLiveData;
 public class MeetingViewModel extends BaseViewModel {
 
 
-    private int mPage = 0;
+    private int mPage = 1;
 
-    private MutableLiveData<Object> mArticleList;
+    private MutableLiveData<Object> mMeetingList;
     private List<Object> mList;
 
     public MeetingViewModel() {
-        mArticleList = new MediatorLiveData<>();
+        mMeetingList = new MediatorLiveData<>();
         mList = new ArrayList<>();
     }
 
-    public LiveData<Object> getArticleList() {
-        return mArticleList;
+    public LiveData<Object> getMeetingList() {
+        return mMeetingList;
     }
 
 
@@ -36,7 +39,7 @@ public class MeetingViewModel extends BaseViewModel {
      */
     public void refreshData(Boolean refresh) {
         if (refresh) {
-            mPage = 0;
+            mPage = 1;
         } else {
             mPage++;
         }
@@ -60,14 +63,40 @@ public class MeetingViewModel extends BaseViewModel {
     public void loadData() {
         loadState.postValue(LoadState.LOADING);
 
-        mPage = 0;
+        mPage = 1;
         mRefresh = false;
         loadMeetingList();
     }
 
     private void loadMeetingList() {
-        loadState.postValue(LoadState.NO_DATA);
+        HttpRequest.getInstance()
+                .queryMeetingList(mPage, 10)
+                .compose(HttpFactory.schedulers())
+                .subscribe(new HttpDisposable<Object>() {
+                    @Override
+                    public void success(Object bean) {
+//
+//                        if (bean.getPages() == 0) {
+                        loadState.postValue(LoadState.NO_DATA);
+//                            return;
+//                        }
+//                        loadState.postValue(LoadState.SUCCESS);
+//                        if (mPage == 1) {
+//                            mList.clear();
+//                            mList.addAll(bean.getRecords());
+//                            mLeadeActivtyList.postValue(bean);
+//                        } else {
+//                            mList.addAll(bean.getRecords());
+//                            bean.setRecords(mList);
+//                            mLeadeActivtyList.postValue(bean);
+//                        }
+                    }
 
+                    @Override
+                    public void onError(Throwable e) {
+                        loadState.postValue(LoadState.ERROR);
+                        errorMsg.postValue(e.getMessage());
+                    }
+                });
     }
-
 }
