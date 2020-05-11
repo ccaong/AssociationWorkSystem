@@ -1,7 +1,9 @@
 package com.example.gqsystem.ui.main.leaderstroke;
 
-import android.os.Handler;
-import android.os.Message;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.example.gqsystem.BR;
@@ -11,9 +13,13 @@ import com.example.gqsystem.bean.response.LeaderActivityListBean;
 import com.example.gqsystem.databinding.FragmentListBinding;
 import com.example.gqsystem.ui.adapter.CommonAdapter;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
+
+import static com.example.gqsystem.ui.main.leaderstroke.LeaderActivityEditFragment.PARAM_LEADER_ACTIVITY;
 
 /**
  * @author devel
@@ -47,6 +53,8 @@ public class LeaderStrokeFragment extends BaseFragment<FragmentListBinding, Lead
 
     @Override
     protected void init() {
+        setHasOptionsMenu(true);
+
         mViewModel.loadData();
         initRefreshLayout();
         initRecyclerView();
@@ -73,6 +81,19 @@ public class LeaderStrokeFragment extends BaseFragment<FragmentListBinding, Lead
                     pos = position;
                     requestPermission(itemData.getActivityFile());
                 });
+
+                //点击编辑
+                root.findViewById(R.id.item).setOnClickListener(v -> {
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable(PARAM_LEADER_ACTIVITY, itemData);
+                    NavHostFragment.findNavController(LeaderStrokeFragment.this).navigate(R.id.nav_leader_activity_edit, bundle);
+                });
+
+                //长按删除
+                root.findViewById(R.id.item).setOnLongClickListener(v -> {
+                    mViewModel.delete(itemData.getId());
+                    return false;
+                });
             }
         };
         mDataBinding.recyclerView.setAdapter(commonAdapter);
@@ -97,27 +118,27 @@ public class LeaderStrokeFragment extends BaseFragment<FragmentListBinding, Lead
         });
 
         mViewModel.getDownLoadProgress().observe(this, progress -> {
-            bean.setDownloadProgress(100 * progress);
-            commonAdapter.notifyItemChanged(pos);
+            if (bean != null && commonAdapter != null) {
+                bean.setDownloadProgress(progress);
+                commonAdapter.notifyItemChanged(pos);
+            }
         });
     }
 
-    /**
-     * 检查权限,跳转到读取文档的界面
-     *
-     * @param filePath
-     */
-    private void requestPermission(String filePath) {
-        mViewModel.isFileExists(filePath);
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.main, menu);
     }
-
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-//        if (null != mHandler) {
-//            mHandler.removeMessages(1);
-//            mHandler = null;
-//        }
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.action_add) {
+            //新增会议
+            NavHostFragment.findNavController(LeaderStrokeFragment.this).navigate(R.id.nav_leader_activity_edit);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
+
 }

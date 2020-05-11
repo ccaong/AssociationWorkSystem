@@ -33,6 +33,8 @@ public class CompanyContactBean {
     private int companyId;
     private String comUserStatus;
     private String comUserResult;
+    private String wechatCode;
+    private String businessCard;
 
     public String getId() {
         return id;
@@ -128,5 +130,21 @@ public class CompanyContactBean {
 
     public void setComUserResult(String comUserResult) {
         this.comUserResult = comUserResult;
+    }
+
+    public String getWechatCode() {
+        return wechatCode;
+    }
+
+    public void setWechatCode(String wechatCode) {
+        this.wechatCode = wechatCode;
+    }
+
+    public String getBusinessCard() {
+        return businessCard;
+    }
+
+    public void setBusinessCard(String businessCard) {
+        this.businessCard = businessCard;
     }
 }

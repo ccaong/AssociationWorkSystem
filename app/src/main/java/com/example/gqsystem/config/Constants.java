@@ -6,6 +6,9 @@ package com.example.gqsystem.config;
  * @desc :
  */
 public class Constants {
+
+    public static final int PageSize = 10;
+
     public static class HawkCode {
 
         public static final String LOGIN_DATA = "login_data";
@@ -19,6 +22,7 @@ public class Constants {
     public static class SettingCode {
 
         public static final String OPEN_FILE_WITH_WPS = "open_file_with_wps";
+        public static final String READ_ONLY_TYPE = "read_only_type";
         public static final String ALLOW_USE_DATA_DOWNLOAD = "allow_data_download";
 
     }

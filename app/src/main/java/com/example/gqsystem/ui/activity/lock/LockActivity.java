@@ -2,6 +2,7 @@ package com.example.gqsystem.ui.activity.lock;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;

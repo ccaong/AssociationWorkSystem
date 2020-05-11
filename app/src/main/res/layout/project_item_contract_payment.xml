@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="contractPayment"
+            type="com.example.gqsystem.bean.response.ProjectContractPaymentBean" />
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen_8"
+        android:layout_marginBottom="@dimen/dimen_8"
+        android:layout_marginRight="@dimen/dimen_8">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/dimen_8">
+
+            <TextView
+                android:id="@+id/tv_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_8"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:text="付款金额"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_8"
+                android:text="@{contractPayment.payAmount}"
+                app:layout_constraintLeft_toRightOf="@+id/tv_money"
+                app:layout_constraintTop_toTopOf="@+id/tv_money"
+                tool:text="2333333" />
+
+            <TextView
+                android:id="@+id/tv_condition_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_8"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:text="付款条件"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_money" />
+
+            <TextView
+                android:id="@+id/tv_condition"
+                style="@style/Item_TextView_Content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_8"
+                android:text="@{contractPayment.payCondition}"
+                app:layout_constraintLeft_toRightOf="@+id/tv_condition_title"
+                app:layout_constraintTop_toTopOf="@+id/tv_condition_title"
+                tool:text="@string/debug_string_long" />
+
+
+            <TextView
+                android:id="@+id/tv_contract_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_8"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:text="发票开具情况"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_condition" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_8"
+                app:invoiceStatus="@{contractPayment.invoiceInfo}"
+                app:layout_constraintLeft_toRightOf="@+id/tv_contract_status"
+                app:layout_constraintTop_toTopOf="@+id/tv_contract_status"
+                tool:text="2333333" />
+
+
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_8"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:text="计划回款时间"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_contract_status" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_8"
+                android:text="@{contractPayment.planBackTime}"
+                app:layout_constraintLeft_toRightOf="@+id/tv_time"
+                app:layout_constraintTop_toTopOf="@+id/tv_time"
+                tool:text="2333333" />
+
+
+            <TextView
+                android:id="@+id/tv_time_actual"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_8"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:text="实际回款时间"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_time" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_8"
+                android:text="@{contractPayment.realityBackTime}"
+                app:layout_constraintLeft_toRightOf="@+id/tv_time_actual"
+                app:layout_constraintTop_toTopOf="@+id/tv_time_actual"
+                tool:text="2333333" />
+
+
+            <TextView
+                android:id="@+id/tv_remark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_8"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:text="备注信息"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_time_actual" />
+
+            <TextView
+                style="@style/Item_TextView_Content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_8"
+                android:text="@{contractPayment.remark}"
+                app:layout_constraintLeft_toRightOf="@+id/tv_remark"
+                app:layout_constraintTop_toTopOf="@+id/tv_remark"
+                tool:text="@string/debug_string_long" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

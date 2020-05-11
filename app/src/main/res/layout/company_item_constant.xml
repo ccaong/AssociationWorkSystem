@@ -14,84 +14,100 @@
             type="com.example.gqsystem.bean.response.CompanyContactBean" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:paddingBottom="@dimen/dimen_8"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white">
+        android:layout_margin="@dimen/dimen_8">
 
-        <TextView
-            android:id="@+id/tv_name"
-            android:layout_width="wrap_content"
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin"
-            android:layout_marginTop="@dimen/dimen_8"
-            android:text="@{companyConstant.comUserName}"
-            android:textColor="@color/text_black_87"
-            android:textSize="@dimen/text_16"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="@string/default_user_name" />
+            android:background="@color/white"
+            android:paddingBottom="@dimen/dimen_8">
 
-        <TextView
-            android:id="@+id/tv_1"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text=" - "
-            app:layout_constraintBottom_toBottomOf="@+id/tv_name"
-            app:layout_constraintLeft_toRightOf="@+id/tv_name"
-            app:layout_constraintTop_toTopOf="@+id/tv_name" />
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_8"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:text="@{companyConstant.comUserName}"
+                android:textColor="@color/text_black_87"
+                android:textSize="@dimen/text_16"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@string/default_user_name" />
 
-        <TextView
-            android:id="@+id/tv_position"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/dimen_8"
-            app:constantPosition="@{companyConstant.comUserStatus}"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_name"
-            app:layout_constraintLeft_toRightOf="@+id/tv_1"
-            app:layout_constraintTop_toTopOf="@+id/tv_name"
-            tools:text="分管安全副总" />
+            <TextView
+                android:id="@+id/tv_1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text=" - "
+                app:layout_constraintBottom_toBottomOf="@+id/tv_name"
+                app:layout_constraintLeft_toRightOf="@+id/tv_name"
+                app:layout_constraintTop_toTopOf="@+id/tv_name" />
 
-        <TextView
-            android:id="@+id/tv_tel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dimen_24"
-            android:layout_marginTop="@dimen/dimen_8"
-            android:drawableStart="@mipmap/ic_phone_outgoing"
-            android:drawablePadding="@dimen/dimen_8"
-            android:text="@{companyConstant.comUserPhone}"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_name"
-            tools:text="1233211231231" />
+            <TextView
+                android:id="@+id/tv_position"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dimen_8"
+                app:constantPosition="@{companyConstant.comUserStatus}"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_name"
+                app:layout_constraintLeft_toRightOf="@+id/tv_1"
+                app:layout_constraintTop_toTopOf="@+id/tv_name"
+                tools:text="分管安全副总" />
 
-
-        <TextView
-            android:id="@+id/tv_email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dimen_24"
-            android:layout_marginTop="@dimen/dimen_8"
-            android:drawableStart="@mipmap/ic_email"
-            android:drawablePadding="@dimen/dimen_8"
-            android:text="@{companyConstant.comUserEamil}"
-            android:visibility="@{!CommonUtils.isStringEmpty(companyConstant.comUserEamil)? View.VISIBLE : View.GONE}"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_tel"
-            tools:text="1233211231231@123.com" />
+            <TextView
+                android:id="@+id/tv_tel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:drawableStart="@mipmap/ic_phone_outgoing"
+                android:drawablePadding="@dimen/dimen_8"
+                android:text="@{companyConstant.comUserPhone}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_name"
+                tools:text="1233211231231" />
 
 
-        <ImageView
-            android:id="@+id/iv_account_card"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/margin"
-            android:src="@mipmap/ic_account_card"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/tv_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:drawableStart="@mipmap/ic_email"
+                android:drawablePadding="@dimen/dimen_8"
+                android:text="@{companyConstant.comUserEamil}"
+                android:visibility="@{!CommonUtils.isStringEmpty(companyConstant.comUserEamil)? View.VISIBLE : View.GONE}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_tel"
+                tools:text="1233211231231@123.com" />
 
+            <ImageView
+                android:id="@+id/iv_wechat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin"
+                android:src="@mipmap/ic_wechat"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/iv_account_card"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:id="@+id/iv_account_card"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/margin"
+                android:src="@mipmap/ic_account_card"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
 </layout>

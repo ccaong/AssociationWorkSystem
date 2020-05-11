@@ -6,6 +6,8 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import com.example.gqsystem.App;
+import com.example.gqsystem.MainActivity;
+import com.example.gqsystem.common.ImageDialog;
 import com.example.gqsystem.config.Constants;
 import com.example.gqsystem.manager.MyActivityManager;
 import com.example.gqsystem.ui.activity.showfile.ShowFileActivity;
@@ -32,12 +34,14 @@ public class FileOpenUtil {
     }
 
     class OpenMode {
-        static final String NORMAL = "Normal";// 只读模式
-        static final String READ_ONLY = "ReadOnly";// 正常模式
-        static final String READ_MODE = "ReadMode";// 打开直接进入阅读器模式
-        // 仅Word、TXT文档支持
-        static final String SAVE_ONLY = "SaveOnly";// 保存模式(打开文件,另存,关闭)
-        // 仅Word、TXT文档支持
+        // 正常模式
+        static final String NORMAL = "Normal";
+        // 只读模式
+        static final String READ_ONLY = "ReadOnly";
+        // 打开直接进入阅读器模式
+        static final String READ_MODE = "ReadMode";
+        // 保存模式(打开文件,另存,关闭)
+        static final String SAVE_ONLY = "SaveOnly";
     }
 
     class ClassName {
@@ -74,8 +78,13 @@ public class FileOpenUtil {
     private boolean openFileWithWps(String path) {
         Intent intent = new Intent();
         Bundle bundle = new Bundle();
-        // 打开模式
-        bundle.putString(WpsModel.OPEN_MODE, OpenMode.NORMAL);
+        if (Hawk.get(Constants.SettingCode.READ_ONLY_TYPE, true)) {
+            // 打开模式
+            bundle.putString(WpsModel.OPEN_MODE, OpenMode.READ_ONLY);
+        } else {
+            bundle.putString(WpsModel.OPEN_MODE, OpenMode.NORMAL);
+
+        }
         // 关闭时是否发送广播
         bundle.putBoolean(WpsModel.SEND_CLOSE_BROAD, true);
         // 第三方应用的包名，用于对改应用合法性的验证
@@ -89,7 +98,6 @@ public class FileOpenUtil {
 
         File file = new File(path);
         if (file == null || !file.exists()) {
-            System.out.println("文件为空或者不存在");
             return false;
         }
 
@@ -99,7 +107,6 @@ public class FileOpenUtil {
         try {
             MyActivityManager.getInstance().getCurrentActivity().startActivity(intent);
         } catch (ActivityNotFoundException e) {
-            System.out.println("打开wps异常：" + e.toString());
             e.printStackTrace();
             return false;
         }
@@ -114,9 +121,18 @@ public class FileOpenUtil {
      */
     private void openFileWithTbs(String path) {
 
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("FilePath", path);
-        ActivitySkipUtil.skipActivity(MyActivityManager.getInstance().getCurrentActivity(), ShowFileActivity.class, bundle);
+        if (MyActivityManager.getInstance().getCurrentActivity() != null) {
+            Intent intent = new Intent(MyActivityManager.getInstance().getCurrentActivity(), ShowFileActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("FilePath", path);
+            intent.putExtras(bundle);
+            MyActivityManager.getInstance().getCurrentActivity().startActivity(intent);
+        }
     }
 
+    public static void showImage(String path) {
+        ImageDialog imageDialog = ImageDialog.newInstance(path);
+        imageDialog.show(((MainActivity) MyActivityManager.getInstance().getCurrentActivity()).getSupportFragmentManager(), "");
+    }
 }

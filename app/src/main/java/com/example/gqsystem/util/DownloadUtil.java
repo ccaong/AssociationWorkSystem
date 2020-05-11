@@ -1,16 +1,20 @@
 package com.example.gqsystem.util;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
 
 import com.example.gqsystem.App;
-import com.example.gqsystem.http.request.ApiAddress;
 import com.example.gqsystem.http.request.HttpRequest;
 import com.example.gqsystem.interfice.DownloadListener;
 import com.example.gqsystem.manager.ThreadManager;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -32,8 +36,6 @@ public class DownloadUtil {
 
     private static final String TAG = "DownloadUtil";
     private static final String PATH_DOWNLOAD_FILE = App.getContext().getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS) + "/DownloadFile";
-    private ApiAddress mApi;
-    private Call<ResponseBody> mCall;
     private File mFile;
     private ThreadManager.ThreadPool threadPool;
     /**
@@ -42,39 +44,31 @@ public class DownloadUtil {
     private String mFilePath;
 
     public DownloadUtil() {
-        if (mApi == null) {
-            //初始化网络请求接口
-            mApi = HttpRequest.getInstance();
-        }
         threadPool = ThreadManager.getThreadPool();
     }
 
     public void downloadFile(String fileName, final DownloadListener downloadListener) {
-        App.isDownloadFile = true;
-        String name = fileName;
-        //通过Url得到文件并创建本地文件
+
+        //通过fileName得到文件并创建本地文件
         if (FileUtil.createOrExistsDir(PATH_DOWNLOAD_FILE)) {
-            mFilePath = PATH_DOWNLOAD_FILE + "/" + name;
+            mFilePath = PATH_DOWNLOAD_FILE + "/" + fileName;
         }
         if (TextUtils.isEmpty(mFilePath)) {
-            Log.e(TAG, "存储路径为空");
             return;
         }
+
         //建立一个文件
         mFile = new File(mFilePath);
         if (!FileUtil.isFileExists(mFile) && FileUtil.createOrExistsFile(mFile)) {
-            //文件不存在，&& 创建成功
-            if (mApi == null) {
-                Log.e(TAG, "下载接口为空");
-                return;
-            }
+            String downLoadUrl = "download/downloadFile/" + fileName;
 
-            mCall = mApi.downloadFileWithFileName(fileName);
+            downloadListener.onProgress(1);
+            Call<ResponseBody> mCall = HttpRequest.getInstance().downloadFileWithFileName(downLoadUrl);
             mCall.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(@NonNull Call<ResponseBody> call, @NonNull final Response<ResponseBody> response) {
                     //下载文件
-                    threadPool.execute(() -> writeFile2Disk(response, mFile, downloadListener));
+                    threadPool.execute(() -> writeFile2Disk(response, mFile, downloadListener, "file"));
                 }
 
                 @Override
@@ -96,11 +90,18 @@ public class DownloadUtil {
      * @param file
      * @param downloadListener
      */
-    private void writeFile2Disk(Response<ResponseBody> response, File file, DownloadListener downloadListener) {
+    private void writeFile2Disk(Response<ResponseBody> response, File file, DownloadListener downloadListener, String type) {
+
         if (response.body() == null) {
             downloadListener.onFailure("文件下载失败");
             return;
         }
+
+        if (response.body().contentLength() == 0) {
+            downloadListener.onFinish(mFilePath);
+            return;
+        }
+
         downloadListener.onStart();
         long currentLength = 0;
         OutputStream os = null;
@@ -125,6 +126,7 @@ public class DownloadUtil {
                 }
             }
         } catch (IOException e) {
+            downloadListener.onFailure(e.getMessage());
             e.printStackTrace();
         } finally {
             if (os != null) {
@@ -143,6 +145,62 @@ public class DownloadUtil {
                     e.printStackTrace();
                 }
             }
+
+            if ("Image".equals(type)) {
+                saveToSystemGallery(file,file.getName());
+            }
         }
+    }
+
+
+    public void downloadImageFile(String fileName, final DownloadListener downloadListener) {
+
+        String dir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/SDCLI/WeChatCode/";
+
+        //通过fileName得到文件并创建本地文件
+        if (FileUtil.createOrExistsDir(dir)) {
+            mFilePath = dir + "/" + fileName;
+        }
+        if (TextUtils.isEmpty(mFilePath)) {
+            return;
+        }
+
+        //建立一个文件
+        mFile = new File(mFilePath);
+        if (!FileUtil.isFileExists(mFile) && FileUtil.createOrExistsFile(mFile)) {
+            String downLoadUrl = "download/downloadFile/" + fileName;
+
+            downloadListener.onProgress(1);
+            Call<ResponseBody> mCall = HttpRequest.getInstance().downloadFileWithFileName(downLoadUrl);
+            mCall.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(@NonNull Call<ResponseBody> call, @NonNull final Response<ResponseBody> response) {
+                    //下载文件
+                    threadPool.execute(() -> writeFile2Disk(response, mFile, downloadListener, "Image"));
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    //下载失败
+                    downloadListener.onFailure(t.getMessage());
+                }
+            });
+        } else {
+            //本地已经存在该文件
+            downloadListener.onFinish(mFilePath);
+        }
+    }
+
+
+    public static void saveToSystemGallery(File file, String fileName) {
+        // 把文件插入到系统图库
+        try {
+            MediaStore.Images.Media.insertImage(App.getContext().getContentResolver(),
+                    file.getAbsolutePath(), fileName, null);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        // 最后通知图库更新
+        App.getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse(file.getAbsolutePath())));
     }
 }

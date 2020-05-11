@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.example.gqsystem.util.CommonUtils" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="assessProjectInfo"
+            type="com.example.gqsystem.bean.response.ProjectAssessInfoBean" />
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen_8"
+        android:layout_marginTop="@dimen/dimen_8"
+        android:layout_marginRight="@dimen/dimen_8"
+        android:background="@color/white"
+        app:contentPaddingBottom="@dimen/dimen_8"
+        app:contentPaddingTop="@dimen/dimen_8">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:paddingLeft="@dimen/dimen_8"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="步骤："
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                app:assessStep="@{assessProjectInfo.step}"
+                app:layout_constraintLeft_toRightOf="@+id/tv_1"
+                app:layout_constraintTop_toTopOf="@+id/tv_1"
+                tools:text="步骤信息" />
+
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:text="时间："
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{assessProjectInfo.time}"
+                app:layout_constraintLeft_toRightOf="@+id/tv_1"
+                app:layout_constraintTop_toTopOf="@+id/tv_time"
+                tools:text="@string/debug_string_time" />
+
+
+            <TextView
+                android:id="@+id/tv_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:text="责任人："
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_time" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{assessProjectInfo.userName}"
+                app:layout_constraintLeft_toRightOf="@+id/tv_user"
+                app:layout_constraintTop_toTopOf="@+id/tv_user"
+                tools:text="@string/default_user_name" />
+
+
+            <TextView
+                android:id="@+id/tv_file_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:text="附件："
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_user" />
+
+            <TextView
+                android:id="@+id/tv_file"
+                style="@style/Item_TextView_Content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:textColor="@color/app_color_blue"
+                app:fileNameWithType="@{assessProjectInfo.accessory}"
+                app:layout_constraintLeft_toRightOf="@+id/tv_file_title"
+                app:layout_constraintTop_toTopOf="@+id/tv_file_title"
+                tools:text="@string/debug_string_long" />
+
+            <TextView
+                android:id="@+id/tv_picture_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:text="照片："
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_file" />
+
+            <TextView
+                android:id="@+id/tv_picture"
+                style="@style/Item_TextView_Content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/app_color_blue"
+                app:fileNameWithType="@{assessProjectInfo.picture}"
+                app:layout_constraintLeft_toRightOf="@+id/tv_picture_title"
+                app:layout_constraintTop_toTopOf="@+id/tv_picture_title"
+                tools:text="@string/debug_string_long" />
+
+
+            <TextView
+                android:id="@+id/tv_other"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:text="其他："
+                android:visibility="@{CommonUtils.isStringEmpty(assessProjectInfo.other)  ? View.GONE : View.VISIBLE}"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_picture" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{assessProjectInfo.other}"
+                android:visibility="@{CommonUtils.isStringEmpty(assessProjectInfo.other)  ? View.GONE : View.VISIBLE}"
+                app:layout_constraintLeft_toRightOf="@+id/tv_other"
+                app:layout_constraintTop_toTopOf="@+id/tv_other"
+                tools:text="@string/default_user_name" />
+
+            <TextView
+                android:id="@+id/tv_remark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:text="备注："
+                android:visibility="@{CommonUtils.isStringEmpty(assessProjectInfo.remark)  ? View.GONE : View.VISIBLE}"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_other" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{assessProjectInfo.remark}"
+                android:visibility="@{CommonUtils.isStringEmpty(assessProjectInfo.remark)  ? View.GONE : View.VISIBLE}"
+                app:layout_constraintLeft_toRightOf="@+id/tv_remark"
+                app:layout_constraintTop_toTopOf="@+id/tv_remark"
+                tools:text="@string/default_user_name" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

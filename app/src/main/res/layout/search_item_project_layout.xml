@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.example.gqsystem.util.CommonUtils" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="project"
+            type="com.example.gqsystem.bean.response.ProjectListBean.RecordsBean" />
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen_8"
+        android:layout_marginTop="@dimen/dimen_8"
+        android:layout_marginRight="@dimen/dimen_8">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_8"
+            android:layout_marginTop="@dimen/dimen_8"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/dimen_8">
+
+            <TextView
+                android:id="@+id/tv_company_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{project.comName}"
+                android:textColor="@color/text_black_87"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tool:text="@string/debug_string_normal" />
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_4"
+                android:text="项目名称:"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_company_name" />
+
+            <TextView
+                android:id="@+id/tv_project_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_8"
+                android:layout_marginTop="@dimen/dimen_4"
+                android:text="@{project.proName}"
+                app:layout_constraintLeft_toRightOf="@+id/tv_title"
+                app:layout_constraintTop_toBottomOf="@+id/tv_company_name"
+                tool:text="@string/debug_string_sort" />
+
+            <TextView
+                android:id="@+id/tv_market_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:text="@string/market_leader"
+                android:visibility="@{CommonUtils.isStringEmpty(project.marketPer)? View.GONE : View.VISIBLE}"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_project_name" />
+
+            <TextView
+                android:id="@+id/tv_market_leader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_4"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:text="@{project.marketPer}"
+                android:visibility="@{CommonUtils.isStringEmpty(project.marketPer)? View.GONE : View.VISIBLE}"
+                app:layout_constraintLeft_toRightOf="@+id/tv_market_title"
+                app:layout_constraintTop_toBottomOf="@+id/tv_project_name"
+                tool:text="@string/debug_string_sort" />
+
+
+            <TextView
+                android:id="@+id/tv_project_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:layout_marginEnd="@dimen/dp_4"
+                android:text="@string/project_leader"
+                android:visibility="@{CommonUtils.isStringEmpty(project.projectPer)? View.GONE : View.VISIBLE}"
+                app:layout_constraintRight_toLeftOf="@+id/tv_project_leader"
+                app:layout_constraintTop_toBottomOf="@+id/tv_project_name" />
+
+            <TextView
+                android:id="@+id/tv_project_leader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:layout_marginEnd="@dimen/margin"
+                android:text="@{project.projectPer}"
+                android:visibility="@{CommonUtils.isStringEmpty(project.projectPer)? View.GONE : View.VISIBLE}"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_project_name"
+                tool:text="@string/debug_string_sort" />
+
+
+            <TextView
+                android:id="@+id/tv_project_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:text="@{project.proType}"
+                android:textSize="@dimen/text_12"
+                android:visibility="@{CommonUtils.isStringEmpty(project.proType)? View.GONE : View.VISIBLE}"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_market_leader"
+                tool:text="@string/debug_string_sort" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="imagePath"
+            type="String" />
+
+        <variable
+            name="imageDialog"
+            type="com.example.gqsystem.common.ImageDialog" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_picture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:loadImage="@{imagePath}" />
+
+        <ImageView
+            android:id="@+id/iv_download"
+            android:onClick="@{()->imageDialog.downLoad()}"
+            android:layout_width="@dimen/dimen_32"
+            android:layout_height="@dimen/dimen_32"
+            android:layout_marginEnd="@dimen/margin"
+            android:layout_marginBottom="@dimen/margin"
+            android:src="@mipmap/ic_cloud_download"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_picture"
+            app:layout_constraintRight_toRightOf="@+id/iv_picture" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

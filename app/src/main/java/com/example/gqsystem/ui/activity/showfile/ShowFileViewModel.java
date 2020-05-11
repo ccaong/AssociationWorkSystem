@@ -8,4 +8,5 @@ import com.example.gqsystem.base.viewmodel.BaseViewModel;
  * @desc :
  */
 public class ShowFileViewModel extends BaseViewModel {
+
 }

@@ -37,7 +37,7 @@
             android:id="@+id/tv_note"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin"
+            android:layout_marginStart="@dimen/margin"
             android:layout_marginTop="@dimen/margin"
             android:text="@string/debug_string_sort"
             app:layout_constraintLeft_toLeftOf="parent"

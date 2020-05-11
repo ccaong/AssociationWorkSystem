@@ -1,14 +1,14 @@
 package com.example.gqsystem;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.gqsystem.base.BaseActivity;
 import com.example.gqsystem.bean.response.UserDataBean;
-import com.example.gqsystem.common.CommonDialog;
 import com.example.gqsystem.config.Constants;
 import com.example.gqsystem.databinding.ActivityMainBinding;
-import com.example.gqsystem.manager.MyActivityManager;
 import com.example.gqsystem.ui.activity.login.LoginActivity;
 import com.example.gqsystem.ui.mine.MineViewModel;
 import com.example.gqsystem.util.ActivitySkipUtil;
@@ -62,7 +62,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MineViewMode
         drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_company, R.id.nav_leader_stroke, R.id.nav_setting)
+                R.id.nav_home, R.id.nav_company)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -117,13 +117,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MineViewMode
         });
     }
 
-
-    private void inirDia(){
-        CommonDialog dialog = CommonDialog.newInstance("下载", "文件还未下载，是否要下载该文档？");
-        dialog.show(getSupportFragmentManager(),"");
-
-    }
-
     @Override
     public boolean onSupportNavigateUp() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -132,13 +125,42 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MineViewMode
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.e("记录操作", "Real MainActivity onDestroy");
+    }
+
+    @Override
     public void onBackPressed() {
         if (drawer == null) {
-            return;
+            super.onBackPressed();
         }
         // 返回键: 侧滑开着就将其关闭, 关着则退出应用
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
+        } else {
+            finishApp();
+        }
+    }
+
+    /**
+     * 记录用户首次点击返回键的时间
+     */
+    private long firstTime = 0;
+
+    /**
+     * 退出应用
+     */
+    private void finishApp() {
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        if (navController.getBackStack().size() == 2) {
+            long secondTime = System.currentTimeMillis();
+            if (secondTime - firstTime > 2000) {
+                Toast.makeText(MainActivity.this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
+                firstTime = secondTime;
+            } else {
+                finish();
+            }
         } else {
             super.onBackPressed();
         }

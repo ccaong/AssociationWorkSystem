@@ -17,6 +17,25 @@
         android:name="com.example.gqsystem.ui.mine.MineFragment"
         android:label="我的" />
 
+    <!--更新-->
+    <fragment
+        android:id="@+id/nav_about"
+        android:name="com.example.gqsystem.ui.update.UpdateFragment"
+        android:label="@string/about" />
+
+    <!--设置-->
+    <fragment
+        android:id="@+id/nav_setting"
+        android:name="com.example.gqsystem.ui.main.setting.SettingFragment"
+        android:label="@string/setting"
+        tools:layout="@layout/fragment_setting" />
+
+    <!--退出-->
+    <fragment
+        android:id="@+id/nav_exit"
+        android:name="com.example.gqsystem.ui.mine.LogoutFragment"
+        android:label="@string/exit" />
+
     <!--查询-->
     <fragment
         android:id="@+id/nav_inquiry"
@@ -24,46 +43,65 @@
         android:label="@string/inquiry"
         tools:layout="@layout/search_fragment_list" />
 
-    <!--    会议-->
+    <!--会议-->
     <fragment
         android:id="@+id/nav_meeting"
         android:name="com.example.gqsystem.ui.metting.list.MeetingFragment"
         android:label="@string/meeting"
         tools:layout="@layout/fragment_list" />
 
+    <!--会议详细信息-->
+    <fragment
+        android:id="@+id/meeting_content"
+        android:name="com.example.gqsystem.ui.metting.content.MeetingContentFragment"
+        android:label="@string/meeting" />
 
-    <!--    企业列表信息-->
+
+    <!-- 企业列表信息-->
     <fragment
         android:id="@+id/nav_company"
-        android:name="com.example.gqsystem.ui.company.list.CompanyInformationFragment"
+        android:name="com.example.gqsystem.ui.company.list.CompanyListFragment"
         android:label="@string/company"
-        tools:layout="@layout/company_fragment_list" />
+        tools:layout="@layout/fragment_list" />
 
-    <!--    企业详细信息-->
+    <!-- 企业详细信息-->
     <fragment
         android:id="@+id/company_content"
         android:name="com.example.gqsystem.ui.company.content.CompanyContentFragment"
         android:label="@string/company" />
 
-    <!--    企业联系人信息-->
+    <!-- 企业联系人信息-->
     <fragment
         android:id="@+id/company_constant"
         android:name="com.example.gqsystem.ui.company.constant.CompanyConstantFragment"
         android:label="@string/company_constant" />
 
-    <!--    企业关联关系信息-->
+    <!--企业关联关系信息-->
     <fragment
         android:id="@+id/company_related"
         android:name="com.example.gqsystem.ui.company.related.CompanyRelatedFragment"
         android:label="@string/company_related" />
 
 
-    <!--    领导动态-->
+    <!--企业资料信息-->
+    <fragment
+        android:id="@+id/company_material"
+        android:name="com.example.gqsystem.ui.company.material.CompanyMaterialFragment"
+        android:label="@string/company_material" />
+
+
+    <!-- 领导动态-->
     <fragment
         android:id="@+id/nav_leader_stroke"
         android:name="com.example.gqsystem.ui.main.leaderstroke.LeaderStrokeFragment"
         android:label="@string/leader_stroke"
         tools:layout="@layout/fragment_list" />
+
+    <!-- 领导动态-添加，编辑-->
+    <fragment
+        android:id="@+id/nav_leader_activity_edit"
+        android:name="com.example.gqsystem.ui.main.leaderstroke.LeaderActivityEditFragment"
+        android:label="@string/leader_stroke" />
 
     <!--费用添加-->
     <fragment
@@ -93,12 +131,80 @@
         android:label="@string/reviewer_information"
         tools:layout="@layout/fragment_list" />
 
-    <!--    设置-->
+    <!--评审员详细信息-->
     <fragment
-        android:id="@+id/nav_setting"
-        android:name="com.example.gqsystem.ui.main.setting.SettingFragment"
-        android:label="@string/setting"
-        tools:layout="@layout/fragment_setting" />
+        android:id="@+id/nav_reviewer_information_detail"
+        android:name="com.example.gqsystem.ui.main.review.ReviewerDetailFragment"
+        android:label="@string/reviewer_information" />
+
+
+    <!--项目列表-->
+    <fragment
+        android:id="@+id/project_viewpager"
+        android:name="com.example.gqsystem.ui.project.viewpager.ProjectViewPagerFragment"
+        android:label="@string/project_info" />
+
+    <!--项目列表-->
+    <fragment
+        android:id="@+id/project_all_list"
+        android:name="com.example.gqsystem.ui.project.otherproject.ProjectOtherListFragment"
+        android:label="@string/project_info" />
+
+    <!--项目列表-->
+    <fragment
+        android:id="@+id/project_list"
+        android:name="com.example.gqsystem.ui.project.list.ProjectListFragment"
+        android:label="@string/project_info" />
+
+    <!--项目详情-->
+    <fragment
+        android:id="@+id/project_content"
+        android:name="com.example.gqsystem.ui.project.ProjectContentFragment"
+        android:label="@string/project_info" />
+
+    <!--合同信息-->
+    <fragment
+        android:id="@+id/project_contract"
+        android:name="com.example.gqsystem.ui.project.contract.ProjectContractFragment"
+        android:label="@string/contract_info" />
+
+
+    <!--成本核算-->
+    <fragment
+        android:id="@+id/project_cost_account"
+        android:name="com.example.gqsystem.ui.project.cost.ProjectCostAccountFragment"
+        android:label="@string/cost_account" />
+
+    <!--企业资料-->
+    <fragment
+        android:id="@+id/project_material"
+        android:name="com.example.gqsystem.ui.project.material.ProjectMaterialFragment"
+        android:label="@string/company_material" />
+
+    <!--项目工作过程信息-咨询类项目-->
+    <fragment
+        android:id="@+id/project_work_consult"
+        android:name="com.example.gqsystem.ui.project.work.consulting.ProjectWorkConsultFragment"
+        android:label="@string/project_info" />
+
+
+    <!--项目工作过程信息-评估评价-->
+    <fragment
+        android:id="@+id/project_work_assess"
+        android:name="com.example.gqsystem.ui.project.work.assess.ProjectWorkAssessFragment"
+        android:label="@string/project_info" />
+
+    <!--项目工作过程信息-评审类项目-->
+    <fragment
+        android:id="@+id/project_work_judge"
+        android:name="com.example.gqsystem.ui.project.work.judge.ProjectWorkJudgeFragment"
+        android:label="@string/project_info" />
+
+    <!--项目工作过程信息-政府项目-->
+    <fragment
+        android:id="@+id/project_work_gov"
+        android:name="com.example.gqsystem.ui.project.work.gov.ProjectWorkGovFragment"
+        android:label="@string/project_info" />
 
 
     <fragment
@@ -108,17 +214,11 @@
         tools:layout="@layout/fragment_change_status" />
 
 
-    <!--待开发-->
+    <!--资料共享-->
     <fragment
-        android:id="@+id/project_todo"
-        android:name="com.example.gqsystem.ui.projectlist.todo.ProjectToDoFragment"
-        android:label="@string/todo" />
-
-    <!-- 标准化-->
-    <fragment
-        android:id="@+id/project_standard"
-        android:name="com.example.gqsystem.ui.projectlist.standardization.StandardViewPagerFragment"
-        android:label="@string/project_name_1" />
-
+        android:id="@+id/data_share"
+        android:name="com.example.gqsystem.ui.datashare.DataShareFragment"
+        android:label="@string/project_name_8"
+        tools:layout="@layout/fragment_list" />
 
 </navigation>

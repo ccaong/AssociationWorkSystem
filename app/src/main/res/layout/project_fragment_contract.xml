@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.gqsystem.ui.project.contract.ProjectContractViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_8">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_8">
+
+                <TextView
+                    android:id="@+id/tv_time_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="合同签订时间："
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_8"
+                    android:text="@{viewModel.contractInfo.conTime}"
+                    app:layout_constraintLeft_toRightOf="@+id/tv_time_title"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tool:text="@string/debug_string_time" />
+
+
+                <TextView
+                    android:id="@+id/tv_money_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_8"
+                    android:text="合同金额："
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_time_title" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_8"
+                    android:text="@{viewModel.contractInfo.conAmount}"
+                    app:layout_constraintLeft_toRightOf="@+id/tv_money_title"
+                    app:layout_constraintTop_toTopOf="@+id/tv_money_title"
+                    tool:text="@string/debug_string_time" />
+
+
+                <TextView
+                    android:id="@+id/tv_payments_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_8"
+                    android:text="付款次数："
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_money_title" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_8"
+                    android:text="@{viewModel.contractInfo.paymentNum}"
+                    app:layout_constraintLeft_toRightOf="@+id/tv_payments_num"
+                    app:layout_constraintTop_toTopOf="@+id/tv_payments_num"
+                    tool:text="@string/debug_string_sort" />
+
+
+                <TextView
+                    android:id="@+id/tv_remark_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_8"
+                    android:text="备注："
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_payments_num" />
+
+
+                <TextView
+                    android:id="@+id/tv_remark"
+                    style="@style/Item_TextView_Content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_8"
+                    android:text="@{viewModel.contractInfo.remark}"
+                    app:layout_constraintLeft_toRightOf="@+id/tv_remark_title"
+                    app:layout_constraintTop_toTopOf="@+id/tv_remark_title"
+                    tool:text="@string/debug_string_long" />
+
+
+                <TextView
+                    android:id="@+id/tv_contract_file"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_8"
+                    android:text="合同附件："
+                    android:textStyle="bold"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_remark" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_contract_file"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_contract_file" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin"
+            android:layout_marginTop="@dimen/dimen_8"
+            android:text="已回款信息"
+            android:drawableRight="@mipmap/ic_chevron_down"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_contract"
+            android:layout_marginTop="@dimen/dimen_8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+</layout>

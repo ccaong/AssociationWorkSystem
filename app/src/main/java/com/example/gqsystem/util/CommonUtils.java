@@ -12,6 +12,8 @@ import android.provider.ContactsContract;
 
 import com.example.gqsystem.App;
 import com.example.gqsystem.manager.MyActivityManager;
+import com.yanzhenjie.permission.AndPermission;
+import com.yanzhenjie.permission.runtime.Permission;
 
 import java.util.List;
 
@@ -63,6 +65,7 @@ public final class CommonUtils {
      * @param email
      */
     public static void addContact(String name, String phoneNumber, String email) {
+
         // 创建一个空的ContentValues
         ContentValues values = new ContentValues();
 

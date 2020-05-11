@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="fileProject"
+            type="com.example.gqsystem.bean.FileBean" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen_8"
+        android:layout_marginTop="@dimen/dimen_8"
+        android:layout_marginRight="@dimen/dimen_8"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{fileProject.fileTitle}"
+            android:textStyle="bold"
+            android:paddingTop="@dimen/dimen_8"
+            android:visibility="@{fileProject.position==0 ? View.VISIBLE : View.GONE}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tool:text="会议通知" />
+
+        <ImageView
+            android:id="@+id/iv_file"
+            android:layout_width="@dimen/dimen_32"
+            android:layout_height="@dimen/dimen_32"
+            android:src="@mipmap/ic_file_other"
+            app:fileType="@{fileProject.fileName}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+        <TextView
+            android:id="@+id/tv_file_name"
+            style="@style/Item_TextView_Content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_8"
+            android:layout_marginTop="@dimen/dimen_8"
+            android:layout_marginEnd="@dimen/dimen_8"
+            android:background="@drawable/text_progress_bg"
+            android:maxLines="2"
+            app:fileName="@{fileProject.fileName}"
+            app:layout_constraintLeft_toRightOf="@+id/iv_file"
+            app:layout_constraintRight_toLeftOf="@+id/iv_download_status"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title"
+            tool:text="会议同的文件" />
+
+        <TextView
+            android:id="@+id/tv_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_8"
+            android:layout_marginTop="@dimen/dimen_4"
+            android:text="@{fileProject.fileType}"
+            android:textColor="@color/text_black_54"
+            android:textSize="@dimen/text_12"
+            app:layout_constraintLeft_toRightOf="@+id/iv_file"
+            app:layout_constraintTop_toBottomOf="@+id/tv_file_name"
+            tool:text="会议通知" />
+
+        <ImageView
+            android:id="@+id/iv_download_status"
+            android:layout_width="@dimen/dimen_24"
+            android:layout_height="@dimen/dimen_24"
+            android:layout_marginEnd="@dimen/margin"
+            android:src="@mipmap/ic_cloud_download"
+            app:downloadStatus="@{fileProject.fileName}"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_file"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/iv_file" />
+
+        <ProgressBar
+            android:id="@+id/progress"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginEnd="4dp"
+            android:progress="@{fileProject.downloadProgress}"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_file_name"
+            android:visibility="@{fileProject.downloadProgress==0 || fileProject.downloadProgress==100 ? View.GONE : View.VISIBLE}"
+            app:layout_constraintTop_toBottomOf="@+id/tv_type" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/dimen_4"
+            android:background="@color/text_black_12"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_file_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_type" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

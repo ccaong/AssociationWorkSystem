@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="leaderActivity"
             type="com.example.gqsystem.bean.response.LeaderActivityListBean.RecordsBean" />
@@ -15,6 +17,7 @@
         android:layout_height="wrap_content">
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/item"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dp_8">
@@ -83,7 +86,7 @@
                     android:id="@+id/tv_active_content"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dimen_8"
+                    android:layout_marginStart="@dimen/dimen_8"
                     android:text="@{leaderActivity.activityContent}"
                     app:layout_constrainedWidth="true"
                     app:layout_constraintHorizontal_bias="0"
@@ -108,15 +111,25 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_8"
-                    android:background="@drawable/text_progress_bg"
-                    app:downloadProgress="@{leaderActivity.downloadProgress}"
-                    app:fileName="@{leaderActivity.activityFile}"
+                    android:textColor="@color/app_color_blue"
+                    app:fileNameWithType="@{leaderActivity.activityFile}"
                     app:layout_constrainedWidth="true"
                     app:layout_constraintHorizontal_bias="0"
                     app:layout_constraintLeft_toRightOf="@+id/tv_active_file_title"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/tv_active_file_title"
                     tools:text="@string/debug_string_sort" />
+
+                <ProgressBar
+                    android:id="@+id/progress"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="@dimen/dimen_4"
+                    android:layout_marginEnd="4dp"
+                    android:progress="@{leaderActivity.downloadProgress}"
+                    android:visibility="@{leaderActivity.downloadProgress==0 || leaderActivity.downloadProgress==100 ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_active_file_content" />
 
 
                 <TextView
@@ -126,14 +139,13 @@
                     android:layout_marginTop="@dimen/dimen_8"
                     android:text="活动地点"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_active_file_content" />
-
+                    app:layout_constraintTop_toBottomOf="@+id/progress" />
 
                 <TextView
                     android:id="@+id/tv_active_address_content"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dimen_8"
+                    android:layout_marginStart="@dimen/dimen_8"
                     android:text="@{leaderActivity.activityAddress}"
                     app:layout_constrainedWidth="true"
                     app:layout_constraintHorizontal_bias="0"
@@ -156,7 +168,7 @@
                     android:id="@+id/tv_active_time_content"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dimen_8"
+                    android:layout_marginStart="@dimen/dimen_8"
                     android:text="@{leaderActivity.activityTime}"
                     app:layout_constrainedWidth="true"
                     app:layout_constraintHorizontal_bias="0"

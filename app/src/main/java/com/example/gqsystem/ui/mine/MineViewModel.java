@@ -61,7 +61,8 @@ public class MineViewModel extends BaseViewModel {
 
                     @Override
                     public void onError(Throwable e) {
-                        logoutStatus.postValue(0);
+                        logoutStatus.postValue(-1);
+                        Hawk.delete(Constants.HawkCode.LOGIN_DATA);
                         mUserData.postValue(null);
                     }
                 });

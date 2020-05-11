@@ -43,7 +43,7 @@
                         android:layout_height="@dimen/dimen_64"
                         android:layout_marginStart="@dimen/dimen_16"
                         android:layout_marginTop="@dimen/dimen_16"
-                        android:src="@mipmap/ic_launcher"
+                        android:src="@mipmap/company_logo"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -56,7 +56,8 @@
                         android:textColor="@color/text_black_87"
                         android:textSize="@dimen/text_16"
                         app:layout_constraintLeft_toRightOf="@+id/iv_company_logo"
-                        app:layout_constraintTop_toTopOf="@id/iv_company_logo" />
+                        app:layout_constraintTop_toTopOf="@id/iv_company_logo"
+                        tools:text="@string/debug_string_normal" />
 
                     <TextView
                         android:id="@+id/tv_company_type"
@@ -95,9 +96,11 @@
                         style="@style/Item_TextView_Content"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/dimen_8"
                         android:layout_marginBottom="@dimen/margin"
-                        android:drawableRight="@mipmap/ic_map_marker"
+                        android:drawableEnd="@mipmap/ic_map_marker"
                         android:drawablePadding="@dimen/dimen_8"
+                        android:onClick="@{()->clickListener.btnNavigation(viewModel.basisBean.comName,viewModel.basisBean.comAddressDetail)}"
                         android:text="@{viewModel.basisBean.comAddress+viewModel.basisBean.comAddressDetail}"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toRightOf="@+id/tv_7"
@@ -153,12 +156,20 @@
 
 
                     <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="员工："
+                        android:visibility="@{!(viewModel.basisBean.employNumber==0)? View.VISIBLE : View.GONE}"
+                        app:layout_constraintRight_toLeftOf="@+id/tv_employ_number"
+                        app:layout_constraintTop_toTopOf="@+id/tv_employ_number" />
+
+                    <TextView
                         android:id="@+id/tv_employ_number"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/dimen_8"
-                        android:text="@{viewModel.basisBean.employNumber}"
-                        android:visibility="@{!CommonUtils.isStringEmpty(viewModel.basisBean.employNumber)? View.VISIBLE : View.GONE}"
+                        android:visibility="@{!(viewModel.basisBean.employNumber==0)? View.VISIBLE : View.GONE}"
+                        app:int2String="@{viewModel.basisBean.employNumber}"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/tv_1_1"
                         tools:text="@string/debug_string_sort" />
@@ -403,34 +414,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawableEnd="@mipmap/ic_chevron_right"
+                        android:onClick="@{()->clickListener.btnProject()}"
                         android:padding="@dimen/dimen_16"
                         android:text="项目信息"
-                        android:textColor="@color/text_black_87" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/text_black_12" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableEnd="@mipmap/ic_chevron_right"
-                        android:padding="@dimen/dimen_16"
-                        android:text="合同款项"
-                        android:textColor="@color/text_black_87" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/text_black_12" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableEnd="@mipmap/ic_chevron_right"
-                        android:padding="@dimen/dimen_16"
-                        android:text="成本核算"
                         android:textColor="@color/text_black_87" />
 
                     <View
@@ -457,24 +443,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawableEnd="@mipmap/ic_chevron_right"
-                        android:padding="@dimen/dimen_16"
                         android:onClick="@{()->clickListener.btnRelated()}"
-                        android:text="关联企业"
-                        android:textColor="@color/text_black_87" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/text_black_12" />
-
-
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableEnd="@mipmap/ic_chevron_right"
                         android:padding="@dimen/dimen_16"
-                        android:text="工作过程信息维护"
+                        android:text="关联企业"
                         android:textColor="@color/text_black_87" />
 
                 </LinearLayout>

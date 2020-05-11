@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.example.gqsystem.util.CommonUtils" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.example.gqsystem.ui.project.work.judge.ProjectWorkJudgeViewModel" />
+
+        <variable
+            name="click"
+            type="com.example.gqsystem.ui.project.work.judge.ProjectWorkJudgeFragment.OpenFileListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_8"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/dimen_8">
+
+
+                <TextView
+                    android:id="@+id/tv_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin"
+                    android:layout_marginTop="@dimen/dimen_8"
+                    android:text="自评材料递交时间:"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_8"
+                    android:text="@{viewModel.workInfo.selfSubmitTime}"
+                    app:layout_constraintLeft_toRightOf="@+id/tv_1"
+                    app:layout_constraintTop_toTopOf="@+id/tv_1"
+                    tools:text="@string/debug_string_time" />
+
+
+                <TextView
+                    android:id="@+id/tv_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin"
+                    android:layout_marginTop="@dimen/dimen_8"
+                    android:text="评审开始时间:"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_8"
+                    android:text="@{viewModel.workInfo.judgeStartTime}"
+                    app:layout_constraintLeft_toRightOf="@+id/tv_2"
+                    app:layout_constraintTop_toTopOf="@+id/tv_2"
+                    tools:text="@string/debug_string_time" />
+
+
+                <TextView
+                    android:id="@+id/tv_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin"
+                    android:layout_marginTop="@dimen/dimen_8"
+                    android:text="评审结束时间:"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_2" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_8"
+                    android:text="@{viewModel.workInfo.judgeEndTime}"
+                    app:layout_constraintLeft_toRightOf="@+id/tv_3"
+                    app:layout_constraintTop_toTopOf="@+id/tv_3"
+                    tools:text="@string/debug_string_time" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_8"
+            app:layout_constraintTop_toBottomOf="@+id/card_view_1">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/dimen_8">
+
+                <TextView
+                    android:id="@+id/tv_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin"
+                    android:layout_marginTop="@dimen/dimen_8"
+                    android:text="整改报告首次反馈时间:"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_8"
+                    android:text="@{viewModel.workInfo.reformFirstTime}"
+                    app:layout_constraintLeft_toRightOf="@+id/tv_4"
+                    app:layout_constraintTop_toTopOf="@+id/tv_4"
+                    tools:text="@string/debug_string_time" />
+
+
+                <TextView
+                    android:id="@+id/tv_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin"
+                    android:layout_marginTop="@dimen/dimen_8"
+                    android:text="整改报告定稿时间:"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_4" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_8"
+                    android:text="@{viewModel.workInfo.reformFinishTime}"
+                    app:layout_constraintLeft_toRightOf="@+id/tv_5"
+                    app:layout_constraintTop_toTopOf="@+id/tv_5"
+                    tools:text="@string/debug_string_time" />
+
+
+                <TextView
+                    android:id="@+id/tv_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin"
+                    android:layout_marginTop="@dimen/dimen_8"
+                    android:text="材料上报时间:"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_5" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_8"
+                    android:text="@{viewModel.workInfo.dataSubmitTime}"
+                    app:layout_constraintLeft_toRightOf="@+id/tv_6"
+                    app:layout_constraintTop_toTopOf="@+id/tv_6"
+                    tools:text="@string/debug_string_time" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_8"
+            app:layout_constraintTop_toBottomOf="@+id/card_view_2">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/dimen_8">
+
+                <TextView
+                    android:id="@+id/tv_7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin"
+                    android:layout_marginTop="@dimen/dimen_8"
+                    android:text="政府公告时间:"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_8"
+                    android:text="@{viewModel.workInfo.govNoticeTime}"
+                    app:layout_constraintLeft_toRightOf="@+id/tv_7"
+                    app:layout_constraintTop_toTopOf="@+id/tv_7"
+                    tools:text="@string/debug_string_time" />
+
+
+                <TextView
+                    android:id="@+id/tv_8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin"
+                    android:layout_marginTop="@dimen/dimen_8"
+                    android:text="政府公告文号:"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_7" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_8"
+                    android:text="@{viewModel.workInfo.govNoticeNum}"
+                    app:layout_constraintLeft_toRightOf="@+id/tv_8"
+                    app:layout_constraintTop_toTopOf="@+id/tv_8"
+                    tools:text="@string/debug_string_time" />
+
+
+                <TextView
+                    android:id="@+id/tv_9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin"
+                    android:layout_marginTop="@dimen/dimen_8"
+                    android:text="评审人员:"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_8" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_8"
+                    android:text="@{viewModel.workInfo.reviewer}"
+                    app:layout_constraintLeft_toRightOf="@+id/tv_9"
+                    app:layout_constraintTop_toTopOf="@+id/tv_9"
+                    tools:text="@string/default_user_name" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_8"
+            app:layout_constraintTop_toBottomOf="@+id/card_view_3">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/margin">
+
+                <TextView
+                    android:id="@+id/tv_10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin"
+                    android:layout_marginTop="@dimen/dimen_8"
+                    android:text="签字盖章页:"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_signStampPage"
+                    style="@style/Item_TextView_Content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_8"
+                    android:layout_marginEnd="@dimen/dimen_8"
+                    android:onClick="@{()->click.btnSignStampPage(viewModel.workInfo.signStampPage)}"
+                    android:textColor="@color/app_color_blue"
+                    app:fileNameWithType="@{viewModel.workInfo.signStampPage}"
+                    app:layout_constraintLeft_toRightOf="@+id/tv_10"
+                    app:layout_constraintTop_toTopOf="@+id/tv_10"
+                    tools:text="@string/debug_string_long" />
+
+                <ProgressBar
+                    android:id="@+id/progress1"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="@dimen/dimen_4"
+                    android:layout_marginEnd="4dp"
+                    android:progress="@{viewModel.progress1}"
+                    android:visibility="@{viewModel.progress1==0 || viewModel.progress1==100 ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintLeft_toLeftOf="@+id/tv_signStampPage"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_signStampPage" />
+
+
+                <TextView
+                    android:id="@+id/tv_11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin"
+                    android:layout_marginTop="@dimen/dimen_8"
+                    android:text="评审报告:"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_signStampPage" />
+
+                <TextView
+                    android:id="@+id/tv_judgeReport"
+                    style="@style/Item_TextView_Content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_8"
+                    android:onClick="@{()->click.btnJudgeReportFile(viewModel.workInfo.judgeReport)}"
+                    android:textColor="@color/app_color_blue"
+                    app:fileNameWithType="@{viewModel.workInfo.judgeReport}"
+                    app:layout_constraintLeft_toRightOf="@+id/tv_11"
+                    app:layout_constraintTop_toTopOf="@+id/tv_11"
+                    tools:text="@string/debug_string_sort" />
+
+                <ProgressBar
+                    android:id="@+id/progress2"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="@dimen/dimen_4"
+                    android:layout_marginEnd="4dp"
+                    android:progress="@{viewModel.progress2}"
+                    android:visibility="@{viewModel.progress2==0 || viewModel.progress2==100 ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintLeft_toLeftOf="@+id/tv_judgeReport"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_judgeReport" />
+
+                <TextView
+                    android:id="@+id/tv_12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin"
+                    android:layout_marginTop="@dimen/dimen_8"
+                    android:text="上报材料:"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_judgeReport" />
+
+                <TextView
+                    android:id="@+id/tv_submitData"
+                    style="@style/Item_TextView_Content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_8"
+                    android:onClick="@{()->click.btnSubmitFile(viewModel.workInfo.submitData)}"
+                    android:textColor="@color/app_color_blue"
+                    app:fileNameWithType="@{viewModel.workInfo.submitData}"
+                    app:layout_constraintLeft_toRightOf="@+id/tv_12"
+                    app:layout_constraintTop_toTopOf="@+id/tv_12"
+                    tools:text="@string/debug_string_sort" />
+
+                <ProgressBar
+                    android:id="@+id/progress3"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="@dimen/dimen_4"
+                    android:layout_marginEnd="4dp"
+                    android:progress="@{viewModel.progress3}"
+                    android:visibility="@{viewModel.progress3==0 || viewModel.progress3==100 ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintLeft_toLeftOf="@+id/tv_submitData"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_submitData" />
+
+
+                <TextView
+                    android:id="@+id/tv_13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin"
+                    android:layout_marginTop="@dimen/dimen_8"
+                    android:text="其他材料:"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_submitData" />
+
+                <TextView
+                    android:id="@+id/tv_otherData"
+                    style="@style/Item_TextView_Content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_8"
+                    android:onClick="@{()->click.btnOtherFile(viewModel.workInfo.otherData)}"
+                    android:textColor="@color/app_color_blue"
+                    app:fileNameWithType="@{viewModel.workInfo.otherData}"
+                    app:layout_constraintLeft_toRightOf="@+id/tv_13"
+                    app:layout_constraintTop_toTopOf="@+id/tv_13"
+                    tools:text="@string/debug_string_sort" />
+
+                <ProgressBar
+                    android:id="@+id/progress4"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="@dimen/dimen_4"
+                    android:layout_marginEnd="4dp"
+                    android:progress="@{viewModel.progress4}"
+                    android:visibility="@{viewModel.progress4==0 || viewModel.progress4==100 ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintLeft_toLeftOf="@+id/tv_otherData"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_otherData" />
+
+
+                <TextView
+                    android:id="@+id/tv_14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin"
+                    android:layout_marginTop="@dimen/dimen_8"
+                    android:text="备注:"
+                    android:visibility="@{CommonUtils.isStringEmpty(viewModel.workInfo.remark)  ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_otherData" />
+
+                <TextView
+                    style="@style/Item_TextView_Content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_8"
+                    android:visibility="@{CommonUtils.isStringEmpty(viewModel.workInfo.remark)  ? View.GONE : View.VISIBLE}"
+                    app:fileName="@{viewModel.workInfo.remark}"
+                    app:layout_constraintLeft_toRightOf="@+id/tv_14"
+                    app:layout_constraintTop_toTopOf="@+id/tv_14"
+                    tools:text="@string/debug_string_sort" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

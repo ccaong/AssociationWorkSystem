@@ -7,11 +7,14 @@ import android.view.View;
 import com.example.gqsystem.BR;
 import com.example.gqsystem.R;
 import com.example.gqsystem.base.BaseFragment;
+import com.example.gqsystem.bean.FileBean;
 import com.example.gqsystem.bean.response.ReviewerListBean;
 import com.example.gqsystem.databinding.FragmentListBinding;
 import com.example.gqsystem.ui.adapter.CommonAdapter;
 
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 /**
@@ -32,7 +35,7 @@ public class ReviewerFragment extends BaseFragment<FragmentListBinding, Reviewer
 
     @Override
     protected void initViewModel() {
-        mViewModel = new ViewModelProvider(this).get(ReviewerViewModel.class);
+        mViewModel = new ViewModelProvider(getActivity()).get(ReviewerViewModel.class);
     }
 
     @Override
@@ -51,8 +54,8 @@ public class ReviewerFragment extends BaseFragment<FragmentListBinding, Reviewer
      * 下拉刷新
      */
     private void initRefreshLayout() {
-        mDataBinding.refreshLayout.setOnRefreshListener(refreshlayout -> mViewModel.refreshData(true));
-        mDataBinding.refreshLayout.setOnLoadMoreListener(refreshlayout -> mViewModel.refreshData(false));
+        mDataBinding.refreshLayout.setOnRefreshListener(refresh -> mViewModel.refreshData(true));
+        mDataBinding.refreshLayout.setOnLoadMoreListener(refresh -> mViewModel.refreshData(false));
     }
 
 
@@ -62,6 +65,11 @@ public class ReviewerFragment extends BaseFragment<FragmentListBinding, Reviewer
             @Override
             public void addListener(View root, ReviewerListBean.RecordsBean itemData, int position) {
                 super.addListener(root, itemData, position);
+
+                root.findViewById(R.id.item).setOnClickListener(v -> {
+                    mViewModel.setReviewer(itemData);
+                    NavHostFragment.findNavController(ReviewerFragment.this).navigate(R.id.nav_reviewer_information_detail);
+                });
 
                 root.findViewById(R.id.tv_tel).setOnClickListener(v -> {
                     //拨打电话

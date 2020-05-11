@@ -76,8 +76,7 @@ public class CompanyRelatedFragment extends BaseFragment<FragmentListBinding, Co
             @Override
             public void addListener(View root, CompanyRelatedBean itemData, int position) {
                 super.addListener(root, itemData, position);
-                root.findViewById(R.id.item).setOnClickListener(
-                        v -> {
+                root.findViewById(R.id.item).setOnClickListener(v -> {
                             Bundle bundle = new Bundle();
                             bundle.putString(PARAM1, itemData.getId());
                             NavHostFragment.findNavController(CompanyRelatedFragment.this).navigate(R.id.company_content, bundle);

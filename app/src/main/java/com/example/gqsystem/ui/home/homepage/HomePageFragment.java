@@ -1,6 +1,7 @@
 package com.example.gqsystem.ui.home.homepage;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -23,6 +24,9 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import static com.example.gqsystem.ui.project.list.ProjectListFragment.PARAM_PRO_STATUS;
+import static com.example.gqsystem.ui.project.list.ProjectListFragment.PARAM_PRO_TYPE;
+
 /**
  * @author devel
  */
@@ -32,7 +36,7 @@ public class HomePageFragment extends BaseFragment<HomePageFragmentBinding, Home
     /**
      * 是否为线性布局
      */
-    private boolean linearLayoutManager = true;
+    private boolean isLinearLayoutManager = false;
 
     public static HomePageFragment newInstance() {
         return new HomePageFragment();
@@ -78,7 +82,7 @@ public class HomePageFragment extends BaseFragment<HomePageFragmentBinding, Home
         mDataBinding.refreshLayout.setPrimaryColorsId(android.R.color.white, R.color.colorPrimary);
         mDataBinding.refreshLayout.setRefreshHeader(new ClassicsHeader(getContext()));
 
-        mDataBinding.refreshLayout.setOnRefreshListener(refresh-> refresh.finishRefresh(1000));
+        mDataBinding.refreshLayout.setOnRefreshListener(refresh -> refresh.finishRefresh(1000));
     }
 
     private void initBanner(List<Integer> mList) {
@@ -106,7 +110,7 @@ public class HomePageFragment extends BaseFragment<HomePageFragmentBinding, Home
             }
         };
         mDataBinding.recyclerViewHome.setAdapter(commonAdapter);
-        mDataBinding.recyclerViewHome.setLayoutManager(new LinearLayoutManager(getContext()));
+        mDataBinding.recyclerViewHome.setLayoutManager(new GridLayoutManager(getContext(), 2));
     }
 
     /**
@@ -117,35 +121,29 @@ public class HomePageFragment extends BaseFragment<HomePageFragmentBinding, Home
     private void click(HomePageBean homePageBean) {
 
         switch (homePageBean.getName()) {
+            case "资料共享":
+                NavHostFragment.findNavController(HomePageFragment.this).navigate(R.id.data_share);
+                break;
             case "待开发":
-                NavHostFragment.findNavController(HomePageFragment.this).navigate(R.id.project_todo);
+                Bundle bundleToDo = new Bundle();
+                bundleToDo.putString(PARAM_PRO_STATUS, "1");
+                NavHostFragment.findNavController(HomePageFragment.this).navigate(R.id.project_list, bundleToDo);
                 break;
             case "进行中":
-//                NavHostFragment.findNavController(HomePageFragment.this).navigate(R.id.project_todo);
+                Bundle bundleDoing = new Bundle();
+                bundleDoing.putString(PARAM_PRO_STATUS, "2,3,4,5,6,7,8,9");
+                NavHostFragment.findNavController(HomePageFragment.this).navigate(R.id.project_list, bundleDoing);
                 break;
-            case "安全生产标准化":
-                NavHostFragment.findNavController(HomePageFragment.this).navigate(R.id.project_standard);
-                break;
-            case "双重预防机制建设":
-//                NavHostFragment.findNavController(HomePageFragment.this).navigate(R.id.project_standard);
-                break;
-            case "评价评估":
-//                NavHostFragment.findNavController(HomePageFragment.this).navigate(R.id.project_standard);
-                break;
+            case "标准化":
+            case "双重预防机制":
+            case "评估评价":
             case "安全管理体系提升":
-//                NavHostFragment.findNavController(HomePageFragment.this).navigate(R.id.project_standard);
-                break;
             case "安全生产信息化":
-//                NavHostFragment.findNavController(HomePageFragment.this).navigate(R.id.project_standard);
-                break;
             case "专项整治":
-//                NavHostFragment.findNavController(HomePageFragment.this).navigate(R.id.project_standard);
-                break;
             case "政府采购":
-//                NavHostFragment.findNavController(HomePageFragment.this).navigate(R.id.project_standard);
-                break;
-            case "资料共享":
-//                NavHostFragment.findNavController(HomePageFragment.this).navigate(R.id.project_standard);
+                Bundle bundle = new Bundle();
+                bundle.putString(PARAM_PRO_TYPE, homePageBean.getName());
+                NavHostFragment.findNavController(HomePageFragment.this).navigate(R.id.project_viewpager, bundle);
                 break;
             default:
                 break;
@@ -157,15 +155,15 @@ public class HomePageFragment extends BaseFragment<HomePageFragmentBinding, Home
      * 改变外观
      */
     public void changeLayoutManager() {
-        if (linearLayoutManager) {
+        if (isLinearLayoutManager) {
             RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
             mDataBinding.recyclerViewHome.setLayoutManager(layoutManager);
-            linearLayoutManager = false;
+            isLinearLayoutManager = false;
             mDataBinding.fabTop.setImageResource(R.mipmap.ic_view_list);
 
         } else {
             mDataBinding.recyclerViewHome.setLayoutManager(new LinearLayoutManager(getContext()));
-            linearLayoutManager = true;
+            isLinearLayoutManager = true;
             mDataBinding.fabTop.setImageResource(R.mipmap.ic_view_grid);
         }
     }

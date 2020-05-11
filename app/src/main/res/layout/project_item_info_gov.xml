@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="govProjectInfo"
+            type="com.example.gqsystem.bean.response.ProjectGovInfo" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_8">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/dimen_8">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_24"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:drawableEnd="@mipmap/ic_chevron_down"
+                android:textStyle="bold"
+                app:govInfoType="@{govProjectInfo.type}"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tool:text="招标资料" />
+
+            <TextView
+                android:id="@+id/tv_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_8"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:text="责任人："
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:text="@{govProjectInfo.userName}"
+                app:layout_constraintLeft_toRightOf="@+id/tv_user_name"
+                app:layout_constraintTop_toBottomOf="@+id/tv_title"
+                tool:text="张三" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:text="时间："
+                app:layout_constraintRight_toLeftOf="@+id/tv_time"
+                app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:layout_marginEnd="@dimen/margin"
+                android:text="@{govProjectInfo.time}"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_title"
+                tool:text="2020-04-02" />
+
+
+            <TextView
+                android:id="@+id/tv_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_8"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:text="附件："
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_time" />
+
+            <TextView
+                android:id="@+id/tv_file"
+                style="@style/Item_TextView_Content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:layout_marginEnd="@dimen/dimen_8"
+                android:textColor="@color/app_color_blue"
+                app:fileNameWithType="@{govProjectInfo.accessory}"
+                app:layout_constraintLeft_toRightOf="@+id/tv_1"
+                app:layout_constraintTop_toBottomOf="@+id/tv_time"
+                tool:text="@string/debug_string_long" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_8"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:text="照片："
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_file" />
+
+            <TextView
+                android:id="@+id/tv_picture"
+                style="@style/Item_TextView_Content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:layout_marginEnd="@dimen/dimen_8"
+                android:textColor="@color/app_color_blue"
+                app:fileNameWithType="@{govProjectInfo.picture}"
+                app:layout_constraintLeft_toRightOf="@+id/tv_1"
+                app:layout_constraintTop_toBottomOf="@+id/tv_file"
+                tool:text="xxxxx.jpg" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_8"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:text="其他："
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_picture" />
+
+            <TextView
+                android:id="@+id/tv_other"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:text="@{govProjectInfo.other}"
+                app:layout_constraintLeft_toRightOf="@+id/tv_1"
+                app:layout_constraintTop_toBottomOf="@+id/tv_picture"
+                tool:text="其他信息" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_8"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:text="备注："
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_other" />
+
+            <TextView
+                android:id="@+id/tv_remark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:text="@{govProjectInfo.remark}"
+                app:layout_constraintLeft_toRightOf="@+id/tv_1"
+                app:layout_constraintTop_toBottomOf="@+id/tv_other"
+                tool:text="备注信息" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</layout>

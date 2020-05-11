@@ -93,6 +93,7 @@
 
 
         <LinearLayout
+            android:id="@+id/ll_history"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -126,14 +127,19 @@
         <com.scwang.smart.refresh.layout.SmartRefreshLayout
             android:id="@+id/refresh_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_view_list"
+            <com.example.gqsystem.view.LoadingLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="@dimen/dimen_16"
-                android:layout_marginRight="@dimen/dimen_16" />
+                app:loadingErrorMsg="@{viewModel.errorMsg}"
+                app:loadingStatus="@{viewModel.loadState}">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </com.example.gqsystem.view.LoadingLayout>
         </com.scwang.smart.refresh.layout.SmartRefreshLayout>
 
     </LinearLayout>

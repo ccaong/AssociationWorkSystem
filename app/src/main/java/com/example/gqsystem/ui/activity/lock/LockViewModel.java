@@ -4,6 +4,7 @@ import com.example.gqsystem.R;
 import com.example.gqsystem.base.viewmodel.BaseViewModel;
 import com.example.gqsystem.bean.response.UserDataBean;
 import com.example.gqsystem.config.Constants;
+import com.example.gqsystem.util.CommonUtils;
 import com.orhanobut.hawk.Hawk;
 
 import androidx.lifecycle.LiveData;
@@ -66,12 +67,17 @@ public class LockViewModel extends BaseViewModel {
      * 使用密码登录
      */
     public void loginWithPwd() {
-        if ("12".equals(userPwd.getValue())) {
-            // TODO: 2020/3/2 成功
+        String defaultPwd = "123456";
+        UserDataBean userDataBean = Hawk.get(Constants.HawkCode.LOGIN_DATA);
+        if (CommonUtils.isStringEmpty(userDataBean.getUserInfo().getUserpwd())) {
+            defaultPwd = userDataBean.getUserInfo().getUserpwd();
+        }
+        if (defaultPwd.equals(userPwd.getValue())) {
+            //成功
             cancelPwd();
             loginStatus.postValue(0);
         } else {
-            // TODO: 2020/3/2 失败
+            // 失败
             userPwd.postValue("");
             loginTitle.postValue(getResources().getString(R.string.input_pwd_error));
         }

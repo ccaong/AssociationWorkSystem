@@ -57,6 +57,29 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view_1" />
 
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin"
+            android:layout_marginRight="@dimen/margin"
+            android:text="使用只读模式打开文件"
+            android:textColor="@color/text_black_87"
+            app:layout_constraintBottom_toBottomOf="@+id/switch_reader_type"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/switch_reader_type" />
+
+        <Switch
+            android:id="@+id/switch_reader_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin"
+            android:layout_marginEnd="@dimen/margin"
+            android:checked="@{viewModel.mSwitchReadOnly}"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/switch_reader" />
+
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -76,7 +99,7 @@
             android:layout_marginEnd="@dimen/margin"
             android:checked="@{viewModel.mSwitchDownload}"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/switch_reader" />
+            app:layout_constraintTop_toBottomOf="@+id/switch_reader_type" />
 
 
         <TextView

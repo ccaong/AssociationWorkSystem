@@ -1,6 +1,7 @@
 package com.example.gqsystem;
 
 import android.app.Activity;
+import android.app.Application;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
@@ -29,15 +30,20 @@ import cn.jpush.android.api.JPushInterface;
  */
 public class App extends MultiDexApplication {
 
+    private static Application application;
     private static Context context;
-    public static boolean isDownloadFile;
     public boolean tbsInitSuccess;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        application = this;
         context = this;
         init();
+    }
+
+    public static Application getApplication() {
+        return application;
     }
 
     public static Context getContext() {
@@ -46,7 +52,6 @@ public class App extends MultiDexApplication {
 
 
     public void init() {
-        isDownloadFile = false;
         setHttpConfig();
         //初始化Hawk
         Hawk.init(context).build();
@@ -62,18 +67,7 @@ public class App extends MultiDexApplication {
             StrictMode.setVmPolicy(builder.build());
         }
 
-        QbSdk.initX5Environment(this, new QbSdk.PreInitCallback() {
-            @Override
-            public void onCoreInitFinished() {
-                //x5内核初始化完成回调接口，此接口回调并表示已经加载起来了x5，有可能特殊情况下x5内核加载失败，切换到系统内核。
-            }
-
-            @Override
-            public void onViewInitFinished(boolean b) {
-                //x5內核初始化完成的回调，为true表示x5内核加载成功，否则表示x5内核加载失败，会自动切换到系统内核。
-                Log.e("print","加载内核是否成功:"+b);
-            }
-        });
+        QbSdk.initX5Environment(this, null);
     }
 
     /**
@@ -115,19 +109,14 @@ public class App extends MultiDexApplication {
     /**
      * 请求配置
      */
-    public static void setHttpConfig() {
+    private void setHttpConfig() {
         HttpFactory.HTTP_HOST_URL = ServerAddress.getApiDefaultHost();
         HttpFactory.httpResponseInterface = (gson, response) -> {
-            if (isDownloadFile) {
-                isDownloadFile = false;
-                return response;
-            } else {
-                HttpBaseResponse httpResponse = gson.fromJson(response, HttpBaseResponse.class);
-                if (httpResponse.code != 200) {
-                    throw new HttpException(httpResponse.message);
-                }
-                return gson.toJson(httpResponse.result);
+            HttpBaseResponse httpResponse = gson.fromJson(response, HttpBaseResponse.class);
+            if (httpResponse.code != 200) {
+                throw new HttpException(httpResponse.message);
             }
+            return gson.toJson(httpResponse.result);
         };
     }
 

@@ -56,6 +56,8 @@ public class LoginViewModel extends BaseViewModel {
      * 请求
      */
     private void login(String name, String pwd) {
+
+        loginStatus.postValue("1");
         Map map = new HashMap(2);
         map.put("captcha", "");
         map.put("checkKey", "");
@@ -78,6 +80,7 @@ public class LoginViewModel extends BaseViewModel {
                     public void onError(Throwable e) {
                         //登录失败
                         ToastUtils.showToast(e.getMessage());
+                        loginStatus.postValue("-1");
                     }
                 });
     }

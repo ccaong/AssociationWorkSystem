@@ -20,6 +20,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/background"
         android:orientation="vertical">
 
 
@@ -161,7 +162,6 @@
                         android:text="@={viewModel.userPwd}"
                         android:textSize="@dimen/text_14" />
 
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/dp_40"
@@ -182,7 +182,7 @@
                         <View
                             android:layout_width="1dp"
                             android:layout_height="@dimen/dp_40"
-                            android:background="@color/background" />
+                            android:background="@color/text_black_12" />
 
                         <TextView
                             android:id="@+id/tv_cancel_pwd"

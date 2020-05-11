@@ -42,14 +42,14 @@ public class HomePageViewModel extends BaseViewModel {
         List<HomePageBean> mList = new ArrayList<>();
 
         mList.add(new HomePageBean("1", "待开发", 0));
-        mList.add(new HomePageBean("2", "进行中", 2));
-        mList.add(new HomePageBean("3", getResources().getString(R.string.project_name_1), 9));
+        mList.add(new HomePageBean("2", "进行中", 0));
+        mList.add(new HomePageBean("3", getResources().getString(R.string.project_name_1), 0));
         mList.add(new HomePageBean("4", getResources().getString(R.string.project_name_2), 0));
         mList.add(new HomePageBean("5", getResources().getString(R.string.project_name_3), 0));
-        mList.add(new HomePageBean("6", getResources().getString(R.string.project_name_4), 11));
+        mList.add(new HomePageBean("6", getResources().getString(R.string.project_name_4), 0));
         mList.add(new HomePageBean("7", getResources().getString(R.string.project_name_5), 0));
-        mList.add(new HomePageBean("8", getResources().getString(R.string.project_name_6), 1));
         mList.add(new HomePageBean("9", getResources().getString(R.string.project_name_7), 0));
+        mList.add(new HomePageBean("8", getResources().getString(R.string.project_name_6), 0));
         mList.add(new HomePageBean("10", getResources().getString(R.string.project_name_8), 0));
 
         homePageBeanList.postValue(mList);

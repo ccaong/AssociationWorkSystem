@@ -3,7 +3,6 @@ package com.example.gqsystem.ui.activity.showfile;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.util.Log;
 import android.widget.RelativeLayout;
 
@@ -15,15 +14,15 @@ import com.tencent.smtt.sdk.QbSdk;
 import com.tencent.smtt.sdk.TbsReaderView;
 
 import java.io.File;
+import java.util.Objects;
 
 /**
  * @author devel
- * 打开文件
+ * 使用TBS打开文件
  */
 public class ShowFileActivity extends BaseActivity<ActivityShowFileBinding, ShowFileViewModel> implements TbsReaderView.ReaderCallback {
 
-    TbsReaderView mTbsReaderView;
-    private String mFilePath;
+    private TbsReaderView mTbsReaderView;
 
     @Override
     protected int getLayoutResId() {
@@ -45,44 +44,37 @@ public class ShowFileActivity extends BaseActivity<ActivityShowFileBinding, Show
         QbSdk.initX5Environment(this, null);
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        mFilePath = bundle.getString("FilePath");
+        if (bundle == null) {
+            finish();
+        } else {
+            String mFilePath = bundle.getString("FilePath");
 
-        //添加ReadView
-        mTbsReaderView = new TbsReaderView(this, this);
-        mDataBinding.tbsView.addView(mTbsReaderView, new RelativeLayout.LayoutParams(-1, -1));
+            //添加ReadView
+            mTbsReaderView = new TbsReaderView(this, this);
+            mDataBinding.tbsView.addView(mTbsReaderView, new RelativeLayout.LayoutParams(-1, -1));
 
-        openFile(mFilePath);
+            openFile(mFilePath);
+        }
     }
+
 
     /**
      * 打开文件
-     *
-     * @param mFilePath
      */
     public void openFile(String mFilePath) {
-        QbSdk.openFileReader(this, mFilePath, null, s -> {
-            Log.e("打开文件", "" + s);
-        });
-    }
 
-
-    /**
-     * 打开文件
-     * 第二种方法
-     */
-    public void initData() {
-
-        //打开文件
         Bundle bundle = new Bundle();
-        bundle.putString("filePath", getLocalFile().getPath());
-        bundle.putString("tempPath", Environment.getExternalStorageDirectory().getPath());
+        bundle.putString("filePath", mFilePath);
+        //缓存文件夹，该文件夹必须要有，否则将不能打开文件
+        bundle.putString("tempPath", Objects.requireNonNull(getExternalCacheDir()).getPath());
         boolean result = mTbsReaderView.preOpen(parseFormat(mFilePath), false);
         if (result) {
             mTbsReaderView.openFile(bundle);
             Log.e("加载", "加载成功");
         } else {
             Log.e("加载", "加载失败");
-            File file = new File(getLocalFile().getPath());
+            //使用手机上的其他方式打开文件
+            File file = new File(mFilePath);
             if (file.exists()) {
                 Intent openIntent = new Intent();
                 openIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -104,10 +96,6 @@ public class ShowFileActivity extends BaseActivity<ActivityShowFileBinding, Show
      */
     private String parseFormat(String fileName) {
         return fileName.substring(fileName.lastIndexOf(".") + 1);
-    }
-
-    private File getLocalFile() {
-        return new File(mFilePath);
     }
 
     @Override

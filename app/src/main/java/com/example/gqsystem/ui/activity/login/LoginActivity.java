@@ -6,7 +6,6 @@ import com.example.gqsystem.base.BaseActivity;
 import com.example.gqsystem.databinding.ActivityLoginBinding;
 import com.example.gqsystem.ui.activity.forgetpwd.ForgetPwdActivity;
 import com.example.gqsystem.util.ActivitySkipUtil;
-import com.example.gqsystem.util.ToastUtils;
 
 import androidx.lifecycle.ViewModelProviders;
 
@@ -40,13 +39,25 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding, LoginViewM
 
     private void initData() {
         mViewModel.getLoginStatus().observe(this, s -> {
-            if ("0".equals(s)) {//登录成功
+            if ("0".equals(s)) {
+                //登录成功
+                mDataBinding.btnLogin.setEnabled(true);
                 ActivitySkipUtil.skipActivity(LoginActivity.this, MainActivity.class);
                 finish();
             }
+            if ("1".equals(s)) {
+                //登录中
+                mDataBinding.btnLogin.setEnabled(false);
+                mDataBinding.btnLogin.setText("登录中···");
+            }
+
+            if ("-1".equals(s)) {
+                //登录失败
+                mDataBinding.btnLogin.setEnabled(true);
+                mDataBinding.btnLogin.setText("登录");
+            }
         });
     }
-
 
     /**
      * 点击事件

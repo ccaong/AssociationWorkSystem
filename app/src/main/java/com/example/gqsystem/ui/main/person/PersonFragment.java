@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 /**
  * @author devel
- * 评审专家信息
+ * 人员信息
  */
 public class PersonFragment extends BaseFragment<FragmentListBinding, PersonViewModel> {
 

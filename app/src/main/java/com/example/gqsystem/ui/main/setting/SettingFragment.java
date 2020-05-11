@@ -36,6 +36,7 @@ public class SettingFragment extends BaseFragment<FragmentSettingBinding, Settin
     @Override
     protected void init() {
         mDataBinding.switchReader.setOnCheckedChangeListener((buttonView, isChecked) -> Hawk.put(Constants.SettingCode.OPEN_FILE_WITH_WPS, isChecked));
+        mDataBinding.switchReaderType.setOnCheckedChangeListener((buttonView, isChecked) -> Hawk.put(Constants.SettingCode.READ_ONLY_TYPE, isChecked));
         mDataBinding.switchDownload.setOnCheckedChangeListener((buttonView, isChecked) -> Hawk.put(Constants.SettingCode.ALLOW_USE_DATA_DOWNLOAD, isChecked));
 
         mDataBinding.spinnerTimeOut.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

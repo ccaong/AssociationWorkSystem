@@ -1,5 +1,6 @@
 package com.example.gqsystem.bean.response;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -7,7 +8,7 @@ import java.util.List;
  * @date : 2020/3/19 10:25
  * @desc :领导动态
  */
-public class LeaderActivityListBean {
+public class LeaderActivityListBean implements Serializable{
 
     /**
      * records : [{"activityContent":"二级安全标准化","activityFile":"temp/11_1583979191834.txt","activityName":"二级安全标准化危险化学品和烟花爆竹单位的公告","activityTime":"2020-03-22","updateTime":"2020-03-12 10:18:52","addressDetails":null,"activityAddress":"山东省,济南市,历下区","createBy":"admin","createTime":"2020-03-12 10:13:25","updateBy":"admin","sysOrgCode":"A01","id":"1237924626563125250","invitationUnit":"山东省应急厅"}]
@@ -83,7 +84,7 @@ public class LeaderActivityListBean {
         this.orders = orders;
     }
 
-    public static class RecordsBean {
+    public static class RecordsBean implements Serializable {
         /**
          * activityContent : 二级安全标准化
          * activityFile : temp/11_1583979191834.txt
@@ -105,7 +106,7 @@ public class LeaderActivityListBean {
         private String activityName;
         private String activityTime;
         private String updateTime;
-        private Object addressDetails;
+        private String addressDetails;
         private String activityAddress;
         private String createBy;
         private String createTime;
@@ -155,11 +156,11 @@ public class LeaderActivityListBean {
             this.updateTime = updateTime;
         }
 
-        public Object getAddressDetails() {
+        public String getAddressDetails() {
             return addressDetails;
         }
 
-        public void setAddressDetails(Object addressDetails) {
+        public void setAddressDetails(String addressDetails) {
             this.addressDetails = addressDetails;
         }
 

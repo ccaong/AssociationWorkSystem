@@ -83,18 +83,12 @@ public class CommonDialog extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(title);
         builder.setMessage(message);
-        builder.setPositiveButton(confirm, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                if (listener != null) {
-                    listener.onClickComplete();
-                }
+        builder.setPositiveButton(confirm, (dialogInterface, i) -> {
+            if (listener != null) {
+                listener.onClickComplete();
             }
         });
-        builder.setNegativeButton(cancel, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-            }
+        builder.setNegativeButton(cancel, (dialogInterface, i) -> {
         });
 
         return builder.create();

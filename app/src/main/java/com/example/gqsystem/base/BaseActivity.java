@@ -1,9 +1,16 @@
 package com.example.gqsystem.base;
 
+import android.app.Activity;
+import android.app.Application;
+import android.content.ComponentCallbacks;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -11,6 +18,8 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.example.gqsystem.App;
+import com.example.gqsystem.MainActivity;
 import com.example.gqsystem.R;
 import com.example.gqsystem.base.viewmodel.BaseViewModel;
 import com.example.gqsystem.databinding.ActivityBaseBinding;
@@ -19,12 +28,21 @@ import com.example.gqsystem.databinding.ViewLoadingBinding;
 import com.example.gqsystem.databinding.ViewNoDataBinding;
 import com.example.gqsystem.databinding.ViewNoNetworkBinding;
 import com.example.gqsystem.enums.LoadState;
+import com.example.gqsystem.manager.MyActivityManager;
+import com.example.gqsystem.ui.activity.lock.LockActivity;
+import com.example.gqsystem.ui.activity.splash.SplashActivity;
+import com.example.gqsystem.util.ActivitySkipUtil;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import androidx.lifecycle.Observer;
+
+import static com.example.gqsystem.ui.activity.lock.LockActivity.LOCK_TYPE;
+import static com.example.gqsystem.util.ScreenUtil.resetScreen;
+import static com.example.gqsystem.util.ScreenUtil.setCustomDensity;
 
 
 /**
@@ -51,10 +69,24 @@ public abstract class BaseActivity<DB extends ViewDataBinding, VM extends BaseVi
 
     private ViewNoDataBinding mViewNoDataBinding;
 
+//    @Override
+//    public Resources getResources() {
+//        //禁止app字体大小跟随系统字体大小调节
+//        Resources resources = super.getResources();
+//        if (resources != null && resources.getConfiguration().fontScale != 1.0f) {
+//            Configuration configuration = resources.getConfiguration();
+//            configuration.fontScale = 1.0f;
+//            resources.updateConfiguration(configuration, resources.getDisplayMetrics());
+//        }
+//        return resources;
+//    }
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setCustomDensity(this, App.getApplication());
+
         handleIntent(getIntent());
 
         if (isNoActionBar()) {
@@ -206,20 +238,33 @@ public abstract class BaseActivity<DB extends ViewDataBinding, VM extends BaseVi
 
 
     @Override
-    public boolean dispatchKeyEvent(KeyEvent event) {
-
-        if (event.getAction() == KeyEvent.ACTION_UP) {
-            Log.e("记录时间", "dispatchKeyEvent");
-        }
-        return super.dispatchKeyEvent(event);
-    }
-
-    @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         if (ev.getAction() == MotionEvent.ACTION_UP) {
-            Log.e("记录时间", "dispatchTouchEvent");
+            Log.e("记录操作", "dispatchTouchEvent");
         }
         return super.dispatchTouchEvent(ev);
     }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        resetScreen(this);
+        if (MyActivityManager.getInstance().getCurrentActivity() instanceof MainActivity) {
+            Log.e("记录操作", "MainActivity onDestroy");
+        } else {
+            Log.e("记录操作", "OtherActivity onDestroy");
+        }
+    }
+
+    /**
+     * 超时锁定App
+     */
+    private void lockApp() {
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(LOCK_TYPE, LockActivity.lockType.VERIFICATION);
+        ActivitySkipUtil.skipActivity(MyActivityManager.getInstance().getCurrentActivity(), LockActivity.class, bundle);
+    }
+
 
 }

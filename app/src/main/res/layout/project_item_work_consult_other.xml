@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="workConsultOther"
+            type="com.example.gqsystem.bean.response.ProjectConsultOtherInfo" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        app:cardBackgroundColor="@color/white"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_8">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/dimen_8">
+
+            <ImageView
+                android:id="@+id/iv_type"
+                android:layout_width="@dimen/dimen_24"
+                android:layout_height="@dimen/dimen_24"
+                android:layout_marginStart="@dimen/dimen_8"
+                android:src="@mipmap/ic_phone"
+                app:communicationType="@{workConsultOther.otherChatType}"
+                app:layout_constraintBottom_toBottomOf="@id/tv_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_content" />
+
+            <TextView
+                android:id="@+id/tv_content"
+                style="@style/Item_TextView_Content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:text="@{workConsultOther.otherChatContent}"
+                app:layout_constraintLeft_toRightOf="@+id/iv_type"
+                app:layout_constraintTop_toTopOf="parent"
+                tool:text="@string/debug_string_long" />
+
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_8"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:text="沟通时间："
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_8"
+                android:text="@{workConsultOther.otherChatTime}"
+                app:layout_constraintLeft_toRightOf="@+id/tv_time"
+                app:layout_constraintTop_toTopOf="@+id/tv_time"
+                tool:text="@string/debug_string_time" />
+
+
+            <TextView
+                android:id="@+id/tv_file"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_8"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:text="附件："
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_time" />
+
+            <TextView
+                android:id="@+id/tv_otherChatAccessory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_8"
+                android:textColor="@color/app_color_blue"
+                app:fileName="@{workConsultOther.otherChatAccessory}"
+                app:layout_constraintLeft_toRightOf="@+id/tv_file"
+                app:layout_constraintTop_toTopOf="@+id/tv_file"
+                tool:text="@string/debug_string_time" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

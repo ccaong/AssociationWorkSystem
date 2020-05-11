@@ -14,13 +14,14 @@ import java.io.IOException;
  */
 public class FileUtil {
 
+
     /**
      * 判断文件是否已经下载
      *
      * @return
      */
     public static boolean fileIsDownload(String path) {
-        String mFilePath = App.getContext().getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS) + "/DownloadFile" + "/" + getFileName(path);
+        String mFilePath = App.getContext().getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS) + "/DownloadFile" + "/" + path;
         return isFileExists(new File(mFilePath));
     }
 
@@ -95,6 +96,27 @@ public class FileUtil {
     }
 
 
+    /**
+     * 删除文件
+     *
+     * @param fileName
+     * @return
+     */
+    public static boolean deleteFile(String fileName) {
+        String mFilePath = App.getContext().getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS) + "/DownloadFile" + "/" + fileName;
+        File file = new File(mFilePath);
+        if (file.isFile() && file.exists()) {
+            return file.delete();
+        }
+        return false;
+    }
+
+    /**
+     * 获取文件名
+     *
+     * @param filePath
+     * @return
+     */
     public static String getFileName(String filePath) {
         String fileName = filePath;
         int i = filePath.lastIndexOf('/');
@@ -102,6 +124,22 @@ public class FileUtil {
             fileName = filePath.substring(i + 1);
         }
         return fileName;
+    }
+
+    /**
+     * 获取文件夹
+     *
+     * @param filePath
+     * @return
+     */
+    public static String getFileFolder(String filePath) {
+
+        String fileFolder = filePath;
+        int i = filePath.lastIndexOf('/');
+        if (i != -1) {
+            fileFolder = filePath.substring(0, i + 1);
+        }
+        return fileFolder;
     }
 
 

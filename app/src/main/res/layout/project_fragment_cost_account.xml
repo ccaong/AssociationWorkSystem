@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.gqsystem.ui.project.cost.ProjectCostAccountViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <View
+            android:id="@+id/view_1"
+            android:layout_width="@dimen/dimen_12"
+            android:layout_height="@dimen/dimen_12"
+            android:layout_marginStart="@dimen/margin"
+            android:background="@color/app_color_theme_1"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_traffic"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_traffic" />
+
+        <TextView
+            android:id="@+id/tv_traffic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_8"
+            android:layout_marginTop="@dimen/dimen_8"
+            android:text="交通费："
+            app:layout_constraintLeft_toRightOf="@+id/view_5"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:int2String="@{viewModel.costBean.carFare}"
+            app:layout_constraintLeft_toRightOf="@+id/tv_traffic"
+            app:layout_constraintTop_toTopOf="@+id/tv_traffic"
+            tool:text="1000" />
+
+
+        <View
+            android:id="@+id/view_2"
+            android:layout_width="@dimen/dimen_12"
+            android:layout_height="@dimen/dimen_12"
+            android:layout_marginStart="@dimen/margin"
+            android:background="@color/app_color_theme_2"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_accommodation"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_accommodation" />
+
+
+        <TextView
+            android:id="@+id/tv_accommodation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_8"
+            android:layout_marginTop="@dimen/margin"
+            android:text="住宿费："
+            app:layout_constraintLeft_toRightOf="@+id/view_5"
+            app:layout_constraintTop_toBottomOf="@+id/tv_traffic" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:int2String="@{viewModel.costBean.hotelExpense}"
+            app:layout_constraintLeft_toRightOf="@+id/tv_accommodation"
+            app:layout_constraintTop_toTopOf="@+id/tv_accommodation"
+            tool:text="1000" />
+
+
+        <View
+            android:id="@+id/view_3"
+            android:layout_width="@dimen/dimen_12"
+            android:layout_height="@dimen/dimen_12"
+            android:layout_marginStart="@dimen/margin"
+            android:background="@color/app_color_theme_1"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_subsidy"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_subsidy" />
+
+        <TextView
+            android:id="@+id/tv_subsidy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_8"
+            android:layout_marginTop="@dimen/margin"
+            android:text="补助："
+            app:layout_constraintLeft_toRightOf="@+id/view_5"
+            app:layout_constraintTop_toBottomOf="@+id/tv_accommodation" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:int2String="@{viewModel.costBean.subsidy}"
+            app:layout_constraintLeft_toRightOf="@+id/tv_subsidy"
+            app:layout_constraintTop_toTopOf="@+id/tv_subsidy"
+            tool:text="1000" />
+
+
+        <View
+            android:id="@+id/view_4"
+            android:layout_width="@dimen/dimen_12"
+            android:layout_height="@dimen/dimen_12"
+            android:layout_marginStart="@dimen/margin"
+            android:background="@color/app_color_theme_4"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_expert_fee"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_expert_fee" />
+
+        <TextView
+            android:id="@+id/tv_expert_fee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_8"
+            android:layout_marginTop="@dimen/margin"
+            android:text="专家费："
+            app:layout_constraintLeft_toRightOf="@+id/view_5"
+            app:layout_constraintTop_toBottomOf="@+id/tv_subsidy" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:int2String="@{viewModel.costBean.expertFee}"
+            app:layout_constraintLeft_toRightOf="@+id/tv_expert_fee"
+            app:layout_constraintTop_toTopOf="@+id/tv_expert_fee"
+            tool:text="1000" />
+
+
+        <View
+            android:id="@+id/view_5"
+            android:layout_width="@dimen/dimen_12"
+            android:layout_height="@dimen/dimen_12"
+            android:layout_marginStart="@dimen/margin"
+            android:background="@color/app_color_theme_5"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_expert_meal"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_expert_meal" />
+
+        <TextView
+            android:id="@+id/tv_expert_meal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_8"
+            android:layout_marginTop="@dimen/margin"
+            android:text="专家餐费："
+            app:layout_constraintLeft_toRightOf="@+id/view_5"
+            app:layout_constraintTop_toBottomOf="@+id/tv_expert_fee" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:int2String="@{viewModel.costBean.expertMealFee}"
+            app:layout_constraintLeft_toRightOf="@+id/tv_expert_meal"
+            app:layout_constraintTop_toTopOf="@+id/tv_expert_meal"
+            tool:text="1000" />
+
+
+        <View
+            android:id="@+id/view_6"
+            android:layout_width="@dimen/dimen_12"
+            android:layout_height="@dimen/dimen_12"
+            android:layout_marginStart="@dimen/margin"
+            android:background="@color/app_color_theme_6"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_printing_free"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_printing_free" />
+
+        <TextView
+            android:id="@+id/tv_printing_free"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_8"
+            android:layout_marginTop="@dimen/margin"
+            android:text="打印费："
+            app:layout_constraintLeft_toRightOf="@+id/view_6"
+            app:layout_constraintTop_toBottomOf="@+id/tv_expert_meal" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:int2String="@{viewModel.costBean.printingFee}"
+            app:layout_constraintLeft_toRightOf="@+id/tv_printing_free"
+            app:layout_constraintTop_toTopOf="@+id/tv_printing_free"
+            tool:text="1000" />
+
+
+        <View
+            android:id="@+id/view_7"
+            android:layout_width="@dimen/dimen_12"
+            android:layout_height="@dimen/dimen_12"
+            android:layout_marginStart="@dimen/margin"
+            android:background="@color/app_color_theme_7"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_other_fee"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_other_fee" />
+
+        <TextView
+            android:id="@+id/tv_other_fee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_8"
+            android:layout_marginTop="@dimen/margin"
+            android:text="其他："
+            app:layout_constraintLeft_toRightOf="@+id/view_7"
+            app:layout_constraintTop_toBottomOf="@+id/tv_printing_free" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:int2String="@{viewModel.costBean.restsFee}"
+            app:layout_constraintLeft_toRightOf="@+id/tv_other_fee"
+            app:layout_constraintTop_toTopOf="@+id/tv_other_fee"
+            tool:text="1000" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="@dimen/margin"
+            android:layout_marginTop="@dimen/dimen_8"
+            android:background="@color/text_black_12"
+            app:layout_constraintTop_toBottomOf="@+id/tv_other_fee" />
+
+        <TextView
+            android:id="@+id/tv_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin"
+            android:layout_marginTop="@dimen/margin"
+            android:text="总计："
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_other_fee" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            app:int2String="@{viewModel.costBean.feeSum}"
+            app:layout_constraintLeft_toRightOf="@+id/tv_total"
+            app:layout_constraintTop_toTopOf="@+id/tv_total"
+            tool:text="1000" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/dimen_8"
+            android:background="@color/text_black_12"
+            app:layout_constraintTop_toBottomOf="@+id/tv_total" />
+
+
+        <TextView
+            android:id="@+id/tv_remark_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin"
+            android:layout_marginTop="@dimen/dimen_24"
+            android:text="备注："
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_total" />
+
+        <TextView
+            android:id="@+id/tv_remark"
+            style="@style/Item_TextView_Content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin"
+            android:text="@{viewModel.costBean.remark}"
+            app:layout_constraintLeft_toRightOf="@+id/tv_remark_title"
+            app:layout_constraintTop_toTopOf="@+id/tv_remark_title"
+            tool:text="@string/debug_string_long" />
+
+
+        <TextView
+            android:id="@+id/tv_file"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin"
+            android:layout_marginTop="@dimen/margin"
+            android:text="附件"
+            android:drawableRight="@mipmap/ic_chevron_down"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_remark" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_file"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_8"
+            app:layout_constraintTop_toBottomOf="@+id/tv_file" />
+
+        <com.example.gqsystem.view.CircularChartView
+            android:id="@+id/chart_view"
+            android:layout_width="0dp"
+            android:layout_height="300dp"
+            android:layout_marginStart="@dimen/dimen_32"
+            app:layout_constraintLeft_toRightOf="@+id/tv_expert_meal"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

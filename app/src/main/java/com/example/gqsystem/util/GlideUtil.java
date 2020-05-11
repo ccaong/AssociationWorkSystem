@@ -25,8 +25,7 @@ public class GlideUtil {
     public static void loadImage(ImageView imageView, String url, int defaultImage) {
         RequestOptions options = new RequestOptions();
         options.placeholder(defaultImage)
-                .error(defaultImage).fallback(defaultImage)
-                .transform(new CircleCrop());
+                .error(defaultImage).fallback(defaultImage);
 
         Glide.with(App.getContext())
                 .load(url)
@@ -36,9 +35,8 @@ public class GlideUtil {
 
     public static void loadImageWithDefault(ImageView imageView, String url) {
         RequestOptions options = new RequestOptions();
-        options.placeholder(R.mipmap.ic_launcher)
-                .error(R.mipmap.ic_launcher).fallback(R.mipmap.ic_launcher)
-                .transform(new CircleCrop());
+        options.placeholder(R.mipmap.ic_load_error)
+                .error(R.mipmap.ic_load_error).fallback(R.mipmap.ic_load_error);
 
         Glide.with(App.getContext())
                 .load(url)

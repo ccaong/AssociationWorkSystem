@@ -16,10 +16,11 @@
             android:id="@+id/nav_leader_stroke"
             android:icon="@mipmap/ic_alarm"
             android:title="@string/leader_stroke" />
+
         <item
-            android:id="@+id/nav_cost_add"
-            android:icon="@mipmap/ic_cost"
-            android:title="@string/cost" />
+            android:id="@+id/project_all_list"
+            android:icon="@mipmap/ic_other_project"
+            android:title="@string/project_info" />
 
         <item
             android:id="@+id/nav_reviewer_information"
@@ -36,9 +37,9 @@
     <item android:title="Setting">
         <menu>
             <item
-                android:id="@+id/nav_update"
+                android:id="@+id/nav_about"
                 android:icon="@mipmap/ic_about"
-                android:title="@string/update" />
+                android:title="@string/about" />
             <item
                 android:id="@+id/nav_setting"
                 android:icon="@mipmap/ic_settings"
@@ -48,7 +49,7 @@
 
     <item
         android:id="@+id/nav_exit"
-        android:icon="@mipmap/ic_about"
+        android:icon="@mipmap/ic_logout"
         android:title="@string/exit"/>
 
 </menu>

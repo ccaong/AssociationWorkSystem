@@ -46,13 +46,16 @@ public class CompanyBasisInfoBean {
     private String comRelation;
     private String comSpecialReform;
     private String sourceResult;
-    private String employNumber;
+    private int employNumber;
     private String comCreateTime;
     private String comProcessType;
     private String comAddress;
     private String comAddressDetail;
     private String comAddressResult;
     private String platformUser;
+//    private String comType_dictText;
+//    private String platformUser_dictText;
+//    private String comSpecialReform_dictText;
 
     public int getId() {
         return id;
@@ -174,11 +177,11 @@ public class CompanyBasisInfoBean {
         this.sourceResult = sourceResult;
     }
 
-    public String getEmployNumber() {
+    public int getEmployNumber() {
         return employNumber;
     }
 
-    public void setEmployNumber(String employNumber) {
+    public void setEmployNumber(int employNumber) {
         this.employNumber = employNumber;
     }
 
@@ -229,4 +232,28 @@ public class CompanyBasisInfoBean {
     public void setPlatformUser(String platformUser) {
         this.platformUser = platformUser;
     }
+
+//    public String getComType_dictText() {
+//        return comType_dictText;
+//    }
+//
+//    public void setComType_dictText(String comType_dictText) {
+//        this.comType_dictText = comType_dictText;
+//    }
+//
+//    public String getPlatformUser_dictText() {
+//        return platformUser_dictText;
+//    }
+//
+//    public void setPlatformUser_dictText(String platformUser_dictText) {
+//        this.platformUser_dictText = platformUser_dictText;
+//    }
+//
+//    public String getComSpecialReform_dictText() {
+//        return comSpecialReform_dictText;
+//    }
+//
+//    public void setComSpecialReform_dictText(String comSpecialReform_dictText) {
+//        this.comSpecialReform_dictText = comSpecialReform_dictText;
+//    }
 }

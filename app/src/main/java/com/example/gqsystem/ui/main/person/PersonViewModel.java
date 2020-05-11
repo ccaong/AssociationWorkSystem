@@ -3,6 +3,7 @@ package com.example.gqsystem.ui.main.person;
 import com.example.gqsystem.base.viewmodel.BaseViewModel;
 import com.example.gqsystem.bean.response.PersonListBean;
 import com.example.gqsystem.bean.response.ReviewerListBean;
+import com.example.gqsystem.config.Constants;
 import com.example.gqsystem.enums.LoadState;
 import com.example.gqsystem.http.data.HttpDisposable;
 import com.example.gqsystem.http.request.HttpFactory;
@@ -77,13 +78,13 @@ public class PersonViewModel extends BaseViewModel {
      */
     private void loadPersonListData() {
         HttpRequest.getInstance()
-                .getPersonList(mPage, 10)
+                .getPersonList(mPage,  Constants.PageSize)
                 .compose(HttpFactory.schedulers())
                 .subscribe(new HttpDisposable<PersonListBean>() {
                     @Override
                     public void success(PersonListBean bean) {
 
-                        if (bean.getPages() == 0) {
+                        if (bean.getTotal() == 0) {
                             loadState.postValue(LoadState.NO_DATA);
                             return;
                         }

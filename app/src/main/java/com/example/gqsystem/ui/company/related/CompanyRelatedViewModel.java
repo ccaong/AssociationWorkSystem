@@ -52,7 +52,7 @@ public class CompanyRelatedViewModel extends BaseViewModel {
 
 
     /**
-     * 获取评审人员列表
+     * 获取关联企业列表
      */
     private void loadRelationCompany() {
         HttpRequest.getInstance()

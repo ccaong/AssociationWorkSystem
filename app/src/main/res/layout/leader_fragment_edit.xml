@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.gqsystem.ui.main.leaderstroke.LeaderActivityEditViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/background"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_8"
+                android:layout_marginTop="@dimen/margin"
+                android:layout_marginEnd="@dimen/dimen_8"
+                android:layout_marginBottom="@dimen/margin"
+                app:cardBackgroundColor="@color/white">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/margin">
+
+                    <TextView
+                        android:id="@+id/tv_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin"
+                        android:layout_marginTop="@dimen/margin"
+                        android:text="*活动名称："
+                        android:textColor="@color/text_black_87"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <EditText
+                        android:id="@+id/et_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin"
+                        android:layout_marginTop="@dimen/dimen_8"
+                        android:layout_marginEnd="@dimen/margin"
+                        android:background="@drawable/edit_text_bg"
+                        android:padding="4dp"
+                        android:text="@={viewModel.activityName}"
+                        android:textSize="@dimen/text_14"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+
+
+                    <TextView
+                        android:id="@+id/tv_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin"
+                        android:layout_marginTop="@dimen/margin"
+                        android:text="*活动内容："
+                        android:textColor="@color/text_black_87"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/et_name" />
+
+                    <EditText
+                        android:id="@+id/et_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin"
+                        android:layout_marginTop="@dimen/dimen_8"
+                        android:layout_marginEnd="@dimen/margin"
+                        android:background="@drawable/edit_text_bg"
+                        android:minLines="2"
+                        android:padding="4dp"
+                        android:text="@={viewModel.activityContent}"
+                        android:textSize="@dimen/text_14"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_content" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_8"
+                android:layout_marginTop="@dimen/margin"
+                android:layout_marginEnd="@dimen/dimen_8"
+                android:layout_marginBottom="@dimen/margin"
+                app:cardBackgroundColor="@color/white">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/margin">
+
+                    <TextView
+                        android:id="@+id/tv_unit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin"
+                        android:layout_marginTop="@dimen/margin"
+                        android:text="邀请单位："
+                        android:textColor="@color/text_black_87"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <EditText
+                        android:id="@+id/et_unit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin"
+                        android:layout_marginTop="@dimen/dimen_8"
+                        android:layout_marginEnd="@dimen/margin"
+                        android:background="@drawable/edit_text_bg"
+                        android:hint="请输入活动的邀请单位"
+                        android:padding="4dp"
+                        android:text="@={viewModel.invitationUnit}"
+                        android:textSize="@dimen/text_14"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_unit" />
+
+
+                    <TextView
+                        android:id="@+id/tv_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin"
+                        android:layout_marginTop="@dimen/margin"
+                        android:text="活动时间："
+                        android:textColor="@color/text_black_87"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/et_unit" />
+
+
+                    <TextView
+                        android:id="@+id/tv_activity_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin"
+                        android:layout_marginTop="@dimen/dimen_8"
+                        android:layout_marginEnd="@dimen/margin"
+                        android:background="@color/white"
+                        android:drawableEnd="@mipmap/ic_chevron_right"
+                        android:onClick="@{()->viewModel.selectTime()}"
+                        android:padding="4dp"
+                        android:text="@{viewModel.activityTime}"
+                        android:textSize="@dimen/text_14"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_time" />
+
+                    <TextView
+                        android:id="@+id/tv_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin"
+                        android:layout_marginTop="@dimen/margin"
+                        android:text="活动地点："
+                        android:textColor="@color/text_black_87"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_activity_time" />
+
+                    <TextView
+                        android:id="@+id/tv_select_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin"
+                        android:layout_marginTop="@dimen/dimen_8"
+                        android:layout_marginEnd="@dimen/margin"
+                        android:background="@color/white"
+                        android:drawableEnd="@mipmap/ic_chevron_right"
+                        android:onClick="@{()->viewModel.selectAddress()}"
+                        android:padding="4dp"
+                        android:text="@={viewModel.activityAddress}"
+                        android:textSize="@dimen/text_14"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_address" />
+
+
+                    <TextView
+                        android:id="@+id/tv_address_detail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin"
+                        android:layout_marginTop="@dimen/margin"
+                        android:text="详细地点："
+                        android:textColor="@color/text_black_87"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_select_address" />
+
+                    <EditText
+                        android:id="@+id/et_address_detail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin"
+                        android:layout_marginTop="@dimen/dimen_8"
+                        android:layout_marginEnd="@dimen/margin"
+                        android:background="@drawable/edit_text_bg"
+                        android:hint="请输入活动的详细地点"
+                        android:padding="4dp"
+                        android:text="@={viewModel.addressDetails}"
+                        android:textSize="@dimen/text_14"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_address_detail" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton
+                style="@style/qmui_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_8"
+                android:layout_marginTop="@dimen/margin"
+                android:layout_marginEnd="@dimen/dimen_8"
+                android:onClick="@{()->viewModel.submit()}"
+                android:text="提交"
+                app:qmui_backgroundColor="@color/qmui_btn_green_bg"
+                app:qmui_radius="5dp" />
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+</layout>

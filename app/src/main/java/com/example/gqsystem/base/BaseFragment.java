@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 
 import com.example.gqsystem.R;
@@ -14,7 +15,10 @@ import com.example.gqsystem.databinding.ViewLoadingBinding;
 import com.example.gqsystem.databinding.ViewNoDataBinding;
 import com.example.gqsystem.databinding.ViewNoNetworkBinding;
 import com.example.gqsystem.enums.LoadState;
+import com.example.gqsystem.util.CommonUtils;
 import com.example.gqsystem.util.ToastUtils;
+import com.yanzhenjie.permission.AndPermission;
+import com.yanzhenjie.permission.runtime.Permission;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -146,7 +150,7 @@ public abstract class BaseFragment<DB extends ViewDataBinding, VM extends BaseVi
         }
     }
 
-    public void toast(String toast){
+    public void toast(String toast) {
         ToastUtils.showToast(toast);
     }
 
@@ -194,7 +198,7 @@ public abstract class BaseFragment<DB extends ViewDataBinding, VM extends BaseVi
     /**
      * 监听数据变化
      */
-    protected void initDataChange(){
+    protected void initDataChange() {
 
     }
 
@@ -207,4 +211,22 @@ public abstract class BaseFragment<DB extends ViewDataBinding, VM extends BaseVi
      * 初始化
      */
     protected abstract void init();
+
+
+    /**
+     * 检查权限,跳转到读取文档的界面
+     *
+     * @param fileName 文件名
+     */
+    public void requestPermission(String fileName) {
+        if (CommonUtils.isStringEmpty(fileName)) {
+            ToastUtils.showToast("没有文件可供下载！");
+            return;
+        }
+        AndPermission.with(this)
+                .runtime().permission(Permission.WRITE_EXTERNAL_STORAGE)
+                .onGranted(permission -> mViewModel.isFileExists(fileName))
+                .onDenied(permission -> ToastUtils.showToast("获取文件读取权限失败，请先授权！"))
+                .start();
+    }
 }
